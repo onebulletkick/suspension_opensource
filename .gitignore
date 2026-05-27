@@ -1,0 +1,22 @@
+# Local source materials. Do not publish raw team documents.
+技术手册/
+
+# Common private/raw document formats.
+*.docx
+*.pdf
+*.pptx
+*.xlsx
+*.zip
+
+# Temporary extraction, rendering, and local build outputs.
+tmp/
+output/
+.cache/
+.worktrees/
+site/
+.venv-docs/
+
+# macOS/editor noise.
+.DS_Store
+*.swp
+*.swo

@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FSAE 悬架学习路线</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #17202a;
+        --muted: #53616f;
+        --line: #d8dee6;
+        --bg: #f7f8fa;
+        --panel: #ffffff;
+        --accent: #0d6b6b;
+        --accent-soft: #e7f3f2;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", sans-serif;
+        line-height: 1.65;
+        color: var(--ink);
+        background: var(--bg);
+        overflow-x: hidden;
+      }
+
+      main {
+        width: 100%;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 56px 20px 72px;
+        overflow-x: hidden;
+      }
+
+      header {
+        margin-bottom: 32px;
+      }
+
+      h1 {
+        margin: 0 0 10px;
+        font-size: clamp(2rem, 6vw, 4rem);
+        line-height: 1.08;
+        letter-spacing: 0;
+      }
+
+      .subtitle {
+        margin: 0;
+        max-width: 760px;
+        color: var(--muted);
+        font-size: 1.1rem;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+        gap: 14px;
+      }
+
+      .visual {
+        margin: 34px 0;
+        min-width: 0;
+      }
+
+      .visual h2 {
+        margin: 0 0 14px;
+        font-size: 1.45rem;
+        letter-spacing: 0;
+      }
+
+      .visual-map {
+        display: grid;
+        gap: 10px;
+        margin: 0 0 18px;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        min-width: 0;
+      }
+
+      .visual-map img {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        height: auto;
+      }
+
+      .manual-chain {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .manual-chain li {
+        padding: 6px 10px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: var(--accent-soft);
+        color: var(--ink);
+        font-size: 0.92rem;
+      }
+
+      .visual-links {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+        gap: 14px;
+        min-width: 0;
+      }
+
+      a.visual-link {
+        display: grid;
+        gap: 10px;
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        color: inherit;
+        background: var(--panel);
+        text-decoration: none;
+        min-width: 0;
+      }
+
+      a.visual-link:focus,
+      a.visual-link:hover {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-soft);
+        outline: none;
+      }
+
+      .visual-marker {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 8px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-weight: 700;
+        letter-spacing: 0;
+      }
+
+      .visual-link strong {
+        font-size: 1rem;
+      }
+
+      a.card {
+        display: block;
+        min-height: 136px;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        color: inherit;
+        background: var(--panel);
+        text-decoration: none;
+      }
+
+      a.card:focus,
+      a.card:hover {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-soft);
+        outline: none;
+      }
+
+      .card strong {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 1.04rem;
+      }
+
+      .card span {
+        color: var(--muted);
+      }
+
+      .note {
+        margin-top: 28px;
+        padding: 16px 18px;
+        border-left: 4px solid var(--accent);
+        background: var(--panel);
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>FSAE 悬架学习路线</h1>
+        <p class="subtitle">面向 FSAE / Formula Student 车队的悬架知识、软件路线、设计流程和检查清单。公开版只包含重写后的学习资料，不分发原始队内文件。</p>
+      </header>
+
+      <section class="visual" aria-label="图文总览">
+        <h2>图文总览</h2>
+        <figure class="visual-map">
+          <img src="assets/diagrams/full-design-loop.svg" alt="悬架设计完整闭环">
+          <figcaption>手册主线</figcaption>
+          <ol class="manual-chain" aria-label="手册章节顺序">
+            <li>00 使用</li>
+            <li>01 学习</li>
+            <li>02 目标</li>
+            <li>03 轮胎</li>
+            <li>04 硬点</li>
+            <li>05 弹簧阻尼</li>
+            <li>06 仿真</li>
+            <li>07 结构校核</li>
+            <li>08 验证</li>
+            <li>09 软件</li>
+            <li>10 清单</li>
+          </ol>
+        </figure>
+        <div class="visual-links">
+          <a class="visual-link" href="docs/01-learning-roadmap.md">
+            <span class="visual-marker">01</span>
+            <strong>学习路线</strong>
+          </a>
+          <a class="visual-link" href="docs/02-design-targets.md">
+            <span class="visual-marker">02</span>
+            <strong>设计目标</strong>
+          </a>
+          <a class="visual-link" href="docs/04-geometry-and-hardpoints.md">
+            <span class="visual-marker">04</span>
+            <strong>几何与硬点</strong>
+          </a>
+          <a class="visual-link" href="docs/09-software-roadmap.md">
+            <span class="visual-marker">09</span>
+            <strong>软件路线</strong>
+          </a>
+        </div>
+      </section>
+
+      <section class="grid" aria-label="文档导航">
+        <a class="card" href="README.md">
+          <strong>README</strong>
+          <span>仓库定位、学习入口、许可证和免责声明。</span>
+        </a>
+        <a class="card" href="docs/00-overview.md">
+          <strong>00 如何使用本手册</strong>
+          <span>读法、内容分级和实践任务。</span>
+        </a>
+        <a class="card" href="docs/01-learning-roadmap.md">
+          <strong>01 学习路线</strong>
+          <span>从入组前到主力队员的阶段目标。</span>
+        </a>
+        <a class="card" href="docs/02-design-targets.md">
+          <strong>02 设计目标</strong>
+          <span>车辆目标、设计约束和跨组接口。</span>
+        </a>
+        <a class="card" href="docs/03-tire-and-vehicle-inputs.md">
+          <strong>03 轮胎与整车输入</strong>
+          <span>轮胎选择、模型边界和整车输入。</span>
+        </a>
+        <a class="card" href="docs/04-geometry-and-hardpoints.md">
+          <strong>04 几何与硬点</strong>
+          <span>主销、侧视/正视几何和硬点优化。</span>
+        </a>
+        <a class="card" href="docs/05-spring-damper-and-roll.md">
+          <strong>05 弹簧阻尼与侧倾</strong>
+          <span>偏频、阻尼、运动比和侧倾刚度。</span>
+        </a>
+        <a class="card" href="docs/06-simulation-and-optimization.md">
+          <strong>06 仿真与优化</strong>
+          <span>K&amp;C、参数优化和整车模型。</span>
+        </a>
+        <a class="card" href="docs/07-loads-and-structure-check.md">
+          <strong>07 载荷与结构校核</strong>
+          <span>载荷工况、金属件和复合材料件校核。</span>
+        </a>
+        <a class="card" href="docs/08-validation-and-iteration.md">
+          <strong>08 验证与迭代</strong>
+          <span>实车测试、数据对标和复盘答辩。</span>
+        </a>
+        <a class="card" href="docs/09-software-roadmap.md">
+          <strong>09 软件路线</strong>
+          <span>软件职责和最小可用工作流。</span>
+        </a>
+        <a class="card" href="docs/10-checklists.md">
+          <strong>10 检查清单</strong>
+          <span>评审、仿真、校核、测试和答辩清单。</span>
+        </a>
+        <a class="card" href="docs/references.md">
+          <strong>参考资料</strong>
+          <span>公开书籍、软件资料和来源说明。</span>
+        </a>
+      </section>
+
+      <p class="note">提示：GitHub 会直接渲染 Markdown 文件。这个 HTML 页面只是一个轻量导航，不依赖任何构建工具。</p>
+    </main>
+  </body>
+</html>

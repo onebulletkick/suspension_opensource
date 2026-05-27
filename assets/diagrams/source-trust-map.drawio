@@ -1,0 +1,19 @@
+<mxfile host="app.diagrams.net" modified="2026-05-26T00:00:00.000Z" version="29.7.9">
+  <diagram id="source-trust-map" name="Source Trust Map">
+    <mxGraphModel dx="1200" dy="720" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="920" pageHeight="520" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="public" value="公开资料&#xa;教材 / 官方文档 / 论文" style="rounded=1;html=0;fillColor=#eaf7e8;strokeColor=#3e7d3a;fontSize=15;" vertex="1" parent="1"><mxGeometry x="70" y="80" width="220" height="82" as="geometry"/></mxCell>
+        <mxCell id="experience" value="工程经验&#xa;可泛化、需写明条件" style="rounded=1;html=0;fillColor=#fff4d6;strokeColor=#b78100;fontSize=15;" vertex="1" parent="1"><mxGeometry x="350" y="80" width="220" height="82" as="geometry"/></mxCell>
+        <mxCell id="private" value="内部资料&#xa;只启发，不直接公开" style="rounded=1;html=0;fillColor=#ffeceb;strokeColor=#b2463c;fontSize=15;" vertex="1" parent="1"><mxGeometry x="630" y="80" width="220" height="82" as="geometry"/></mxCell>
+        <mxCell id="rewrite" value="改写与脱敏&#xa;去除原文、参数、未授权图" style="rounded=1;html=0;fillColor=#e7f3f2;strokeColor=#0d6b6b;fontSize=15;" vertex="1" parent="1"><mxGeometry x="210" y="250" width="220" height="82" as="geometry"/></mxCell>
+        <mxCell id="publish" value="公开文档&#xa;可阅读、可复核、可贡献" style="rounded=1;html=0;fillColor=#0d6b6b;fontColor=#ffffff;strokeColor=#0a4c4c;fontStyle=1;fontSize=16;" vertex="1" parent="1"><mxGeometry x="500" y="250" width="220" height="82" as="geometry"/></mxCell>
+        <mxCell id="e1" style="endArrow=block;html=0;rounded=0;strokeColor=#607d8b;" edge="1" parent="1" source="public" target="publish"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" style="endArrow=block;html=0;rounded=0;strokeColor=#607d8b;" edge="1" parent="1" source="experience" target="rewrite"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" style="endArrow=block;html=0;rounded=0;strokeColor=#607d8b;" edge="1" parent="1" source="private" target="rewrite"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;" edge="1" parent="1" source="rewrite" target="publish"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

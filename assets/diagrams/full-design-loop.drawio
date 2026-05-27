@@ -1,0 +1,48 @@
+<mxfile host="app.diagrams.net" modified="2026-05-27T00:00:00.000Z" version="29.7.9">
+  <diagram id="full-design-loop" name="Full Design Loop">
+    <mxGraphModel dx="1180" dy="430" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1180" pageHeight="430" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="lane_flow" value="主流程：保留必需节点顺序" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontSize=13;fontStyle=1;fontColor=#37474f;" vertex="1" parent="1"><mxGeometry x="60" y="24" width="360" height="28" as="geometry"/></mxCell>
+        <mxCell id="lane_artifacts" value="公开输出 / 检查证据" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontSize=13;fontStyle=1;fontColor=#37474f;" vertex="1" parent="1"><mxGeometry x="60" y="178" width="360" height="28" as="geometry"/></mxCell>
+        <mxCell id="n1" value="目标" style="rounded=1;html=0;fillColor=#e7f3f2;strokeColor=#0d6b6b;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="60" y="64" width="118" height="62" as="geometry"/></mxCell>
+        <mxCell id="a1" value="目标表&#xa;约束清单" style="rounded=1;html=0;fillColor=#ffffff;strokeColor=#90a4ae;fontSize=14;fontSize=13;" vertex="1" parent="1"><mxGeometry x="52" y="214" width="134" height="76" as="geometry"/></mxCell>
+        <mxCell id="d1" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;dashed=1;" edge="1" parent="1" source="n1" target="a1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="n2" value="轮胎输入" style="rounded=1;html=0;fillColor=#eaf1ff;strokeColor=#3d63a8;fontSize=14;" vertex="1" parent="1"><mxGeometry x="195" y="64" width="118" height="62" as="geometry"/></mxCell>
+        <mxCell id="a2" value="轮胎模型&#xa;适用范围" style="rounded=1;html=0;fillColor=#ffffff;strokeColor=#90a4ae;fontSize=14;fontSize=13;" vertex="1" parent="1"><mxGeometry x="187" y="214" width="134" height="76" as="geometry"/></mxCell>
+        <mxCell id="d2" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;dashed=1;" edge="1" parent="1" source="n2" target="a2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="n3" value="几何硬点" style="rounded=1;html=0;fillColor=#fff4d6;strokeColor=#b78100;fontSize=14;" vertex="1" parent="1"><mxGeometry x="329" y="64" width="118" height="62" as="geometry"/></mxCell>
+        <mxCell id="a3" value="硬点表&#xa;包络记录" style="rounded=1;html=0;fillColor=#ffffff;strokeColor=#90a4ae;fontSize=14;fontSize=13;" vertex="1" parent="1"><mxGeometry x="321" y="214" width="134" height="76" as="geometry"/></mxCell>
+        <mxCell id="d3" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;dashed=1;" edge="1" parent="1" source="n3" target="a3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="n4" value="簧上系统" style="rounded=1;html=0;fillColor=#f5eafe;strokeColor=#7b42a8;fontSize=14;" vertex="1" parent="1"><mxGeometry x="464" y="64" width="118" height="62" as="geometry"/></mxCell>
+        <mxCell id="a4" value="参数表&#xa;调校窗口" style="rounded=1;html=0;fillColor=#ffffff;strokeColor=#90a4ae;fontSize=14;fontSize=13;" vertex="1" parent="1"><mxGeometry x="456" y="214" width="134" height="76" as="geometry"/></mxCell>
+        <mxCell id="d4" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;dashed=1;" edge="1" parent="1" source="n4" target="a4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="n5" value="仿真优化" style="rounded=1;html=0;fillColor=#eaf7e8;strokeColor=#3e7d3a;fontSize=14;" vertex="1" parent="1"><mxGeometry x="598" y="64" width="118" height="62" as="geometry"/></mxCell>
+        <mxCell id="a5" value="仿真记录&#xa;优化版本" style="rounded=1;html=0;fillColor=#ffffff;strokeColor=#90a4ae;fontSize=14;fontSize=13;" vertex="1" parent="1"><mxGeometry x="590" y="214" width="134" height="76" as="geometry"/></mxCell>
+        <mxCell id="d5" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;dashed=1;" edge="1" parent="1" source="n5" target="a5"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="n6" value="结构校核" style="rounded=1;html=0;fillColor=#fff0e6;strokeColor=#c45f12;fontSize=14;" vertex="1" parent="1"><mxGeometry x="733" y="64" width="118" height="62" as="geometry"/></mxCell>
+        <mxCell id="a6" value="FEA 报告&#xa;风险说明" style="rounded=1;html=0;fillColor=#ffffff;strokeColor=#90a4ae;fontSize=14;fontSize=13;" vertex="1" parent="1"><mxGeometry x="725" y="214" width="134" height="76" as="geometry"/></mxCell>
+        <mxCell id="d6" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;dashed=1;" edge="1" parent="1" source="n6" target="a6"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="n7" value="实车验证" style="rounded=1;html=0;fillColor=#f2f6f7;strokeColor=#546e7a;fontSize=14;" vertex="1" parent="1"><mxGeometry x="867" y="64" width="118" height="62" as="geometry"/></mxCell>
+        <mxCell id="a7" value="测试数据&#xa;车手反馈" style="rounded=1;html=0;fillColor=#ffffff;strokeColor=#90a4ae;fontSize=14;fontSize=13;" vertex="1" parent="1"><mxGeometry x="859" y="214" width="134" height="76" as="geometry"/></mxCell>
+        <mxCell id="d7" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;dashed=1;" edge="1" parent="1" source="n7" target="a7"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="n8" value="复盘传承" style="rounded=1;html=0;fillColor=#ffffff;strokeColor=#607d8b;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="1002" y="64" width="118" height="62" as="geometry"/></mxCell>
+        <mxCell id="a8" value="复盘记录&#xa;下一季输入" style="rounded=1;html=0;fillColor=#ffffff;strokeColor=#90a4ae;fontSize=14;fontSize=13;" vertex="1" parent="1"><mxGeometry x="994" y="214" width="134" height="76" as="geometry"/></mxCell>
+        <mxCell id="d8" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;dashed=1;" edge="1" parent="1" source="n8" target="a8"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e1" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;" edge="1" parent="1" source="n1" target="n2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;" edge="1" parent="1" source="n2" target="n3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;" edge="1" parent="1" source="n3" target="n4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;" edge="1" parent="1" source="n4" target="n5"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e5" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;" edge="1" parent="1" source="n5" target="n6"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e6" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;" edge="1" parent="1" source="n6" target="n7"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e7" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;" edge="1" parent="1" source="n7" target="n8"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="check1" value="阶段评审：输入、单位、坐标系&#xa;证据来源必须可追溯" style="rounded=1;html=0;fillColor=#f7f9fa;strokeColor=#78909c;fontSize=14;fontSize=13;" vertex="1" parent="1"><mxGeometry x="88" y="330" width="480" height="58" as="geometry"/></mxCell>
+        <mxCell id="check2" value="反馈回路：复盘传承更新下一轮目标&#xa;而不是只归档结果" style="rounded=1;html=0;fillColor=#f7f9fa;strokeColor=#78909c;fontSize=14;fontSize=13;" vertex="1" parent="1"><mxGeometry x="612" y="330" width="480" height="58" as="geometry"/></mxCell>
+        <mxCell id="gate_edge_1" value="评审" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;dashed=1;" edge="1" parent="1" source="n7" target="check1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="gate_edge_2" value="证据" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;dashed=1;" edge="1" parent="1" source="n8" target="check2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="feedback" value="反馈更新" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;dashed=1;" edge="1" parent="1" source="n8" target="n1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1110" y="405"/><mxPoint x="70" y="405"/></Array></mxGeometry></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

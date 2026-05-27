@@ -1,0 +1,27 @@
+<mxfile host="app.diagrams.net" modified="2026-05-26T00:00:00.000Z" version="29.7.9">
+  <diagram id="learning-growth-map" name="Learning Growth Map">
+    <mxGraphModel dx="1200" dy="720" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="420" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="s0" value="入组前&#xa;认识赛车系统" style="rounded=1;html=0;fillColor=#e7f3f2;strokeColor=#0d6b6b;fontSize=14;" vertex="1" parent="1"><mxGeometry x="40" y="150" width="150" height="80" as="geometry"/></mxCell>
+        <mxCell id="s1" value="知识体系&#xa;轮胎/几何/操稳" style="rounded=1;html=0;fillColor=#fff4d6;strokeColor=#b78100;fontSize=14;" vertex="1" parent="1"><mxGeometry x="220" y="150" width="150" height="80" as="geometry"/></mxCell>
+        <mxCell id="s2" value="软件入门&#xa;CAD/Adams/FEA" style="rounded=1;html=0;fillColor=#eaf1ff;strokeColor=#3d63a8;fontSize=14;" vertex="1" parent="1"><mxGeometry x="400" y="150" width="150" height="80" as="geometry"/></mxCell>
+        <mxCell id="s3" value="技术路线&#xa;轮胎到实车闭环" style="rounded=1;html=0;fillColor=#f5eafe;strokeColor=#7b42a8;fontSize=14;" vertex="1" parent="1"><mxGeometry x="580" y="150" width="150" height="80" as="geometry"/></mxCell>
+        <mxCell id="s4" value="主力队员&#xa;评审/验证/答辩" style="rounded=1;html=0;fillColor=#eaf7e8;strokeColor=#3e7d3a;fontSize=14;" vertex="1" parent="1"><mxGeometry x="760" y="150" width="150" height="80" as="geometry"/></mxCell>
+        <mxCell id="o0" value="输出：术语表" style="rounded=1;html=0;fillColor=#ffffff;strokeColor=#b0bec5;fontSize=12;" vertex="1" parent="1"><mxGeometry x="220" y="275" width="150" height="48" as="geometry"/></mxCell>
+        <mxCell id="o1" value="输出：硬点报告" style="rounded=1;html=0;fillColor=#ffffff;strokeColor=#b0bec5;fontSize=12;" vertex="1" parent="1"><mxGeometry x="400" y="275" width="150" height="48" as="geometry"/></mxCell>
+        <mxCell id="o2" value="输出：设计档案" style="rounded=1;html=0;fillColor=#ffffff;strokeColor=#b0bec5;fontSize=12;" vertex="1" parent="1"><mxGeometry x="580" y="275" width="150" height="48" as="geometry"/></mxCell>
+        <mxCell id="o3" value="输出：复盘传承" style="rounded=1;html=0;fillColor=#ffffff;strokeColor=#b0bec5;fontSize=12;" vertex="1" parent="1"><mxGeometry x="760" y="275" width="150" height="48" as="geometry"/></mxCell>
+        <mxCell id="e01" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;" edge="1" parent="1" source="s0" target="s1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e12" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;" edge="1" parent="1" source="s1" target="s2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e23" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;" edge="1" parent="1" source="s2" target="s3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e34" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;" edge="1" parent="1" source="s3" target="s4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="eo0" style="endArrow=block;html=0;rounded=0;dashed=1;strokeColor=#90a4ae;" edge="1" parent="1" source="s1" target="o0"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="eo1" style="endArrow=block;html=0;rounded=0;dashed=1;strokeColor=#90a4ae;" edge="1" parent="1" source="s2" target="o1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="eo2" style="endArrow=block;html=0;rounded=0;dashed=1;strokeColor=#90a4ae;" edge="1" parent="1" source="s3" target="o2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="eo3" style="endArrow=block;html=0;rounded=0;dashed=1;strokeColor=#90a4ae;" edge="1" parent="1" source="s4" target="o3"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

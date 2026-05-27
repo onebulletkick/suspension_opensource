@@ -1,0 +1,21 @@
+<mxfile host="app.diagrams.net" modified="2026-05-26T00:00:00.000Z" version="29.7.9">
+  <diagram id="suspension-knowledge-map" name="Suspension Knowledge Map">
+    <mxGraphModel dx="1200" dy="760" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="960" pageHeight="540" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="tire" value="轮胎&#xa;力的来源" style="ellipse;html=0;fillColor=#0d6b6b;fontColor=#ffffff;strokeColor=#0a4c4c;fontStyle=1;fontSize=16;" vertex="1" parent="1"><mxGeometry x="380" y="40" width="200" height="92" as="geometry"/></mxCell>
+        <mxCell id="geometry" value="几何&#xa;轮端怎么运动" style="rounded=1;html=0;fillColor=#eaf1ff;strokeColor=#3d63a8;fontSize=14;" vertex="1" parent="1"><mxGeometry x="90" y="210" width="190" height="80" as="geometry"/></mxCell>
+        <mxCell id="ride" value="弹簧阻尼&#xa;能量怎么管理" style="rounded=1;html=0;fillColor=#fff4d6;strokeColor=#b78100;fontSize=14;" vertex="1" parent="1"><mxGeometry x="385" y="220" width="190" height="80" as="geometry"/></mxCell>
+        <mxCell id="handling" value="操纵稳定性&#xa;车手感受到什么" style="rounded=1;html=0;fillColor=#f5eafe;strokeColor=#7b42a8;fontSize=14;" vertex="1" parent="1"><mxGeometry x="680" y="210" width="190" height="80" as="geometry"/></mxCell>
+        <mxCell id="validation" value="验证&#xa;计算/仿真/实车" style="rounded=1;html=0;fillColor=#eaf7e8;strokeColor=#3e7d3a;fontSize=14;" vertex="1" parent="1"><mxGeometry x="385" y="395" width="190" height="80" as="geometry"/></mxCell>
+        <mxCell id="e1" value="接地能力" style="endArrow=block;html=0;rounded=0;strokeColor=#607d8b;" edge="1" parent="1" source="tire" target="geometry"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" value="载荷变化" style="endArrow=block;html=0;rounded=0;strokeColor=#607d8b;" edge="1" parent="1" source="tire" target="ride"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" value="力和响应" style="endArrow=block;html=0;rounded=0;strokeColor=#607d8b;" edge="1" parent="1" source="tire" target="handling"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4" value="姿态" style="endArrow=block;html=0;rounded=0;strokeColor=#607d8b;" edge="1" parent="1" source="geometry" target="validation"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e5" value="振动" style="endArrow=block;html=0;rounded=0;strokeColor=#607d8b;" edge="1" parent="1" source="ride" target="validation"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e6" value="行为" style="endArrow=block;html=0;rounded=0;strokeColor=#607d8b;" edge="1" parent="1" source="handling" target="validation"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

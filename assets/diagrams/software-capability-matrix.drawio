@@ -1,0 +1,37 @@
+<mxfile host="app.diagrams.net" modified="2026-05-27T00:00:00.000Z" version="29.7.9">
+  <diagram id="software-capability-matrix" name="Software Learning Route">
+    <mxGraphModel dx="1320" dy="760" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1220" pageHeight="560" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="软件学习路线&#xa;先做出可用悬架&#xa;再解释参数来源" style="rounded=1;html=0;fillColor=#0d6b6b;fontColor=#ffffff;strokeColor=#0a4c4c;fontStyle=1;fontSize=18;spacing=8;" vertex="1" parent="1"><mxGeometry x="40" y="34" width="280" height="104" as="geometry"/></mxCell>
+        <mxCell id="books" value="知识体系&#xa;RCD / RCVD&#xa;先知道问题" style="rounded=1;html=0;fillColor=#e7f3f2;strokeColor=#0d6b6b;fontSize=14;" vertex="1" parent="1"><mxGeometry x="40" y="210" width="142" height="84" as="geometry"/></mxCell>
+        <mxCell id="required" value="Adams + Abaqus/Ansys&#xa;入组必修&#xa;跑模型 / 看应力" style="rounded=1;html=0;fillColor=#eaf1ff;strokeColor=#3d63a8;fontSize=14;" vertex="1" parent="1"><mxGeometry x="214" y="210" width="190" height="84" as="geometry"/></mxCell>
+        <mxCell id="cad" value="AutoCAD / CAD&#xa;第一版硬点&#xa;接口、包络、干涉" style="rounded=1;html=0;fillColor=#fff4d6;strokeColor=#b78100;fontSize=14;" vertex="1" parent="1"><mxGeometry x="436" y="210" width="154" height="84" as="geometry"/></mxCell>
+        <mxCell id="adams" value="Adams Car / Insight&#xa;K&amp;C 检查&#xa;簧下硬点优化" style="rounded=1;html=0;fillColor=#f5eafe;strokeColor=#7b42a8;fontSize=14;" vertex="1" parent="1"><mxGeometry x="622" y="210" width="174" height="84" as="geometry"/></mxCell>
+        <mxCell id="matlab" value="MATLAB / Simulink&#xa;偏频、阻尼、运动比&#xa;参数变化影响" style="rounded=1;html=0;fillColor=#eaf7e8;strokeColor=#3e7d3a;fontSize=14;" vertex="1" parent="1"><mxGeometry x="828" y="210" width="178" height="84" as="geometry"/></mxCell>
+        <mxCell id="loads" value="Adams View + Abaqus&#xa;刚柔耦合 / 受力导出&#xa;安全校核输入" style="rounded=1;html=0;fillColor=#fff0e6;strokeColor=#c45f12;fontSize=14;" vertex="1" parent="1"><mxGeometry x="1030" y="210" width="164" height="84" as="geometry"/></mxCell>
+        <mxCell id="tire" value="轮胎模型支线&#xa;Optimum Tire / MATLAB&#xa;服务整车模型与选型" style="rounded=1;html=0;fillColor=#f2f6f7;strokeColor=#546e7a;fontSize=14;" vertex="1" parent="1"><mxGeometry x="500" y="58" width="210" height="86" as="geometry"/></mxCell>
+        <mxCell id="data" value="实车数据分析&#xa;AiM / Race Studio&#xa;导出后用 MATLAB 复盘" style="rounded=1;html=0;fillColor=#ffffff;strokeColor=#90a4ae;fontSize=14;" vertex="1" parent="1"><mxGeometry x="778" y="58" width="210" height="86" as="geometry"/></mxCell>
+        <mxCell id="carsim" value="CarSim / 控制模型&#xa;整车、赛道、科研&#xa;后期答辩加分项" style="rounded=1;html=0;fillColor=#ffeceb;strokeColor=#b2463c;fontSize=14;" vertex="1" parent="1"><mxGeometry x="1048" y="58" width="146" height="86" as="geometry"/></mxCell>
+        <mxCell id="output" value="阶段输出&#xa;硬点报告 / K&amp;C 曲线 / 参数表 / FEA 报告 / 测试复盘 / 答辩证据" style="rounded=1;html=0;fillColor=#263238;fontColor=#ffffff;strokeColor=#263238;fontStyle=1;fontSize=15;" vertex="1" parent="1"><mxGeometry x="260" y="410" width="700" height="78" as="geometry"/></mxCell>
+        <mxCell id="note1" value="原则：软件不是炫技，必须回答当前设计阶段的问题" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontSize=13;fontColor=#37474f;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="40" y="338" width="420" height="28" as="geometry"/></mxCell>
+        <mxCell id="note2" value="进阶：轮胎、整车和控制模型需要更强软件掌握度，适合在主线跑通后继续做" style="text;html=0;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;rounded=0;fontSize=13;fontColor=#37474f;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="590" y="338" width="600" height="28" as="geometry"/></mxCell>
+        <mxCell id="e1" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;" edge="1" parent="1" source="books" target="required"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;" edge="1" parent="1" source="required" target="cad"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;" edge="1" parent="1" source="cad" target="adams"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;" edge="1" parent="1" source="adams" target="matlab"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e5" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;" edge="1" parent="1" source="matlab" target="loads"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e6" value="轮胎输入" style="endArrow=block;html=0;rounded=0;dashed=1;strokeWidth=2;strokeColor=#78909c;fontSize=12;fontColor=#37474f;" edge="1" parent="1" source="tire" target="adams"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e7" value="数据复盘" style="endArrow=block;html=0;rounded=0;dashed=1;strokeWidth=2;strokeColor=#78909c;fontSize=12;fontColor=#37474f;" edge="1" parent="1" source="data" target="matlab"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e8" value="研究路线" style="endArrow=block;html=0;rounded=0;dashed=1;strokeWidth=2;strokeColor=#78909c;fontSize=12;fontColor=#37474f;" edge="1" parent="1" source="carsim" target="matlab"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e9" style="endArrow=block;html=0;rounded=0;dashed=1;strokeColor=#90a4ae;" edge="1" parent="1" source="cad" target="output"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e10" style="endArrow=block;html=0;rounded=0;dashed=1;strokeColor=#90a4ae;" edge="1" parent="1" source="adams" target="output"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e11" style="endArrow=block;html=0;rounded=0;dashed=1;strokeColor=#90a4ae;" edge="1" parent="1" source="matlab" target="output"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e12" style="endArrow=block;html=0;rounded=0;dashed=1;strokeColor=#90a4ae;" edge="1" parent="1" source="loads" target="output"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e13" style="endArrow=block;html=0;rounded=0;dashed=1;strokeColor=#90a4ae;" edge="1" parent="1" source="data" target="output"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e14" style="endArrow=block;html=0;rounded=0;dashed=1;strokeColor=#90a4ae;" edge="1" parent="1" source="carsim" target="output"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

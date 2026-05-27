@@ -1,0 +1,80 @@
+site_name: FSAE 悬架学习路线
+site_description: 面向 FSAE / Formula Student 车队的中文开源悬架学习路线与工程文档
+docs_dir: docs
+site_dir: site
+use_directory_urls: true
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.highlight
+    - search.suggest
+  palette:
+    - scheme: default
+      primary: teal
+      accent: teal
+
+plugins:
+  - search:
+      lang:
+        - zh
+        - en
+
+extra_css:
+  - assets/stylesheets/diagrams.css
+
+extra_javascript:
+  - assets/javascripts/mermaid.min.js
+  - assets/javascripts/mermaid-init.js
+  - assets/javascripts/diagram-tools.js
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
+
+nav:
+  - 首页: index.md
+  - 快速预览:
+      - 00 如何使用本手册: 00-overview.md
+      - 01 学习路线: 01-learning-roadmap.md
+      - 02 设计目标: 02-design-targets.md
+      - 03 轮胎与整车输入: 03-tire-and-vehicle-inputs.md
+      - 04 几何与硬点: 04-geometry-and-hardpoints.md
+      - 05 弹簧阻尼与侧倾: 05-spring-damper-and-roll.md
+      - 06 仿真与优化: 06-simulation-and-optimization.md
+      - 07 载荷与结构校核: 07-loads-and-structure-check.md
+      - 08 验证与迭代: 08-validation-and-iteration.md
+      - 09 软件路线: 09-software-roadmap.md
+      - 10 检查清单: 10-checklists.md
+  - 进阶手册:
+      - 高级手册入口: advanced/README.md
+      - 01 设计目标: advanced/01-design-targets.md
+      - 02 轮胎与整车输入: advanced/02-tire-and-vehicle-inputs.md
+      - 03 几何与硬点: advanced/03-geometry-and-hardpoints.md
+      - 04 弹簧阻尼与车身姿态: advanced/04-spring-damper-roll-and-ride.md
+      - 05 仿真优化与相关性: advanced/05-simulation-optimization-correlation.md
+      - 06 载荷与金属结构: advanced/06-loads-metal-structure.md
+      - 07 复合材料与制造风险: advanced/07-composites-and-manufacturing.md
+      - 08 验证测试与答辩: advanced/08-validation-testing-defense.md
+      - 09 软件工作流: advanced/09-software-workflows.md
+      - 10 评审清单: advanced/10-review-checklists.md
+  - 维护与来源:
+      - 参考资料: references.md
+      - 贡献指南: contributing.md
+      - 免责声明: disclaimer.md

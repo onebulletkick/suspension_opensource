@@ -1,0 +1,44 @@
+<mxfile host="app.diagrams.net" modified="2026-05-27T00:00:00.000Z" version="29.7.9">
+  <diagram id="validation-loop" name="Validation Loop">
+    <mxGraphModel dx="1180" dy="430" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1180" pageHeight="430" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="lane_flow" value="主流程：保留必需节点顺序" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontSize=13;fontStyle=1;fontColor=#37474f;" vertex="1" parent="1"><mxGeometry x="60" y="24" width="360" height="28" as="geometry"/></mxCell>
+        <mxCell id="lane_artifacts" value="公开输出 / 检查证据" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontSize=13;fontStyle=1;fontColor=#37474f;" vertex="1" parent="1"><mxGeometry x="60" y="178" width="360" height="28" as="geometry"/></mxCell>
+        <mxCell id="n1" value="设计假设" style="rounded=1;html=0;fillColor=#e7f3f2;strokeColor=#0d6b6b;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="60" y="64" width="118" height="62" as="geometry"/></mxCell>
+        <mxCell id="a1" value="假设清单&#xa;通过标准" style="rounded=1;html=0;fillColor=#ffffff;strokeColor=#90a4ae;fontSize=14;fontSize=13;" vertex="1" parent="1"><mxGeometry x="52" y="214" width="134" height="76" as="geometry"/></mxCell>
+        <mxCell id="d1" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;dashed=1;" edge="1" parent="1" source="n1" target="a1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="n2" value="仿真结果" style="rounded=1;html=0;fillColor=#eaf1ff;strokeColor=#3d63a8;fontSize=14;" vertex="1" parent="1"><mxGeometry x="217" y="64" width="118" height="62" as="geometry"/></mxCell>
+        <mxCell id="a2" value="预期趋势&#xa;限制说明" style="rounded=1;html=0;fillColor=#ffffff;strokeColor=#90a4ae;fontSize=14;fontSize=13;" vertex="1" parent="1"><mxGeometry x="209" y="214" width="134" height="76" as="geometry"/></mxCell>
+        <mxCell id="d2" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;dashed=1;" edge="1" parent="1" source="n2" target="a2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="n3" value="测试计划" style="rounded=1;html=0;fillColor=#fff4d6;strokeColor=#b78100;fontSize=14;" vertex="1" parent="1"><mxGeometry x="374" y="64" width="118" height="62" as="geometry"/></mxCell>
+        <mxCell id="a3" value="验证矩阵&#xa;安全检查" style="rounded=1;html=0;fillColor=#ffffff;strokeColor=#90a4ae;fontSize=14;fontSize=13;" vertex="1" parent="1"><mxGeometry x="366" y="214" width="134" height="76" as="geometry"/></mxCell>
+        <mxCell id="d3" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;dashed=1;" edge="1" parent="1" source="n3" target="a3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="n4" value="实车数据" style="rounded=1;html=0;fillColor=#f5eafe;strokeColor=#7b42a8;fontSize=14;" vertex="1" parent="1"><mxGeometry x="531" y="64" width="118" height="62" as="geometry"/></mxCell>
+        <mxCell id="a4" value="设置日志&#xa;数据文件" style="rounded=1;html=0;fillColor=#ffffff;strokeColor=#90a4ae;fontSize=14;fontSize=13;" vertex="1" parent="1"><mxGeometry x="523" y="214" width="134" height="76" as="geometry"/></mxCell>
+        <mxCell id="d4" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;dashed=1;" edge="1" parent="1" source="n4" target="a4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="n5" value="车手反馈" style="rounded=1;html=0;fillColor=#eaf7e8;strokeColor=#3e7d3a;fontSize=14;" vertex="1" parent="1"><mxGeometry x="688" y="64" width="118" height="62" as="geometry"/></mxCell>
+        <mxCell id="a5" value="工况描述&#xa;速度区间" style="rounded=1;html=0;fillColor=#ffffff;strokeColor=#90a4ae;fontSize=14;fontSize=13;" vertex="1" parent="1"><mxGeometry x="680" y="214" width="134" height="76" as="geometry"/></mxCell>
+        <mxCell id="d5" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;dashed=1;" edge="1" parent="1" source="n5" target="a5"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="n6" value="差异解释" style="rounded=1;html=0;fillColor=#fff0e6;strokeColor=#c45f12;fontSize=14;" vertex="1" parent="1"><mxGeometry x="845" y="64" width="118" height="62" as="geometry"/></mxCell>
+        <mxCell id="a6" value="问题列表&#xa;原因排查" style="rounded=1;html=0;fillColor=#ffffff;strokeColor=#90a4ae;fontSize=14;fontSize=13;" vertex="1" parent="1"><mxGeometry x="837" y="214" width="134" height="76" as="geometry"/></mxCell>
+        <mxCell id="d6" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;dashed=1;" edge="1" parent="1" source="n6" target="a6"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="n7" value="修改记录" style="rounded=1;html=0;fillColor=#f2f6f7;strokeColor=#546e7a;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="1002" y="64" width="118" height="62" as="geometry"/></mxCell>
+        <mxCell id="a7" value="变更日志&#xa;下一轮计划" style="rounded=1;html=0;fillColor=#ffffff;strokeColor=#90a4ae;fontSize=14;fontSize=13;" vertex="1" parent="1"><mxGeometry x="994" y="214" width="134" height="76" as="geometry"/></mxCell>
+        <mxCell id="d7" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;dashed=1;" edge="1" parent="1" source="n7" target="a7"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e1" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;" edge="1" parent="1" source="n1" target="n2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;" edge="1" parent="1" source="n2" target="n3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;" edge="1" parent="1" source="n3" target="n4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;" edge="1" parent="1" source="n4" target="n5"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e5" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;" edge="1" parent="1" source="n5" target="n6"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e6" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;" edge="1" parent="1" source="n6" target="n7"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="check1" value="验证门：一轮测试尽量只改一个主变量&#xa;车辆状态和数据文件必须能追溯" style="rounded=1;html=0;fillColor=#f7f9fa;strokeColor=#78909c;fontSize=14;fontSize=13;" vertex="1" parent="1"><mxGeometry x="88" y="330" width="480" height="58" as="geometry"/></mxCell>
+        <mxCell id="check2" value="闭环证据：差异解释决定是调校、改模型&#xa;改结构、补数据还是暂停结论" style="rounded=1;html=0;fillColor=#f7f9fa;strokeColor=#78909c;fontSize=14;fontSize=13;" vertex="1" parent="1"><mxGeometry x="612" y="330" width="480" height="58" as="geometry"/></mxCell>
+        <mxCell id="gate_edge_1" value="评审" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;dashed=1;" edge="1" parent="1" source="n6" target="check1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="gate_edge_2" value="证据" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;dashed=1;" edge="1" parent="1" source="n7" target="check2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="feedback" value="反馈更新" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;dashed=1;" edge="1" parent="1" source="n7" target="n1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1110" y="405"/><mxPoint x="70" y="405"/></Array></mxGeometry></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

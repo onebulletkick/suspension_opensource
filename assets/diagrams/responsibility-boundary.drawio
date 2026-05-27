@@ -1,0 +1,19 @@
+<mxfile host="app.diagrams.net" modified="2026-05-26T00:00:00.000Z" version="29.7.9">
+  <diagram id="responsibility-boundary" name="Responsibility Boundary">
+    <mxGraphModel dx="1200" dy="720" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="940" pageHeight="520" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="docs" value="学习文档&#xa;帮助理解问题" style="rounded=1;html=0;fillColor=#e7f3f2;strokeColor=#0d6b6b;fontSize=15;" vertex="1" parent="1"><mxGeometry x="70" y="75" width="210" height="82" as="geometry"/></mxCell>
+        <mxCell id="model" value="计算与仿真&#xa;回答限定问题" style="rounded=1;html=0;fillColor=#eaf1ff;strokeColor=#3d63a8;fontSize=15;" vertex="1" parent="1"><mxGeometry x="365" y="75" width="210" height="82" as="geometry"/></mxCell>
+        <mxCell id="review" value="工程评审&#xa;检查规则、制造、风险" style="rounded=1;html=0;fillColor=#fff4d6;strokeColor=#b78100;fontSize=15;" vertex="1" parent="1"><mxGeometry x="660" y="75" width="210" height="82" as="geometry"/></mxCell>
+        <mxCell id="test" value="实车测试&#xa;数据与车手反馈" style="rounded=1;html=0;fillColor=#f5eafe;strokeColor=#7b42a8;fontSize=15;" vertex="1" parent="1"><mxGeometry x="210" y="295" width="210" height="82" as="geometry"/></mxCell>
+        <mxCell id="decision" value="设计责任&#xa;由使用者独立承担" style="rounded=1;html=0;fillColor=#263238;fontColor=#ffffff;strokeColor=#263238;fontStyle=1;fontSize=16;" vertex="1" parent="1"><mxGeometry x="520" y="295" width="230" height="82" as="geometry"/></mxCell>
+        <mxCell id="e1" style="endArrow=block;html=0;rounded=0;strokeColor=#607d8b;" edge="1" parent="1" source="docs" target="model"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" style="endArrow=block;html=0;rounded=0;strokeColor=#607d8b;" edge="1" parent="1" source="model" target="review"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" style="endArrow=block;html=0;rounded=0;strokeColor=#607d8b;" edge="1" parent="1" source="review" target="test"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;" edge="1" parent="1" source="test" target="decision"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
