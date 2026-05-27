@@ -6,6 +6,20 @@ FSAE Suspension Learning Roadmap
 
 公开版本只包含重写后的 Markdown 与轻量 HTML 导航页，不包含原始队内资料、历史参数表、未授权图片或未清理的内部文档。
 
+## 在线阅读入口
+
+**推荐入口： [GitHub Pages 在线文档站](https://onebulletkick.github.io/suspension_opensource/)**
+
+线上站点带侧边栏、搜索、页内目录和更适合连续阅读的排版。GitHub 仓库页面适合看源码、提交修改或下载文档；第一次阅读建议直接从 GitHub Pages 开始。
+
+| 你想做什么 | 从哪里开始 | 建议读法 |
+| --- | --- | --- |
+| 快速了解这套资料 | [GitHub Pages 首页](https://onebulletkick.github.io/suspension_opensource/) | 先看“按身份进入”和“阅读路线”，再进入对应章节 |
+| 新人入门悬架组 | [01 学习路线](https://onebulletkick.github.io/suspension_opensource/01-learning-roadmap/) | 按阶段建立基础概念、软件任务和交付物意识 |
+| 准备做一版设计 | [02 设计目标](https://onebulletkick.github.io/suspension_opensource/02-design-targets/) | 顺着 02-08 章走完整设计链，不要跳过轮胎和输入 |
+| 准备评审、答辩或复盘 | [10 检查清单](https://onebulletkick.github.io/suspension_opensource/10-checklists/) | 用清单反查目标、模型、结构校核、测试和公开边界 |
+| 想深入技术细节 | [高级悬架工程手册](https://onebulletkick.github.io/suspension_opensource/advanced/) | 按高级手册 01-10 章阅读完整工程逻辑 |
+
 ## 视觉总览
 
 ![悬架设计完整闭环](assets/diagrams/full-design-loop.svg)
@@ -53,9 +67,11 @@ flowchart LR
 
 也可以打开 [index.html](index.html) 作为本地导航页。
 
-## 在线文档站
+## 本地预览和使用
 
-本仓库已准备 MkDocs Material + GitHub Pages 发布配置。仓库推送到 GitHub 后，在仓库 Settings -> Pages 中选择 GitHub Actions，工作流通过后即可通过 GitHub Pages 地址访问带搜索、侧边栏和页内目录的在线文档站。
+如果只是阅读，直接使用 [GitHub Pages 在线文档站](https://onebulletkick.github.io/suspension_opensource/) 最方便。
+
+如果需要离线阅读或修改文档，可以克隆仓库后用 MkDocs 本地预览：
 
 本地预览：
 
@@ -65,8 +81,6 @@ python3 -m venv .venv-docs
 pip install -r requirements-docs.txt
 mkdocs serve
 ```
-
-当前仓库尚未配置 Git remote，因此 README 暂不写死 GitHub Pages 地址。远程仓库创建后，可在 `mkdocs.yml` 中补充 `site_url`、`repo_url` 和 `edit_uri`。
 
 ## 学习原则
 

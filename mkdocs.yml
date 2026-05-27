@@ -1,5 +1,8 @@
 site_name: FSAE 悬架学习路线
 site_description: 面向 FSAE / Formula Student 车队的中文开源悬架学习路线与工程文档
+site_url: https://onebulletkick.github.io/suspension_opensource/
+repo_url: https://github.com/onebulletkick/suspension_opensource
+repo_name: onebulletkick/suspension_opensource
 docs_dir: docs
 site_dir: site
 use_directory_urls: true
