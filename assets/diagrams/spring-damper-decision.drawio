@@ -5,7 +5,7 @@
         <mxCell id="0"/>
         <mxCell id="1" parent="0"/>
         <mxCell id="lane_flow" value="主流程：保留必需节点顺序" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontSize=13;fontStyle=1;fontColor=#37474f;" vertex="1" parent="1"><mxGeometry x="60" y="24" width="360" height="28" as="geometry"/></mxCell>
-        <mxCell id="lane_artifacts" value="公开输出 / 检查证据" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontSize=13;fontStyle=1;fontColor=#37474f;" vertex="1" parent="1"><mxGeometry x="60" y="178" width="360" height="28" as="geometry"/></mxCell>
+        <mxCell id="lane_artifacts" value="输出物 / 检查证据" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontSize=13;fontStyle=1;fontColor=#37474f;" vertex="1" parent="1"><mxGeometry x="60" y="178" width="360" height="28" as="geometry"/></mxCell>
         <mxCell id="n1" value="车辆目标" style="rounded=1;html=0;fillColor=#e7f3f2;strokeColor=#0d6b6b;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="60" y="64" width="118" height="62" as="geometry"/></mxCell>
         <mxCell id="a1" value="角重/姿态&#xa;赛事目标" style="rounded=1;html=0;fillColor=#ffffff;strokeColor=#90a4ae;fontSize=14;fontSize=13;" vertex="1" parent="1"><mxGeometry x="52" y="214" width="134" height="76" as="geometry"/></mxCell>
         <mxCell id="d1" style="endArrow=block;html=0;rounded=0;strokeWidth=2;strokeColor=#607d8b;dashed=1;" edge="1" parent="1" source="n1" target="a1"><mxGeometry relative="1" as="geometry"/></mxCell>

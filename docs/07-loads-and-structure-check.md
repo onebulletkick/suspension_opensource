@@ -53,7 +53,7 @@ flowchart TD
 
 ### 复合材料建模和评审细节
 
-| 主题 | 公开安全的记录方式 |
+| 主题 | 记录重点 |
 | --- | --- |
 | Laminate coordinate system | 写明 0 deg 方向相对零件轴线、车辆坐标或载荷方向的定义，避免 CAD、铺层表和求解器各用一套方向 |
 | Ply-angle sign convention | 说明正角度绕哪个法向旋转；左右件镜像时要确认角度符号是否也镜像 |

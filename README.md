@@ -2,9 +2,9 @@
 
 FSAE Suspension Learning Roadmap
 
-这是一个面向 FSAE / Formula Student 车队的悬架学习仓库。它的目标不是替代教材、软件手册或车队导师，而是把悬架组新人到主力队员之间最容易断代的学习路径整理成可公开、可迭代、可复用的文档。
+这是一个面向 FSAE / Formula Student 车队的悬架学习仓库。它的目标不是替代教材、软件手册或车队导师，而是把悬架组新人到主力队员之间最容易断代的学习路径整理成可复核、可迭代、可复用的文档。
 
-公开版本只包含重写后的 Markdown 与轻量 HTML 导航页，不包含原始队内资料、历史参数表、未授权图片或未清理的内部文档。
+仓库内容以 Markdown、图解和轻量 HTML 导航为主，聚焦学习路线、工程方法和评审习惯；原始队内资料、历史参数表、未授权图片和内部记录不放在这里。
 
 ## 在线阅读入口
 
@@ -17,7 +17,7 @@ FSAE Suspension Learning Roadmap
 | 快速了解这套资料 | [GitHub Pages 首页](https://onebulletkick.github.io/suspension_opensource/) | 先看“按身份进入”和“阅读路线”，再进入对应章节 |
 | 新人入门悬架组 | [01 学习路线](https://onebulletkick.github.io/suspension_opensource/01-learning-roadmap/) | 按阶段建立基础概念、软件任务和交付物意识 |
 | 准备做一版设计 | [02 设计目标](https://onebulletkick.github.io/suspension_opensource/02-design-targets/) | 顺着 02-08 章走完整设计链，不要跳过轮胎和输入 |
-| 准备评审、答辩或复盘 | [10 检查清单](https://onebulletkick.github.io/suspension_opensource/10-checklists/) | 用清单反查目标、模型、结构校核、测试和公开边界 |
+| 准备评审、答辩或复盘 | [10 检查清单](https://onebulletkick.github.io/suspension_opensource/10-checklists/) | 用清单反查目标、模型、结构校核、测试和资料边界 |
 | 想深入技术细节 | [高级悬架工程手册](https://onebulletkick.github.io/suspension_opensource/advanced/) | 按高级手册 01-10 章阅读完整工程逻辑 |
 
 ## 视觉总览
@@ -45,7 +45,7 @@ flowchart LR
 - 刚加入悬架组，需要知道先学什么、后做什么的新人。
 - 已经能读懂基础概念，但不知道如何把知识转成设计流程的队员。
 - 需要重新梳理悬架培训、软件培训和设计评审流程的车队。
-- 想把悬架知识传承从口头经验变成公开文档的维护者。
+- 想把悬架知识传承从口头经验变成开源文档的维护者。
 
 ## 从这里开始
 
@@ -98,4 +98,4 @@ mkdocs serve
 
 ## 许可证
 
-除非文件内另有说明，本仓库公开文档和自制资产采用 [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International](LICENSE.md) 许可。
+除非文件内另有说明，本仓库文档和自制资产采用 [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International](LICENSE.md) 许可。
