@@ -1,6 +1,21 @@
 # Local source materials. Do not publish raw team documents.
 技术手册/
 
+# Local AI/workflow state. Keep these on this machine only.
+.planning/
+.claude/
+AGENTS.md
+CLAUDE.md
+
+# Local book extraction and translation outputs.
+docs/books/
+scripts/
+
+# Local secrets and environment overrides.
+.env
+.env.*
+!.env.example
+
 # Common private/raw document formats.
 *.docx
 *.pdf
@@ -15,6 +30,13 @@ output/
 .worktrees/
 site/
 .venv-docs/
+
+# AI/OCR processing progress and reports.
+*.log
+*.progress.json
+*quality_report*.json
+*QUALITY_REPORT*.md
+*figure-inventory*.json
 
 # macOS/editor noise.
 .DS_Store
