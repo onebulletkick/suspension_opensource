@@ -45,6 +45,17 @@
 
 因此，本章把每类软件都拆成同一组字段：`工程问题`、`最低输入`、`可信输出`、`误导性用法`、`支持章节`。队员在学习任何软件前，先写清这五项，再决定是否值得投入更深的模型。
 
+RCD / RCVD 应先被内化为工程问题，再决定使用哪种软件。也就是说，先问“这个概念在我们的车上要输入什么、输出什么、靠什么验证”，再选择表格、MATLAB/Python、MBD、FEA、数据分析或 CAD 工作流。AutoCAD 只承担二维几何和硬点草图，CATIA / 3D CAD 才承担三维包装、装配和干涉复核；软件分工不能反过来替代工程问题定义。
+
+| RCD / RCVD 概念 | 软件任务 | 最低可评审输出 |
+| --- | --- | --- |
+| 轮胎行为 tire behavior | 轮胎拟合、绘图和候选对比 workflow | 数据覆盖说明、拟合残差趋势、模型适用窗口和待相关性验证项 |
+| 载荷转移 / 横摆响应 load transfer / yaw response | 表格或 MATLAB/Python 计算 | 自由体图、单位和符号说明、敏感性图、与目标操稳问题的连接 |
+| 运动学 / 柔度 kinematics / compliance | MBD / K&C 模型 | 刚体 K&C 曲线、柔度输入边界、异常曲线解释和复测计划 |
+| 弹簧 / 侧倾 / 阻尼 spring / roll / damping | 参数 sweep 和整车模型 | 偏频、roll stiffness、motion ratio、阻尼区间、调校窗口和风险说明 |
+| 结构载荷 structural loads | 力提取和 FEA boundary preparation | 载荷路径、坐标系、作用点、边界条件、网格与材料假设审查 |
+| 验证 validation | 测试数据清理和 correlation report | 通道字典、滤波和时间对齐说明、仿真-实车差异、修正动作和复测计划 |
+
 ## 源文档软件工作总览
 
 源材料中的软件路线不是“把软件名列出来”，而是把每个工具放进悬架设计链：先用教材和表格建立参数意识，再用 AutoCAD 画悬架二维几何，用 CATIA / 3D CAD 做装配包络和干涉检查，用 Adams Car 做硬点与 K&C，随后用 MATLAB / Python、Adams Insight、Adams View、Abaqus / Ansys 和实车数据形成计算、优化、载荷、结构与验证闭环。下表把这些经验整理成工作映射。

@@ -130,6 +130,31 @@
 | 修正动作 | 更新输入、重测通道、补充测试、保留未验证风险 |
 | 复核计划 | 下一轮用哪个测试确认修正没有过拟合 |
 
+## RCD / RCVD 校准后的调校闭环
+
+RCD / RCVD 中关于 set-up、driver feedback、轮胎工作窗口、载荷转移和 transient response 的内容，进入本仓库时应先校准成“可测、可改、可复测”的本地闭环。不要把书中的通用结论直接写成调校配方；更好的做法是把概念转成测试问题、可观察类别、setup change 和 correlation 记录。
+
+```mermaid
+flowchart TD
+  A["设计目标<br/>design targets"] --> B["轮胎与车辆输入<br/>tire and vehicle inputs"]
+  B --> C["模型预测<br/>simulation prediction"]
+  C --> D["赛道测试<br/>track test"]
+  D --> E["车手反馈<br/>driver feedback"]
+  D --> F["传感器数据<br/>measured data"]
+  E --> G["问题分类<br/>understeer / oversteer / ride / transient"]
+  F --> H["相关性检查<br/>correlation"]
+  G --> I["调校方案<br/>setup change"]
+  H --> I
+  I --> J["复测与记录<br/>re-test and log"]
+  J --> B
+```
+
+- 车手反馈 driver feedback 先翻译成可观察类别：understeer / oversteer、ride、transient、braking stability、traction、response delay、oscillation 或 confidence issue；每一类都要写清发生工况、驾驶输入、速度区间、轮胎状态和可检查数据通道。
+- 问题分类不能直接等于根因。弯中推头可能来自前轮胎温、前束、外倾、侧倾刚度分配、行程触限、车手任务或路面变化；需要用传感器数据、下车检查和复测把候选原因排序。
+- 每个调校方案 setup change 都应记录 baseline、tire state、run condition、改变的单一变量、expected effect、result 和是否回退；如果同时改变多个变量，只能写成弱结论。
+- 相关性检查 correlation 先比较趋势、相位、符号和数量级，再讨论绝对数值；如果模型无法解释测试结果，应优先检查输入版本、轮胎状态、传感器标定和场地条件，而不是急着改多个模型参数。
+- 公开学习文档只保留闭环方法、字段和判断逻辑；具体调校配方、赛道分段、精确胎压、阻尼档位和原始数据留在团队工程资料中。
+
 ### 从可测通道反推载荷可信度
 
 公开 Formula SAE 测试案例常把“能不能测到力”拆成两层：第一层是在 A 臂、pullrod、tie rod 或关键连接件上布置应变片、位移传感器和车辆状态通道；第二层是用几何、方向向量和静力 / 动力学假设，把杆件力或接地点力转换成可与仿真比较的量。这样做的价值不在于复制某个供应商系统，而在于提醒团队：载荷 correlation 需要传感器、模型和假设同时成立。

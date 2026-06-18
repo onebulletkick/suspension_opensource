@@ -119,6 +119,16 @@ flowchart LR
 | 载荷与操稳 | wheel loads、load transfer、understeer / oversteer、g-g 图、制动和驱动载荷如何影响参数选择和结构校核？ | 简化操稳说明和载荷假设表 |
 | 调校与相关性 | set-up、testing、compliance 和 correlation 如何把软件结论带回实车？ | 测试计划、调校记录和仿真-实车差异清单 |
 
+读 RCD / RCVD 的最终交付不是读书笔记，而是把概念转成可评审、可复测、可公开改写的工程输出。最低输出清单建议包括：
+
+- 设计目标表 design target table；
+- 轮胎 / 输入假设表 tire and input assumption sheet；
+- 硬点 / K&C 检查清单 hardpoint and kinematics checklist；
+- 弹簧 / 侧倾 / 阻尼参数表 spring, roll and damper parameter table；
+- 仿真相关性日志 simulation correlation log；
+- 载荷 / FEA boundary package；
+- 验证 / 答辩检查清单 validation and defense checklist。
+
 ## 阶段 2：软件入门
 
 重点是用最少的软件能力完成一套可讨论的悬架。
