@@ -19,6 +19,8 @@ flowchart TD
 
 ## 关键判断
 
+所有几何曲线都必须先说明坐标系、正负方向和输入条件，否则 bump steer、camber gain、roll center migration 的判断很容易反向。
+
 | 项目 | 主要关注 | 判断方式 |
 | --- | --- | --- |
 | Kingpin 主销几何 | 主销内倾 KPI、主销后倾 caster、机械拖距、scrub radius、转向回正和转向力矩 | 同时看轮辋空间、转向手感、制动稳定性、轮胎接地点变化 |
@@ -36,6 +38,8 @@ flowchart TD
 5. 导入 K&C 模型，跑平行跳动、单轮跳动、转向、侧倾和回弹工况。
 6. 对干涉、制造、维护和传感器空间做 CAD 复核。
 7. 做优化时记录设计变量、目标函数、约束和被放弃方案。
+
+K&C 与 compliance 的边界见 [高级 03 几何与硬点](advanced/03-geometry-and-hardpoints.md)：刚体 K&C 可做第一轮趋势筛选，但不能单独证明实车载荷下的 toe / camber。
 
 ## 硬点优化示例
 
