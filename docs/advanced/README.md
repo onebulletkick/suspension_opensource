@@ -24,6 +24,23 @@
 | 公开项目 / 案例 case | 写成工作流，而不是结果崇拜 | 输入、测试场景、传感器、输出和限制 | 直接照搬相关性百分比、车型参数或供应商话术 |
 | 工程经验 experience | 写成条件化判断 | 适用阶段、验证方式、失败风险、待验证项 | 把旧队伍习惯写成普遍定律 |
 
+## RCD / RCVD 全量审核矩阵
+
+RCD / RCVD 在本手册中的作用不是替代原书，也不是提供扫描内容，而是作为悬架知识完整性和技术边界的审核基准。RCD 更适合校准赛车设计、结构布置、调校和测试的实践框架；RCVD 更适合校准车辆动力学、轮胎、坐标系、操稳、载荷、几何、弹簧阻尼和柔度的理论深度。
+
+| 知识域 | RCD / RCVD 审核角色 | 当前公开落点 | 内化重点 |
+|---|---|---|---|
+| 设计目标 | RCD 校准整车设计取舍；RCVD 校准车辆动态目标如何影响悬架指标 | [01 设计目标](01-design-targets.md)、[快速版 02](../02-design-targets.md) | 把目标写成可验证输入，区分规则约束、性能目标和团队偏好 |
+| 轮胎与整车输入 | RCVD 校准 tire behavior、slip angle、load sensitivity 和 tire data treatment | [02 轮胎与整车输入](02-tire-and-vehicle-inputs.md)、[快速版 03](../03-tire-and-vehicle-inputs.md) | 强化轮胎模型边界、残差评审、动态轮荷和模型用途 |
+| 坐标系与几何 | RCVD 校准 axis systems、suspension geometry、steering geometry；RCD 校准结构布置直觉 | [03 几何与硬点](03-geometry-and-hardpoints.md)、[快速版 04](../04-geometry-and-hardpoints.md) | 强化坐标正负、roll center migration、bump steer、camber gain、K&C 和 3D 包络边界 |
+| 弹簧阻尼与侧倾 | RCVD 校准 ride rate、roll rate、springs、dampers；RCD 校准 anti-roll bar 和调校实践 | [04 簧上系统](04-spring-damper-roll-and-ride.md)、[快速版 05](../05-spring-damper-and-roll.md) | 区分 spring rate、wheel rate、ride rate、roll stiffness、motion ratio 和阻尼工作区间 |
+| 操稳、仿真与优化 | RCVD 校准 steady-state、transient、pair analysis、force-moment、g-g；RCD 校准测试解释 | [05 仿真优化](05-simulation-optimization-correlation.md)、[快速版 06](../06-simulation-and-optimization.md) | 把模型分成趋势判断、参数研究、整车仿真和相关性验证，不把仿真当实车证明 |
+| 轮载与金属结构 | RCVD 校准 wheel loads、load transfer、braking / driving loads；RCD 校准结构设计约束 | [06 载荷与金属结构](06-loads-metal-structure.md)、[快速版 07](../07-loads-and-structure-check.md) | 强化载荷路径、工况组合、导力边界、FEA 约束和结果解释 |
+| 复合材料与制造 | RCD 提供制造和结构实践边界；RCVD 仅补充载荷与车辆动态输入 | [07 复材与制造](07-composites-and-manufacturing.md)、[快速版 07](../07-loads-and-structure-check.md) | 保持保守验证，说明材料 allowables、铺层假设、连接区和制造缺陷风险 |
+| 测试、调校与答辩 | RCD 校准 set-up and testing；RCVD 校准测试数据如何回到模型 | [08 验证测试](08-validation-testing-defense.md)、[快速版 08](../08-validation-and-iteration.md) | 把 driver feedback、数据通道、调校记录和模型修正连成闭环 |
+| 软件工作流 | RCD / RCVD 校准软件回答的工程问题，而不是替代原理学习 | [09 软件工作流](09-software-workflows.md)、[快速版 09](../09-software-roadmap.md) | 每个软件都必须有输入、输出、可信边界和误用风险 |
+| 评审清单 | 两本书共同校准“概念是否能变成证据” | [10 评审清单](10-review-checklists.md)、[快速版 10](../10-checklists.md) | 把知识点转成设计门槛、模型门槛、结构门槛、测试门槛和发布门槛 |
+
 因此，正文里更推荐出现“这个资料支持我们把轮胎模型写成有边界的工具”，而不是“某资料也这么说”。当资料只能支持流程，章节就只写流程；当资料能支持规则或可复现实验，章节才写成更强的检查项。
 
 ## 推荐阅读顺序
