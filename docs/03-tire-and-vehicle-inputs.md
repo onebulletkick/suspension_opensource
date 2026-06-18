@@ -28,7 +28,7 @@ flowchart TD
 
 ## 判断逻辑
 
-本 quick chapter 只介绍轮胎数据到整车输入的工作流。轮胎模型的坐标边界、数据 / 模型 / 拟合 / residual 区分，以及外推限制，详见 [高级 02 轮胎与整车输入](advanced/02-tire-and-vehicle-inputs.md)。
+本快速章节只介绍轮胎数据到整车输入的工作流。轮胎模型的坐标边界、数据 / 模型 / 拟合 / residual 区分，以及外推限制，详见 [高级 02 轮胎与整车输入](advanced/02-tire-and-vehicle-inputs.md)。
 
 ### 轮胎模型服务设计问题
 
