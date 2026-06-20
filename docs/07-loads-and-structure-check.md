@@ -8,20 +8,38 @@
 
 ```mermaid
 flowchart TD
-  A["定义工况"] --> B["估算轮胎载荷"]
-  B --> C["多体模型导出构件受力"]
-  C --> D["FEA 边界条件"]
-  D --> E["金属件校核"]
-  D --> F["复合材料件校核"]
-  E --> G["结果解释和设计修改"]
-  F --> G
+  A["事件场景<br>制动 / 转弯 / 冲击"] --> B["轮载与载荷转移<br>wheel load / load transfer"]
+  B --> C["轮胎力<br>Fx / Fy / Fz / Mz"]
+  C --> D["多体导力或 FBD<br>MBD / free body diagram"]
+  D --> E["FEA 边界条件<br>boundary / contact / mesh"]
+  E --> F["金属件校核<br>yield / fatigue / buckling"]
+  E --> G["复材件校核<br>ply / delamination / inserts"]
+  F --> H["实车测量与检查<br>strain / inspection"]
+  G --> H
+  H --> I["结果解释和设计修改"]
 ```
 
 ## 载荷和坐标系
 
-结构校核必须先说明载荷来自哪里：规则、手算、轮胎模型、多体仿真、历史测试、供应商资料或保守估计。每个载荷工况都应写明参考坐标系、正方向、作用点、组合方式和安全系数策略。
+结构校核必须先说明载荷来自哪里：规则、手算、轮胎模型、多体仿真、实车测试、公开案例或保守估计。每个载荷工况都应写明参考坐标系、正方向、作用点、组合方式和安全系数策略。
+
+轮载分析、载荷转移和多体导力必须转成结构坐标、节点力、约束和工况组合后才能进入 FEA。
 
 常见工况包括制动、加速、稳态转弯、制动入弯、路面冲击、顶车/运输、误操作和装配预紧。是否需要组合工况，应根据车辆目标、赛道工况和零件失效后果决定。
+
+把载荷传到结构模型时，建议先分清七个层级：
+
+| 层级 | 回答的问题 | 不能替代什么 |
+| --- | --- | --- |
+| 轮载 / 载荷转移 | 车辆加速、制动、转弯和气动如何改变四轮 `F_z` | 具体 A 臂、upright、支座或复材连接的局部强度 |
+| 轮胎力 | 接地点的 `F_x`、`F_y`、`F_z`、回正力矩和制动扭矩如何进入轮端 | 多体导出的关节力、转向拉杆力和支座反力 |
+| 自由体图 / 矩阵法 | 在简化 pinned / two-force 假设下估算杆件轴力和数量级 | 静不定系统、转向输入、机构 articulation 和连接弯矩 |
+| MBD 导力 | 在具体硬点、关节、弹簧阻尼、轮胎和组合工况下导出接口力 | FEA 的真实边界、网格、材料和接触正确性 |
+| FEA 边界 | 把导力转成作用点、坐标、约束、接触、fastener / bearing / weld 表达 | 材料 allowables、制造质量、疲劳和实车验证 |
+| 金属 / 复材校核 | 分别检查金属屈服 / 疲劳 / 屈曲和复材 ply / delamination / insert 风险 | 未测试工况下的绝对安全承诺 |
+| 实车测量 / 检查 | 用应变、位移、IMU、轮速、制动压力、裂纹和松动检查修正模型 | 未覆盖事件、长期疲劳和制造批次差异 |
+
+因此，“轮载算过”“MBD 导过力”“FEA 有云图”都只是证据链的一段。发布结论时要说明每一段完成到什么证据等级，哪些仍待测试或复核。
 
 ## 金属件校核
 
@@ -50,6 +68,8 @@ flowchart TD
 | 制造影响 | 纤维褶皱、孔隙、厚度偏差、固化质量和修边损伤 |
 
 复合材料仿真结果应以 failure index、层间应力、位移、连接区风险和制造可控性共同判断。数据不足时要避免使用绝对化表述，例如“已经安全”，应改为“在当前假设下未发现明显超限，仍需试样或实车验证”。
+
+allowables、ply 方向、连接区和制造缺陷的保守边界见 [高级 07 复合材料校核与制造风险](advanced/07-composites-and-manufacturing.md)。
 
 ### 复合材料建模和评审细节
 
@@ -89,15 +109,17 @@ flowchart TD
 - 忽略制动加转弯、加速加转弯等组合工况。
 - 金属件没有考虑疲劳、焊接、孔边和紧固件。
 - 复合材料只按各向同性材料处理，没有区分纤维、基体和层间失效。
+- 用车辆动力学载荷估算直接代替 FEA 边界条件审查，或用 FEA 云图直接代替实车验证。
 - 修改结构后没有回到多体模型和载荷表更新输入。
 
 ## 验证方式
 
 - 自由体图复核：检查力平衡、力矩平衡和数量级。
-- 多体模型复核：确认关节定义、杆件方向、质量和工况姿态正确。
-- 网格/约束复核：关键区域做网格敏感性，检查约束是否符合真实连接。
-- 结果复核：判断最大值是否为奇异点，检查变形是否影响装配和运动。
-- 制造和测试复核：首件检查、无损或外观检查、出车后裂纹/松动/磨损检查。
+- 多体模型复核：确认关节定义、杆件方向、转向输入、articulation、质量和工况姿态正确。
+- 载荷传递复核：检查 MBD 输出到 FEA 时坐标、符号、单位、作用点、左右镜像和峰值时刻是否一致。
+- 网格/约束复核：关键区域做网格敏感性，检查约束、接触、bearing、fastener、weld 和 load introduction 是否符合真实连接。
+- 结果复核：判断最大值是否为 singularity，检查变形、疲劳、buckling、孔边承压、焊趾和连接区是否影响装配和运动。
+- 制造和测试复核：首件检查、扭矩 / 对中检查、无损或外观检查、应变或位移通道、出车后裂纹 / 松动 / 磨损检查。
 
 ## 和其它组的接口
 
@@ -112,3 +134,12 @@ flowchart TD
 ## 进阶阅读
 
 金属件载荷路径、工况定义、力提取和 FEA 评审见 [高级 06 载荷与金属结构](advanced/06-loads-metal-structure.md)；复合材料失效、铺层、连接和制造风险见 [高级 07 复合材料校核与制造风险](advanced/07-composites-and-manufacturing.md)。
+
+## 本章公开来源
+
+- [FS Wiki: Suspension Forces](https://fswiki.us/Suspension_Forces)，用于六杆件自由体图、矩阵法和只算 pushrod / pullrod 的误区。
+- [An Approach to Using Finite Element Models to Predict Suspension Member Loads](https://vtechworks.lib.vt.edu/bitstream/handle/10919/34020/Borg_L_ETD_Copy_07-26-2009.pdf)，用于 pinned members、truss 假设、steering、articulation 和 FEA 假设边界。
+- [Analysis of Link Forces on a Formula Student Suspension System](https://www.diva-portal.org/smash/get/diva2:1033230/FULLTEXT01.pdf)，用于杆件力测试、模型和载荷路径验证案例。
+- [Dewesoft](https://dewesoft.com/blog/optimizing-formula-suspension-through-tire-road-force-analysis)、[Mantracourt](https://www.mantracourt.com/case-studies/data-acquisition-in-formula-sae-suspension-and-steering-system-validation-tests/)、[HBK](https://www.hbkworld.com/en/knowledge/resource-center/case-studies/university-bologna-formula-sae-student) 和 [Micro-Measurements](https://docs.micro-measurements.com/?id=9703) 的 FSAE / FS 应变测量案例，用于把结构载荷、信号质量和实车通道连接起来。
+- [Monash Motorsport suspension thesis collection](https://www.monashmotorsport.com/blog/2011suspensionthesis)，用于设计、制造和测试一体化的公开项目案例。
+- 完整章节索引见 [参考资料：章节引用索引](references.md#章节引用索引)。

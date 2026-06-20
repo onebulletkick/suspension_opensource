@@ -14,6 +14,21 @@
 
 本章保留通用模型框架、评审逻辑和安全边界。历史仿真结果表、具体车辆编号、源图、源表、原始测试数据、精确硬点、私有轮胎系数和可重建历史车辆的参数组合应放在项目记录中。
 
+## 公开来源审计结论
+
+本章按 [参考资料：章节引用索引](../references.md#章节引用索引) 和本轮公开来源调查中的仿真条目写作。公开来源能支撑模型层级、参数管理和 correlation workflow，但不能给出本车参数、硬点、目标权重或通过阈值。
+
+| 来源角色 | 本章吸收的工程逻辑 | 使用边界 |
+| --- | --- | --- |
+| MathWorks / Simscape 官方资料 | Formula Student 全车模型可把 suspension、tire、maneuver、GGV、open / closed-loop 输入和参数变化放入统一 workflow | 软件资料说明工具能力和输入输出，不代表模型已经被测试验证；MATLAB / Simulink / Simscape 也不是唯一工具栈 |
+| MDPI MBD set-up optimization | set-up study 应区分 fixed parameters 和 adjustable parameters，并用定义清楚的 event、metric 和测试数据调试模型 | 论文中的车辆、setup 和结果只作案例；不能把单车优化结果泛化 |
+| Purdue MBD suspension thesis | MBD 可用于 camber、toe、motion ratio、roll-center 和 maneuver response 的模型搭建与敏感性检查 | 不复用团队参数，不假设模型适用于其它车辆 |
+| Cincinnati Amesim 项目 | 仿真与实车数据要在相同赛道 / 场景下比较，才能讨论动态响应相关性 | 只采用 correlation 组织方式，不采用任何通用参数结论 |
+| MIT kinematics optimization | 几何优化要显式写 objective function、constraint、weight、退出条件和不可复制的项目边界 | 目标函数和硬点结果不是 universal target |
+| DesignJudges conceptual / objective design | 仿真必须服务车辆概念、目标和可解释证据，而不是孤立的局部曲线 | 作为评审视角，不是官方规则或强制流程 |
+
+这些来源共同指向同一条纪律：仿真先回答设计问题，再给出可执行动作；测试相关性用于判断模型在哪些工况可信，不能把“仿真曲线接近实车曲线”简化成实车证明。
+
 ## 模型分层
 
 模型分层的核心原则是：先用透明模型建立数量级和物理直觉，再用更高保真模型处理耦合问题，最后用实车数据做相关性验证。复杂模型不能替代简单检查，也不能替代测试；它只是让更多输入和耦合关系在同一个框架里被计算。
@@ -32,6 +47,20 @@
 
 每一层模型都应写清模型边界 model boundary。边界至少包括：适用工况、坐标系、单位、输入来源、忽略的物理现象、输出可信度和需要测试验证的问题。若模型只用于趋势判断，应明确写成趋势判断；若输入来自估算，应把结果标为待验证。
 
+## RCVD 风格的模型层级边界
+
+RCVD 风格的方法常把车辆问题拆成稳态、前后轴、force-moment、g-g、瞬态和整车相关性等层级。它们的价值在于帮助团队知道“当前结论来自哪种模型边界”，而不是把某一张图或某一个求解器当成魔法证明。公开文档中应把模型用途、误用边界和验证需求写在一起。
+
+| 模型层级 | 适合用途 | 必须避免的误用 |
+| --- | --- | --- |
+| 稳态简化模型 | 快速理解 understeer / oversteer 趋势、前后轴分配和参数敏感性 | 直接宣称瞬态操稳、赛道圈速或结构安全 |
+| 前后轴 pair analysis | 比较前后轮胎工作点和载荷分配趋势 | 忽略轮胎数据范围、气动和实车柔度 |
+| force-moment / g-g 分析 | 观察整车极限包络和横纵向耦合趋势 | 把图形边界当作没有测试支持的真实极限 |
+| 多体动力学模型 | 检查 K&C、参数变化、整车响应和导力输入 | 忽略输入版本、约束假设和实车相关性 |
+| 实车相关性模型 | 用测试数据修正模型可信度 | 用少量测试点证明全部工况正确 |
+
+稳态 steady-state 和瞬态 transient 结论应在公开文档中分开标注。稳态分析可以支持趋势、平衡和参数敏感性的讨论；瞬态分析才讨论输入建立、延迟、过冲、阻尼和车手可感知响应。若一个结论来自稳态模型，就不要直接写成瞬态手感或赛道表现；若瞬态模型缺少轮胎松弛、阻尼器曲线、转向柔度或车手输入验证，也只能作为待相关性验证的趋势。
+
 ## 公开资料交叉验证后的仿真原则
 
 多篇公开 FSAE / Formula Student 悬架论文和项目案例呈现出一致的流程：先做规则和目标分析，再讨论 tire behavior、CAD 包络、几何与部件方案，随后用 multibody dynamics 或同类模型检查 kinematics / dynamics，最后用测试或赛道数据做 correlation。这个公开脉络支持本手册的分层写法：仿真不是起点，也不是终点，而是把目标、轮胎、几何、簧上参数和结构载荷连接起来的证据工具。
@@ -47,9 +76,37 @@
 | 简化假设显式记录 | 若模型把 chassis、suspension links 或 joints 视为刚体，应写清 compliance 被忽略或只做定性风险判断 | 把刚体模型输出当作柔度或结构安全证明 |
 | correlation 是闭环证据 | 用相同测试场景对比方向盘角、加速度、轮速、制动压力、悬架位移、胎温胎压和车手反馈 | 用单次仿真或单次测试强行校准出“看起来正确”的模型 |
 
+### 从设计问题到设计动作
+
+仿真任务应先写成可审计的链路，而不是“跑一个模型”。推荐记录格式如下：
+
+| 链路环节 | 必须写清 | 不合格信号 |
+| --- | --- | --- |
+| design question | 本次要支持的决策，例如硬点冻结、弹簧选择、载荷工况、测试计划或 setup 方向 | 只写“做整车仿真”或“看操稳” |
+| model layer | 为什么选择 spreadsheet、K&C、2-DOF、quarter-car、MBD、rigid-flex 或 full vehicle | 模型层级高，但不能说明比简单模型多回答了什么 |
+| input version | 轮胎、硬点、质量、CG、惯量、弹簧阻尼、气动、制动、控制和工况版本 | 输入来自不同阶段，却没有说明冻结状态 |
+| sanity check | 数量级、单位、符号、左右镜像、动画、自由体图或简化模型对照 | 只看 solver 成功和曲线平滑 |
+| DOE / optimization | 变量、范围、objective、constraint、weight、停止条件和 rejected alternatives | 优化变量越过包络 / 数据 / 制造边界 |
+| design action | 采用、拒绝、补测试、补结构校核或降级为待验证趋势 | 仿真结束后没有改变任何设计或验证计划 |
+| downstream handoff | 传给结构的载荷、传给测试的预测通道、传给答辩的证据边界 | 下游只收到图片，没有版本、工况和坐标定义 |
+| correlation | 在同一测试场景下比较趋势、相位、符号、数量级和差异原因 | 用“曲线差不多”代替传感器、场景和输入审查 |
+
 公开案例中的性能提升、相关性百分比或具体车辆参数不应被照搬成本仓库的通用结论。更有价值的是它们反复出现的工程结构：输入版本清楚、模型边界清楚、测试场景清楚、差异解释清楚。
 
 公开 MBD 案例还提醒团队把“不可调输入”和“赛场 set-up”分开。质量、质心、悬架 attachment points、车架接口和部分几何约束通常应视为 fixed parameters；胎压、camber、toe、roll stiffness、brake balance、阻尼或防倾杆状态才可能进入 adjustable set-up。若优化器把固定参数当成赛场可调变量，输出可能很漂亮，但不会变成可执行调校。
+
+### fixed / adjustable / derived / measured 参数管理
+
+仿真参数至少分成四类。四类参数可以互相影响，但不能在记录中混用：fixed 是当前设计冻结或接口约束，adjustable 是赛场或测试中可重复改变的设定，derived 是模型输出或后处理量，measured 是来自实车或台架的输入证据。
+
+| 参数类别 | 示例 | 可以做什么 | 不能做什么 |
+| --- | --- | --- | --- |
+| fixed parameters | 已冻结 hardpoints、车架 pickup、upright / hub / wheel package、wheelbase / track、主要质量 / CG / inertia 版本、制动和动力系统接口 | 作为模型输入、约束和版本边界；设计变更需回到几何、结构和整车接口评审 | 不要把冻结硬点、质量、CG 或车架接口当作赛场 setup 变量 |
+| adjustable set-up | 胎压、静态 camber / toe、ride height 或 preload 调整范围、防倾杆状态、阻尼档位、brake balance、控制策略参数 | 做 one-change-at-a-time 测试、DOE 和调校日志；记录 baseline 与调节范围 | 不要同时改变多个变量后强行归因；不要让变量越过硬件可调范围 |
+| derived outputs | 动态轮荷、G-G boundary、yaw-rate gain、understeer gradient、wheel travel use、joint force、link axial force、tire utilization | 作为结果、风险线索、结构载荷输入或测试预测通道 | 不要把输出量手工改成输入，也不要用操稳输出直接证明结构安全 |
+| measured inputs | 角重、车高、toe / camber、胎温胎压、方向盘角、制动压力、轮速、IMU、悬架位移、应变或 load-cell 数据 | 用于更新输入版本、做 correlation 和解释模型差异 | 未标定、未同步、未说明滤波和单位时，不作为定量相关性证据 |
+
+参数变更要有触发规则：fixed parameter 改变时，K&C、MBD、结构载荷和测试矩阵都要回归；adjustable set-up 改变时，必须记录车辆状态和测试条件；derived output 异常时，先回查输入、坐标、符号和工况；measured input 异常时，先检查传感器标定、通道方向、采样率、时间同步和滤波，而不是立刻修正模型。
 
 另一个边界是模型保真度。学生方程和商业多体模型常会先把 chassis、suspension links 或 joints 当作 rigid bodies，以便建立可运行的整车模型；这适合早期 handling / set-up 趋势，却不能说明 compliance、局部应力、制造公差和连接柔度已经正确。公开论文中常见的后续工作都是把仿真结果带回实车测试做 validation，因此本手册把 correlation 放在仿真章节末尾，而不是作为可选附录。
 
@@ -152,6 +209,17 @@ G-G 图不适合单独证明某个硬点或弹簧参数正确。它是整车行�
 
 DOE 适合在优化前回答“哪些变量值得优化”。例如先对前后侧倾刚度分配、轮端刚度、阻尼、静态 toe、camber 和关键硬点做参数扫掠，观察输出对各变量的 sensitivity。若某个变量的结果很敏感，而该变量又难以制造或测量，就应提高公差、传感器和实车验证优先级。若某个变量在模型中很敏感但实车难以复现，也要警惕模型把未验证假设放大了。
 
+优化变量应先过参数分类门槛：
+
+| 变量候选 | 可进入优化的条件 | 不应进入优化的情况 |
+| --- | --- | --- |
+| hardpoints / geometry | 仍处于设计阶段，且有包络、制造、结构和接口边界 | 已冻结或受车架 / upright / 轮辋接口约束，赛场无法调整 |
+| spring / ARB / damper | 有可采购 / 可调范围，并能在测试中复现 | 只是为了让仿真指标变好，实车没有对应硬件 |
+| static camber / toe / ride height | 有可测量调整件、调节步长和 setup log | 调整会破坏包络、行程、轮胎或规则边界 |
+| mass / CG / inertia | 用于设计阶段 sensitivity 或重量目标分解 | 当作赛场调校变量，或在没有测量依据时任意改变 |
+| tire pressure / temperature assumptions | 用于测试计划和敏感性评估，并记录实车胎温胎压 | 用单一仿真假设替代轮胎实测状态 |
+| driver / control input | 有明确 maneuver、控制命令或可复现驾驶任务 | 用不真实 driver model 解释所有圈速差异 |
+
 优化边界语言要保守：
 
 - 优化结果是候选方案，不是最终答案。
@@ -201,6 +269,8 @@ DOE 适合在优化前回答“哪些变量值得优化”。例如先对前后�
 
 相关性验证 correlation 是把模型带回真实车辆的过程。它不是为了让模型“看起来对”，而是为了判断模型在哪些工况可信、哪些输入需要更新、哪些现象模型没有覆盖。相关性验证通常从简单、可重复、安全的测试开始，再逐步进入更复杂工况。
 
+相关性验证的最低纪律是“同一问题、同一场景、同一版本”。若仿真是 steady-state skidpad，实车也应提取相同半径 / 速度窗口下的 steady-state 数据；若仿真是制动入弯，实车也要记录制动压力、方向盘角、轮速、IMU、悬架位移和胎温胎压。不能把不同场地、不同车手任务、不同胎温胎压、不同车辆设定或不同滤波方式下的曲线强行叠在一起。
+
 常见相关性对象包括：
 
 - 静态角重、车高、悬架静态压缩量和 toe / camber 测量，用于验证质量、车高、硬点和弹簧预载。
@@ -209,7 +279,20 @@ DOE 适合在优化前回答“哪些变量值得优化”。例如先对前后�
 - 制动与加速工况，用于检查纵向载荷转移、俯仰、轮速、制动压力、驱动限制和轮胎纵滑。
 - 胎温、胎压和轮胎磨耗，用于判断轮胎模型、外倾、toe、载荷分配和车手输入是否一致。
 
-相关性验证的边界也要写清楚。一次测试只代表当时的路面、胎温、胎压、车手、车辆状态和传感器质量。不要用单次数据过度校准模型；更好的做法是保留原始假设、记录修正原因、用下一次测试复核。若仿真与测试不一致，应先检查传感器标定、坐标系、滤波、测试条件和输入版本，再讨论模型本身是否需要改变。
+相关性报告至少要包含以下检查：
+
+| 检查项 | 必须记录 | 差异解释时先问 |
+| --- | --- | --- |
+| 测试场景 | 场地、路面、速度窗口、驾驶任务、转向 / 制动 / 油门输入、是否稳态或瞬态 | 仿真 maneuver 和实车 maneuver 是否真的是同一个问题 |
+| 车辆设定 | 轮胎、胎压、胎温、车高、角重、toe / camber、阻尼、防倾杆、制动平衡、载荷状态 | 是否混入了 setup change 或车辆状态变化 |
+| 坐标 / 符号 / 单位 | 车辆坐标、轮胎坐标、传感器安装方向、左右轮镜像、deg / rad、N / kg | 曲线差异是否只是 sign convention 或单位转换错误 |
+| 传感器标定 | 零点、量程、采样率、时间同步、滤波、延迟、饱和和噪声 | 数据通道是否足以支撑定量比较 |
+| 车手输入 | 方向盘角、制动压力、油门 / 扭矩命令、换挡或控制状态 | driver model 是否和实际车手任务一致 |
+| 轮胎状态 | 胎温、胎压、磨耗、热循环、左右差异和测试顺序 | tire model 是否在覆盖窗口内 |
+| 对比指标 | 趋势、相位、符号、数量级、峰值、稳态值和重复性 | 先比较可解释特征，再讨论绝对误差 |
+| 差异归因 | 输入错误、测量问题、测试条件变化、模型假设不足、车辆真实变化或未建模物理 | 是否为了贴合曲线而一次改了多个模型参数 |
+
+相关性验证的边界也要写清楚。一次测试只代表当时的路面、胎温、胎压、车手、车辆状态和传感器质量。不要用单次数据过度校准模型；更好的做法是保留原始假设、记录修正原因、用下一次测试复核。若仿真与测试不一致，应先检查传感器标定、坐标系、符号、单位、滤波、测试条件和输入版本，再讨论模型本身是否需要改变。禁止把“仿真曲线 = 实车证明”写进公开文档或答辩材料；更准确的说法是“在该测试场景和输入版本下，模型能 / 不能解释这些测量趋势”。
 
 ## 仿真闭环流程图
 
@@ -238,6 +321,19 @@ flowchart TD
 
 该流程强调闭环而不是一次性出图。任何一次仿真都应能追溯到设计问题、输入版本、模型边界、结果解释、设计动作和测试验证。
 
+## 软件实现路径
+
+仿真和优化阶段的软件选择应由问题层级决定。低阶模型负责数量级和趋势，多体模型负责几何和组合工况，优化工具负责设计变量排序，整车研究工具负责更大系统问题；所有模型都要回到相关性验证。
+
+| 技术问题 | 推荐工具 | 输入 | 输出 | 传给下一步 | 验证方式 |
+| --- | --- | --- | --- | --- | --- |
+| 数量级和趋势初筛 | 表格、MATLAB / Python | 质量、质心、轮胎、弹簧阻尼、几何和工况假设 | 2-DOF、quarter-car、pitch / roll 模型、敏感性图 | 参数选择、Adams 工况、测试计划 | 手算、单位检查、符号和极限情况复核 |
+| K&C 和准静态整车 | Adams Car | 硬点、轮胎模型、簧上参数、模板和工况 | K&C 曲线、运动比、侧倾刚度趋势、准静态整车趋势 | 硬点优化、簧上系统、载荷模型 | 动画、曲线趋势、左右镜像和实车静态测量 |
+| DOE 与优化 | Adams Insight、MATLAB / Python | 参数化变量、变量范围、目标函数、约束、已核对模型 | DOE 记录、灵敏度排序、响应面、拒绝方案理由 | 设计取舍、几何和参数更新 | 检查变量是否超出包络、制造、数据和规则边界 |
+| 通用多体与刚柔耦合 | Adams View、Abaqus 柔性体 | 连接定义、柔性体、轮胎力、工况和测量点 | 特殊机构响应、连接点载荷、柔性影响趋势 | 结构校核、复材校核、载荷工况 | 自由体图、力平衡、刚柔简化边界和 FEA 对照 |
+| 整车研究与控制 | CarSim、Simulink、Adams full vehicle、MATLAB / Python | 轮胎模型、整车参数、动力 / 制动 / 控制、赛道或驾驶员假设 | 整车趋势、控制策略、研究性对比、答辩增强材料 | 下一代方案、测试问题、公开教学案例 | 与低阶模型和实车数据比较，不把未相关模型当设计证明 |
+| 相关性验证 | Race Studio / AIM、MATLAB / Python、Git / Markdown | 传感器数据、测试日志、车辆版本、仿真版本 | correlation report、模型修正、复测计划 | 轮胎模型、参数表、载荷工况、答辩证据 | 趋势、相位、符号、数量级和可重复测试共同判断 |
+
 ## 输出物
 
 合适的仿真建议形成以下输出物：
@@ -252,6 +348,8 @@ flowchart TD
 | 优化记录 | objective function、constraint、weight、算法、停止条件、候选方案和拒绝理由 |
 | 设计结论 | 采用方案、适用范围、限制、影响章节和下一步验证 |
 | correlation 报告 | 测试条件、传感器、滤波、仿真对比、差异解释和模型更新 |
+| 结构载荷交付 | 工况、轮胎力、关节力、杆件力、坐标转换、峰值时刻、自由体图复核和不适用边界 |
+| 测试交付 | 预测通道、车辆设定、测试场景、传感器清单、胎温胎压记录和 correlation 判断方式 |
 
 输出物要能被后续结构校核、制造、测试和答辩复用。只保存最终图片而不保存输入、脚本和版本，会让仿真失去工程价值。
 
@@ -295,3 +393,13 @@ flowchart TD
 - [04 弹簧、阻尼、侧倾与车身姿态](04-spring-damper-roll-and-ride.md) 提供轮端刚度、阻尼、运动比、侧倾刚度和俯仰模型输入。
 - [06 载荷与金属结构](06-loads-metal-structure.md) 使用多体动力学和工况定义输出结构校核所需载荷，但仍需要独立边界和安全评审。
 - [08 验证、测试与答辩](08-validation-testing-defense.md) 负责把仿真结论带到实车测试、数据相关性和比赛答辩中，反过来更新本章模型。
+
+## 本章公开来源
+
+- [Dynamic Handling Characterization and Set-Up Optimization for a Formula SAE Race Car via Multi-Body Simulation](https://www.mdpi.com/2075-1702/9/6/126)，用于整车 MBD、fixed / adjustable 参数、set-up 管理和实车验证需求。
+- [MathWorks Simscape Formula Student vehicle model](https://github.com/simscape/Formula-Student-Vehicle-Simscape)、[Simscape Multibody Formula Student video](https://www.mathworks.com/videos/formula-student-vehicle-modeling-using-simscape-multibody-1683608443602.html) 与 [Vehicle Dynamics Simulation Using MATLAB and Simulink for Student Competitions](https://www.mathworks.com/videos/vehicle-dynamics-simulation-using-matlab-and-simulink-for-student-competitions-1637351938976.html)，用于公开车辆模型、K&C metrics、maneuver、GGV、参数化模板和软件版本边界。
+- [Purdue: Modeling of Multibody Dynamics in Formula SAE Vehicle Suspension Systems](https://hammer.purdue.edu/articles/thesis/Modeling_of_Multibody_Dynamics_in_Formula_SAE_Vehicle_Suspension_Systems/12269003)，用于 MBD 模型搭建、camber / toe / motion ratio / roll-center 和 maneuver response 的流程案例。
+- [MIT: Optimization of a Formula SAE Vehicle's Suspension Kinematics](https://dspace.mit.edu/entities/publication/552bc5c1-9705-4a17-847d-9a9a9ff27b60)，用于说明 kinematics optimization 要写清 objective function、constraint、weight 和使用边界。
+- [University of Cincinnati Bearcats Motorsports Amesim project](https://www.ceas.uc.edu/research/centers-labs/siemens-simulation-technology-center/courses---projects/amesim/formula-sae/project.html)，用于仿真与实车数据在同一赛道 / 场景下对比的案例。
+- [DesignJudges: Conceptual and Objective Design in FSAE](https://www.designjudges.com/articles/conceptual-and-objective-design-in-fsae)，用于 lap time simulation、mass model、概念设计和模型怀疑精神。
+- 完整章节索引见 [参考资料：章节引用索引](../references.md#章节引用索引)。

@@ -2,7 +2,9 @@
 
 ## 这章解决什么问题
 
-几何与硬点决定轮胎在跳动、转向、侧倾、制动和加速时如何运动。好的硬点不是软件优化出来的一串坐标，而是在车辆目标、轮胎需求、空间包络、制造能力和可验证指标之间取得的工程方案。
+几何与硬点 hardpoints 决定轮胎在跳动、转向、侧倾、制动和加速时如何运动。新队员最容易误解的一点是：硬点不是把几个变量丢进软件后直接“优化”出来的坐标。它们先来自车辆目标、轮胎工作窗口、规则门槛、轮辋和 upright 包络、车架与传动空间、气动和车身边界、减振器或摇臂布置、制造与测量能力，然后才进入 K&C 和优化。
+
+软件的价值是让取舍可见：它能帮助你发现趋势、干涉、符号错误和敏感变量，但不能替你决定目标，也不能替代真实可制造边界。
 
 ![硬点优化输入输出](assets/diagrams/hardpoint-optimization.svg)
 
@@ -19,13 +21,32 @@ flowchart TD
 
 ## 关键判断
 
-| 项目 | 主要关注 | 判断方式 |
+所有几何曲线都必须先说明坐标系、正负方向和输入条件，否则 bump steer、camber gain、roll center migration 的判断很容易反向。几何参数之间高度耦合，不能把某一个曲线或数字当成单独答案。
+
+| 项目 | 不能孤立优化的原因 | 初学者应同时检查 |
 | --- | --- | --- |
-| Kingpin 主销几何 | 主销内倾 KPI、主销后倾 caster、机械拖距、scrub radius、转向回正和转向力矩 | 同时看轮辋空间、转向手感、制动稳定性、轮胎接地点变化 |
-| 侧视几何 | Anti-dive、anti-squat、制动/加速姿态、纵向力传递路径 | 不只追求比例数字，要检查车架节点、杆件角度和载荷路径是否合理 |
-| 正视几何 | 侧倾中心、外倾增益、轮距变化、jacking effect | 结合轮胎外倾需求、侧倾角、车手反馈和侧向载荷转移判断 |
-| 转向拉杆 | Ackermann、bump steer、内外轮转角、拉杆与 A 臂关系 | 跳动、回弹、转向和侧倾组合工况一起检查 |
-| A 臂内点 | 杆件夹角、安装空间、节点刚度、制造和装配可达性 | CAD 包络、K&C 曲线、载荷导出和车架接口共同评审 |
+| camber / camber gain | 外倾变化服务轮胎工作窗口，但过度追求会伤害直线制动、轮胎磨耗、包络和结构路径 | 轮胎模型、侧倾角、静态 camber、turning camber、轮辋空间 |
+| toe / bump steer | 前束趋势影响稳定性和响应，但“零 bump steer”不自动等于最佳车 | 转向机位置、拉杆角度、柔性、车手反馈、直线阻力 |
+| roll center | 静态高度只是一个点，迁移趋势和 jacking tendency 同样重要 | 外倾、轮距变化、侧倾刚度、车高、气动平台 |
+| kingpin / caster / KPI / scrub / trail | 主销几何同时改变回正、方向盘力、制动稳定、轮辋包络和 upright 载荷 | 轮辋 offset、制动件、轴承、转向臂、轮胎 aligning moment |
+| anti-dive / anti-squat | anti 参数只是姿态管理的一部分，不是越高越好 | 纵向力路径、质心高度、阻尼、杆件载荷、车架节点 |
+| Ackermann | 教材理想转角关系不等于真实轮胎最佳转向策略 | 低速半径、轮胎侧偏、载荷转移、转向系统柔性 |
+
+## 第一版硬点的最低输入
+
+第一版硬点不需要完美，但必须真实。画点之前至少要把下面这些输入放到同一套坐标系里，并标明哪些已经冻结、哪些只是临时假设。
+
+| 输入 | 最低要知道什么 | 会限制什么 |
+| --- | --- | --- |
+| 轮胎 tire | 外径、宽度、目标工作窗口、轮胎包络和接地点定义 | 轮心、camber / toe 目标、车身开口和行程 |
+| 轮辋 rim / wheel | offset、内壁空间、紧固件和工具空间 | 球铰位置、scrub radius、制动和 upright 包络 |
+| upright / hub | 轴承、轮毂、上下外点、转向臂、传感器空间 | steering axis、载荷路径、外点可制造性 |
+| 制动 brake | 制动盘、卡钳、油管、散热和极限姿态间隙 | 轮辋 clearance、转向角、维护路径 |
+| 转向 steering | 齿条位置、行程、内外拉杆点、方向盘力目标 | bump steer、Ackermann、极限转角和拉杆摆角 |
+| 车架 frame | 车架管、节点、驾驶员空间、踏板、支座焊接面 | A 臂内点、摇臂/减振器支座、载荷导入路径 |
+| 传动 drivetrain | 半轴、差速器、电机或链传动、极限角度 | 后悬内点、anti-squat、轮心路径和包络 |
+| 气动/车身 aero / bodywork | 底板、扩散器、翼面、车身开口、目标车高 | 轮胎包络、车高变化、维护和 inspection |
+| 减振器/摇臂 damper / rocker | 推杆或拉杆、摇臂、弹簧、限位、传感器 | motion ratio、行程利用、杆件载荷和拆装 |
 
 ## 工作流程
 
@@ -35,7 +56,9 @@ flowchart TD
 4. 画第一版硬点，并快速检查杆件是否能真实安装，同时核对 wheel travel、jounce、轮辋间隙和安装点可见性等规则派生门槛。
 5. 导入 K&C 模型，跑平行跳动、单轮跳动、转向、侧倾和回弹工况。
 6. 对干涉、制造、维护和传感器空间做 CAD 复核。
-7. 做优化时记录设计变量、目标函数、约束和被放弃方案。
+7. 做优化时记录设计变量、目标函数、约束、权重、退出条件和被放弃方案。
+
+K&C 与 compliance 的边界见 [高级 03 几何与硬点](advanced/03-geometry-and-hardpoints.md)：刚体 K&C 可做第一轮趋势筛选，说明该硬点版本在理想刚体约束下的运动趋势；它不能直接证明实车在制动、侧向力、路肩或驱动载荷下的 toe / camber 行为。要写实车载荷下的 compliance 结论，需要柔性假设、载荷路径、测量或测试证据。
 
 ## 硬点优化示例
 
@@ -87,6 +110,18 @@ flowchart TD
 | 气动/车身 | 轮胎包络、车身开口、底板/翼面空间、车高变化 |
 | 制造/测试 | 工装定位、测量基准、调整结构和传感器安装位 |
 
+硬点变化不是悬架组内部的小改动。任何主要 geometry change 都应触发簧上系统、整车仿真、载荷提取、结构校核和验证计划复查，否则后续章节可能还在使用旧几何。
+
 ## 进阶阅读
 
-主销、侧视/前视几何、硬点初始化、优化、K&C 和 CAD 包络评审见 [高级 03 几何与硬点](advanced/03-geometry-and-hardpoints.md)。
+主销、侧视/前视几何、硬点初始化、优化、K&C / compliance 边界和 CAD 制造评审见 [高级 03 几何与硬点](advanced/03-geometry-and-hardpoints.md)。几何相关公开来源、采用边界和验证提醒见 [参考资料：章节引用索引](references.md#章节引用索引)。
+
+## 本章公开来源
+
+- [SAE 971584: Introduction to Formula SAE Suspension and Frame Design](https://saemobilus.sae.org/papers/introduction-formula-sae-suspension-frame-design-971584)，用于新车队理解 track、wheelbase、tire / wheel 和 geometry 的设计顺序。
+- [SAE 2002-01-3310: Design of Formula SAE Suspension](https://saemobilus.sae.org/papers/design-formula-sae-suspension-2002-01-3310) 与 [SAE 2005-01-3994: Formula SAE Suspension Design](https://saemobilus.sae.org/papers/formula-sae-suspension-design-2005-01-3994)，用于理解 control arm、upright、spindle、hub、pullrod、CAD 包络和多体模型如何组成系统边界。
+- [FS Wiki: Suspension Geometry and Kinematics](https://fswiki.us/Suspension_Geometry_and_Kinematics)，用于补充 camber、toe、kingpin、caster、roll center 和 CAD sketch 的入门解释。
+- [DesignJudges: Simple Kinematic Philosophies](https://www.designjudges.com/articles/simple-kinematic-philosophies)，用于提醒几何曲线要服务 toe 稳定、camber 工作窗口、制造和调校，而不是追求孤立数字。
+- [MIT DSpace: Optimization of a Formula SAE Vehicle's Suspension Kinematics](https://dspace.mit.edu/entities/publication/552bc5c1-9705-4a17-847d-9a9a9ff27b60)，用于理解目标函数、约束和指标如何写清楚，不套用其硬点或权重。
+- [Will Harvey: Formula SAE Suspension Kinematics](https://wthprojects.com/fsae-kinematics)、[Monash Motorsport suspension thesis collection](https://www.monashmotorsport.com/blog/2011suspensionthesis) 与 [Design of a suspension system for a Formula Student race car](https://skemman.is/bitstream/1946/31391/1/MSc_Ingi_Niels_Karlsson_2018.pdf)，用于说明硬点约束聚合、CAD 检查、制造验证和报告结构；不复制案例坐标、图表或目标值。
+- 完整章节索引见 [参考资料：章节引用索引](references.md#章节引用索引)。

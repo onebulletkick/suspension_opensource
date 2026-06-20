@@ -20,9 +20,9 @@
 | --- | --- | --- | --- |
 | 入组前知识 pre-entry knowledge | 补齐力学、车辆动力学、坐标系、单位、基础编程和工程制图概念 | 教材、公开课程、Excel 或其它 spreadsheet 工具 | 符号表、单位表、简单计算表、术语清单 |
 | 知识体系建立 knowledge-system stage | 知道轮胎、几何、弹簧阻尼、载荷、结构和测试之间如何传递输入 | Markdown、表格、简化脚本 | 章节阅读笔记、输入输出关系图 |
-| 软件初步学习 initial software stage | 会建立最小模型，并能解释输入、假设和输出 | Excel、AutoCAD、CATIA / 3D CAD、MATLAB/Python、Adams Car 入门模型 | 参数表、硬点草图、装配包络记录、第一版 K&C 曲线 |
+| 软件初步学习 initial software stage | 会建立最小模型，并能解释输入、假设和输出 | Excel、AutoCAD / 2D CAD、CATIA / 3D CAD、MATLAB/Python、Adams Car 入门模型 | 参数表、二维硬点草图、三维装配包络记录、第一版 K&C 曲线 |
 | 轮胎阶段 tire stage | 理解轮胎数据限制、模型选择、拟合结果和整车输入 | MATLAB/Python、表格、轮胎拟合工具、Adams Car tire 数据接口 | 轮胎数据处理说明、模型适用范围、输入版本表 |
-| 簧下硬点阶段 unsprung hardpoint stage | 从轮胎、轮辋、制动、转向和车架边界中确定轮端与硬点布置 | AutoCAD、CATIA / 3D CAD、Adams Car、表格 | 硬点版本、装配包络检查、K&C 指标对比 |
+| 簧下硬点阶段 unsprung hardpoint stage | 从轮胎、轮辋、制动、转向和车架边界中确定轮端与硬点布置 | AutoCAD / 2D CAD、CATIA / 3D CAD、Adams Car、表格 | 二维硬点版本、三维装配包络检查、K&C 指标对比 |
 | 簧上布置阶段 sprung layout stage | 连接车架、减振器、摇臂、弹簧、稳定杆和车身姿态目标 | CATIA / 3D CAD、Adams Car、MATLAB/Python | 运动比、偏频、侧倾刚度和布置接口说明 |
 | 全面软件阶段 full software stage | 在已理解原理后学习更复杂模型和流程，不用软件替代判断 | Adams View、Adams Insight、Abaqus/Ansys、数据处理工具 | 优化记录、载荷提取、结构校核、模型限制说明 |
 | 参数设定阶段 parameter-setting stage | 把设计目标转化为可调参数、版本记录和验证计划 | Excel、MATLAB/Python、Git、Markdown | 参数设定表、敏感性分析、调校范围、评审记录 |
@@ -43,7 +43,42 @@
 - 结果有没有被简化计算、独立软件、实车数据或设计评审复核？
 - 如果结论被用于安全相关结构，是否保守表达，并指向进一步验证？
 
-因此，本章把每类软件都拆成同一组字段：`工程问题`、`最低输入`、`可信输出`、`误导性用法`、`支持章节`。队员在学习任何软件前，先写清这五项，再决定是否值得投入更深的模型。
+因此，本章把每类软件都拆成同一组字段：`工程问题`、`最低输入`、`可信输出`、`误导性用法`、`支持章节`、`公开边界`。队员在学习任何软件前，先写清这六项，再决定是否值得投入更深的模型。
+
+RCD / RCVD 应先被内化为工程问题，再决定使用哪种软件。也就是说，先问“这个概念在我们的车上要输入什么、输出什么、靠什么验证”，再选择表格、MATLAB/Python、MBD、FEA、数据分析或 CAD 工作流。AutoCAD 只承担二维几何和硬点草图，CATIA / 3D CAD 才承担三维包装、装配和干涉复核；软件分工不能反过来替代工程问题定义。
+
+| RCD / RCVD 概念 | 软件任务 | 最低可评审输出 |
+| --- | --- | --- |
+| 轮胎行为 tire behavior | 轮胎拟合、绘图和候选对比 workflow | 数据覆盖说明、拟合残差趋势、模型适用窗口和待相关性验证项 |
+| 载荷转移 / 横摆响应 load transfer / yaw response | 表格或 MATLAB/Python 计算 | 自由体图、单位和符号说明、敏感性图、与目标操稳问题的连接 |
+| 运动学 / 柔度 kinematics / compliance | MBD / K&C 模型 | 刚体 K&C 曲线、柔度输入边界、异常曲线解释和复测计划 |
+| 弹簧 / 侧倾 / 阻尼 spring / roll / damping | 参数 sweep 和整车模型 | 偏频、roll stiffness、motion ratio、阻尼区间、调校窗口和风险说明 |
+| 结构载荷 structural loads | 力提取和 FEA boundary preparation | 载荷路径、坐标系、作用点、边界条件、网格与材料假设审查 |
+| 验证 validation | 测试数据清理和 correlation report | 通道字典、滤波和时间对齐说明、仿真-实车差异、修正动作和复测计划 |
+
+## 软件实现总线
+
+本章是软件工作流的总线；[02](02-tire-and-vehicle-inputs.md) 到 [08](08-validation-testing-defense.md) 各章负责说明本阶段的软件实现路径。源材料里的经验可以概括成一条闭环：先把目标和参数变成统一输入，再用轮胎模型、二维几何、三维包络、多体模型、脚本分析、载荷提取、FEA 和实车数据逐步验证。软件之间传递的不是“截图”，而是带单位、坐标、版本、假设和验证状态的工程输出。
+
+| 设计链位置 | 工具组合 | 关键输入 | 必须交付的输出 | 下游消费者 | 失效信号 |
+| --- | --- | --- | --- | --- | --- |
+| 来源审计 | Git / Markdown、references、来源处理记录 | 公开来源角色、链接状态、版本边界、授权限制、待验证项 | source audit note、引用角色、不能公开的材料清单 | 全部公开章节和发布检查 | 正文引用案例参数，却没有说明使用边界 |
+| 输入主版本 | 表格、Git / Markdown | 设计目标、质量、质心、轮胎、规则、接口边界 | 参数总表、单位表、输入版本记录 | 全部 CAD、MBD、FEA、脚本和报告 | 同一参数在多个软件中值不一致 |
+| 轮胎模型 | Optimum Tire、Adams Tire Tool、MATLAB / Python、表格 | 轮胎数据、坐标、模型形式、拟合权重、数据覆盖范围 | 模型文件、残差说明、适用窗口、待相关性验证项 | Adams Car、CarSim / Simulink、MATLAB / Python | 只导出模型，不解释数据缺口和残差 |
+| 二维几何与硬点 | AutoCAD / 2D CAD | 轮胎 / 轮辋关键尺寸、目标几何、主销 / 转向几何和接口边界 | 2D geometry、hardpoint sketch、主销 / 转向草图、坐标说明 | CATIA / 3D CAD、Adams Car、硬点评审 | 2D 草图被当成 3D 干涉证明 |
+| 三维包络与装配 | CATIA / 3D CAD | AutoCAD 硬点、轮胎 / 轮辋模型、车架、制动、转向、车身和维护空间 | 3D packaging、assembly clearance、interference list、制造 / 维修风险 | 硬点修正、结构支座、制造计划 | 只看静态姿态，不检查组合行程和转向工况 |
+| K&C 与优化 | Adams Car、Adams Insight | 硬点、模板、工况、目标函数、变量范围和约束 | K&C 曲线、运动比、DOE / 灵敏度、拒绝方案理由 | 簧上参数、载荷模型、评审记录 | 优化变量超出包装或制造边界 |
+| 参数响应 | MATLAB / Python、表格、Adams Car | 角重、轮胎刚度、弹簧阻尼、运动比、测试数据 | 偏频、阻尼方向、侧倾刚度、敏感性图 | 调校计划、整车模型、测试计划 | 图表没有单位、版本或工况 |
+| 导力与结构 | Adams View、Abaqus / Ansys、MATLAB / Python | 轮载、接地点力、连接定义、柔性体、材料和边界 | 连接点载荷、FEA boundary package、结构修改建议、证据等级 | 金属件、复材件、测试前检查 | 最大力没有方向、坐标和事件说明 |
+| 实车回流 | Race Studio / AIM、MATLAB / Python、Git / Markdown | channel map、传感器标定、测试日志、车辆版本 | 数据清洗、仿真-实车差异、通道降级、模型修正和复测计划 | 轮胎模型、参数表、载荷工况、答辩证据 | 只保留结果图，不保留数据处理方法 |
+
+如果某个软件输出无法说明“来自哪里、给谁用、怎么验证”，它就还不是设计证据。最小合格输出应当像接口文件一样清楚：上游输入是什么，下游要读取什么，哪些假设不能越界，下一轮测试或评审要检查什么。
+
+### 参数分类与公开边界
+
+软件工作流中的参数至少分成四类：`fixed parameters` 是当前冻结或接口约束，`adjustable set-up` 是测试或赛场可重复改变的设定，`derived outputs` 是模型或后处理结果，`measured inputs` 是实车或台架证据。四类参数可以互相反馈，但不能混在同一列里使用。
+
+公开文档只写字段、单位、坐标、更新触发和验证逻辑；具体 hardpoints、质量属性、轮胎系数、阻尼曲线、载荷值、铺层表、材料 allowables、DAQ 原始文件和历史调校组合属于项目工程资料。若某个输出依赖公开来源，应同时写清来源角色：MIT / MDPI / Purdue / Cincinnati 等仿真案例支持模型组织和 correlation 纪律，不提供通用参数；Virginia Tech、link-force 和供应商 DAQ 案例支持载荷假设、可测通道和信号质量边界，不提供结构放行阈值；复材公开来源支持失效模式和证据等级，不提供通用 coupon、allowable 或 release threshold。
 
 ## 源文档软件工作总览
 
@@ -113,7 +148,8 @@ flowchart TD
   end
 
   subgraph G["几何与参数阶段 geometry and parameters"]
-    D["硬点与装配<br>AutoCAD + CATIA / 3D CAD"] --> KC["K&C 检查<br>Adams Car"]
+    D["二维几何 / 硬点<br>AutoCAD / 2D CAD"] --> D3["三维装配 / 干涉<br>CATIA / 3D CAD"]
+    D3 --> KC["K&C 检查<br>Adams Car"]
     KC --> E["参数脚本<br>MATLAB / Python"]
     E --> F["运动比与侧倾<br>Adams Car"]
   end
@@ -183,6 +219,7 @@ flowchart TB
 | 可信输出 | 参数总表、方案对比表、单位检查表、输入版本表、调校范围表、简化计算结果和可复制的图表。 |
 | 误导性用法 | 公式被手工覆盖但没有标记；同一参数在 CAD、Adams Car、FEA 和脚本中存在多个版本；只保存最终值，不保存来源和修改原因；把未验证经验值写成确定结论。 |
 | 支持章节 | [01 设计目标](01-design-targets.md)、[02 轮胎与整车输入](02-tire-and-vehicle-inputs.md)、[04 弹簧、阻尼、侧倾与车身姿态](04-spring-damper-roll-and-ride.md)、[05 仿真、优化与相关性验证](05-simulation-optimization-correlation.md)、[10 评审清单](10-review-checklists.md)。 |
+| 公开边界 | 学习文档只给字段、单位、参数分类和假想值；精确车辆参数、历史调校组合、内部公式表和源文件名留在项目资料中。 |
 
 最低练习：建立一张教学用悬架参数表，包含轮距、轴距、整车质量、簧上质量估计、轮胎半径、目标偏频、弹簧刚度、运动比和侧倾刚度分配等占位或假想参数。重点不是数值大小，而是单位、来源、版本和公式是否清楚。
 
@@ -197,6 +234,7 @@ AutoCAD 和 CATIA / 3D CAD 应承担不同层级的工作。AutoCAD 主要用于
 | 可信输出 | AutoCAD 输出几何草图、主销关系和硬点表；CATIA / 3D CAD 输出接口清单、静态和组合包络检查、减振器和摇臂布置草案、需要跨组确认的问题清单。 |
 | 误导性用法 | 用 AutoCAD 二维图判断三维干涉；只检查 CATIA 静态装配姿态；不检查最大压缩加最大转向、回弹加转向、侧倾姿态和公差组合；坐标系与多体软件不一致；为了模型美观隐藏装配和维修空间；用未冻结的车架或轮辋边界继续优化硬点；把内部 CAD 截图或硬点精确位置写进学习资料。 |
 | 支持章节 | [01 设计目标](01-design-targets.md)、[03 几何与硬点](03-geometry-and-hardpoints.md)、[04 弹簧、阻尼、侧倾与车身姿态](04-spring-damper-roll-and-ride.md)、[06 载荷与金属结构校核](06-loads-metal-structure.md)、[07 复合材料校核与制造风险](07-composites-and-manufacturing.md)。 |
+| 公开边界 | 公开内容写 2D geometry / hardpoint sketch 和 3D packaging / assembly / interference 的检查方法；精确点位、CAD 截图、内部模型名、车辆编号和可反推方案的截面留在项目资料中。 |
 
 最低练习：先用 AutoCAD 和假想坐标建立一套双横臂 double wishbone 轮端几何，标出上下摆臂、转向拉杆、主销轴线、减振器或推杆路径，并输出硬点表。随后在 CATIA / 3D CAD 中把这些硬点放入简化装配，做至少五类姿态检查：静态、最大压缩加最大转向、回弹加转向、侧倾姿态、制造与装配公差组合。
 
@@ -211,6 +249,7 @@ Adams Car 适合用于悬架模板、硬点输入和 K&C 检查，但要区分�
 | 可信输出 | 刚体 K&C 曲线、硬点报告、参数对比图、曲线趋势解释、异常曲线排查记录、与 [03 几何与硬点](03-geometry-and-hardpoints.md) 目标的逐项对照；柔度 K&C 只有在刚度输入和相关性证据明确时才作为定量输出。 |
 | 误导性用法 | 把刚体 K&C 曲线称为完整 compliance 结论；模板不理解就直接套用；只看单点指标而忽略曲线趋势；用软件优化掩盖硬点输入错误；左右坐标或 toe 正负号弄反；没有测量或刚度依据却定量比较柔度；把精确模型设置和内部截图写进学习资料。 |
 | 支持章节 | [02 轮胎与整车输入](02-tire-and-vehicle-inputs.md)、[03 几何与硬点](03-geometry-and-hardpoints.md)、[05 仿真、优化与相关性验证](05-simulation-optimization-correlation.md)、[08 验证、测试、答辩与传承](08-validation-testing-defense.md)。 |
+| 公开边界 | 公开图表只说明曲线读法、坐标和 MR / VR convention；内部 hardpoints、模板文件、柔度参数、精确工况和商业软件截图不进入学习资料。 |
 
 最低练习：导入假想硬点，运行轮跳、转向和侧倾相关工况，导出刚体 camber gain、toe change、roll center migration 和 bump steer 曲线。每条曲线都写一句“它影响什么驾驶或结构问题”。如果没有衬套、关节、轮胎垂向刚度和实测 K&C 支撑，不把练习结果写成 compliance 结论。
 
@@ -225,6 +264,7 @@ Adams View 和 Adams Insight 的职责不同。Adams View 更适合通用多体�
 | 可信输出 | Adams View 的可信输出包括载荷数据表、载荷路径说明、特殊约束解释、刚柔耦合假设和传递给 [06 载荷与金属结构校核](06-loads-metal-structure.md) 或 [07 复合材料校核与制造风险](07-composites-and-manufacturing.md) 的边界条件说明；Adams Insight 的可信输出包括 DOE 记录、响应面适用范围、灵敏度排序、约束激活情况、优化前后对比和未覆盖区域说明。 |
 | 误导性用法 | 把 Adams View 的复杂模型当成输入可信的证据；只导出最大力而不说明方向、工况和坐标系；刚柔耦合模型很复杂但材料、连接和约束不可信；用 Adams Insight 在没有工程边界的设计空间里做数值优化；把响应面外推或局部最优点当成唯一方案；把内部载荷值或模型截图写进学习资料。 |
 | 支持章节 | [03 几何与硬点](03-geometry-and-hardpoints.md)、[05 仿真、优化与相关性验证](05-simulation-optimization-correlation.md)、[06 载荷与金属结构校核](06-loads-metal-structure.md)、[07 复合材料校核与制造风险](07-composites-and-manufacturing.md)、[10 评审清单](10-review-checklists.md)。 |
+| 公开边界 | 公开内容保留 DOE / sensitivity、load path 和 FEA boundary package 字段；内部权重、精确 objective、载荷表、run 编号、模型文件和截图留在项目资料中。 |
 
 最低练习：基于已验证的几何模型定义一个教学用假想极限工况，导出关键硬点反力，并写清载荷方向、单位、坐标系、适用范围和不能覆盖的工况。
 
@@ -239,6 +279,7 @@ Abaqus 与 Ansys 用于金属和复合材料结构检查。FEA 的价值不在�
 | 可信输出 | FEA 报告、网格和边界条件说明、位移与应力解释、安全系数或失效指标、奇异点判断、设计修改建议、需要试验或复核的风险清单。 |
 | 误导性用法 | 约束过硬导致刚度虚高；只看最大应力而不判断奇异点；载荷来自未经审查的多体模型；复合材料按各向同性金属处理，或没有定义铺层方向、层合板坐标、厚度、铺层顺序、连接嵌件和失效指数解释；网格无收敛检查；把内部云图、载荷数据表或材料私密数据写进学习资料。 |
 | 支持章节 | [06 载荷与金属结构校核](06-loads-metal-structure.md)、[07 复合材料校核与制造风险](07-composites-and-manufacturing.md)、[08 验证、测试、答辩与传承](08-validation-testing-defense.md)、[10 评审清单](10-review-checklists.md)。 |
+| 公开边界 | 金属件公开边界是载荷、约束、网格、奇异点和制造复核方法；复材公开边界是材料 / 铺层 / 连接证据等级和保守判断。不要公开载荷值、材料 allowables、铺层表、coupon 结果、云图源文件或释放阈值。 |
 
 最低练习：选择一个假想支架，用保守假想载荷做线性静力检查。报告中必须包含载荷路径、约束原因、网格检查、最大位移、危险区域、是否可能为奇异点、下一轮结构修改建议。
 
@@ -253,6 +294,7 @@ MATLAB 与 Python 用于可复现计算、数据处理、参数扫掠、绘图�
 | 可信输出 | 计算脚本、可复现图表、敏感性分析、轮胎或整车数据处理记录、简化模型结果、输入版本快照、异常数据说明。 |
 | 误导性用法 | 参数写死在脚本中且不记录来源；图表没有单位、工况和版本；过度拟合；用复杂模型掩盖基础假设不清；脚本结果无法复跑；把未经授权的数据打包进仓库。 |
 | 支持章节 | [02 轮胎与整车输入](02-tire-and-vehicle-inputs.md)、[04 弹簧、阻尼、侧倾与车身姿态](04-spring-damper-roll-and-ride.md)、[05 仿真、优化与相关性验证](05-simulation-optimization-correlation.md)、[08 验证、测试、答辩与传承](08-validation-testing-defense.md)。 |
+| 公开边界 | 可公开示例脚本应使用假想数据、相对趋势或生成数据；真实轮胎数据、测试 CSV、内部路径、图表源数据、拟合系数和可识别历史车辆图表留在项目资料中。 |
 
 最低练习：写一个 MATLAB 或 Python 脚本，读取教学用假想参数表，计算轮端刚度、偏频和简单载荷转移趋势，并输出带单位的图。脚本开头写明输入、单位、假设和不能代表真实车辆的边界。
 
@@ -267,6 +309,7 @@ CarSim 与 Simulink 适合整车行为、控制策略、赛道工况、驾驶员
 | 可信输出 | 整车仿真结果、输入版本表、与低阶模型或实车数据的对比、研究问题是否成立的说明、后续测试和相关性计划。 |
 | 误导性用法 | 在基础参数不可靠时追求整车复杂度；不同组输入没有版本控制；模型默认参数未审查；把研究性结论直接写成当年设计定论；把内部整车模型和精确设置写进学习资料。 |
 | 支持章节 | [01 设计目标](01-design-targets.md)、[02 轮胎与整车输入](02-tire-and-vehicle-inputs.md)、[05 仿真、优化与相关性验证](05-simulation-optimization-correlation.md)、[08 验证、测试、答辩与传承](08-validation-testing-defense.md)。 |
+| 公开边界 | MathWorks / Simscape 等公开示例可支撑模型组织和版本习惯，不代表本仓库车辆模型或验证结果；内部整车模型、赛道、控制策略、圈速和精确设置不公开。 |
 
 最低练习：定义一个明确研究问题，例如“前后侧倾刚度分配变化是否影响稳态转向趋势”。先用简化脚本得到预期，再在 CarSim 或 Simulink 中建立教学用等效模型，比较趋势而不是追求私有实车数值。
 
@@ -279,8 +322,9 @@ CarSim 与 Simulink 适合整车行为、控制策略、赛道工况、驾驶员
 | 工程问题 | 实车是否按模型预测工作？车手反馈、传感器数据和仿真曲线是否能互相解释？调校改动是否留下可复核证据？ |
 | 最低输入 | 测试目标、通道清单、采样率、传感器标定、时间同步、坐标方向、车辆状态、调校版本、天气和场地记录、数据权限边界。 |
 | 可信输出 | 测试日志、通道字典、清洗后的数据集、滤波和对齐说明、关键图表、仿真与实车对比、异常数据标记、下一轮测试建议。 |
-| 误导性用法 | 采样率不够却分析高频现象；传感器方向或零点错误；没有时间同步；只有截图却没有原始记录和处理脚本；把原始测试数据上传到仓库。 |
+| 误导性用法 | 采样率不够却分析高频现象；传感器方向或零点错误；没有时间同步；只有截图却没有原始记录和处理脚本；关键通道失效后仍作定量结论；把原始测试数据上传到仓库。 |
 | 支持章节 | [05 仿真、优化与相关性验证](05-simulation-optimization-correlation.md)、[08 验证、测试、答辩与传承](08-validation-testing-defense.md)、[10 评审清单](10-review-checklists.md)。 |
+| 公开边界 | 供应商 DAQ 案例只支持 channel planning、标定和信号质量边界；公开手册写 channel map、降级规则和 correlation 方法，不公开原始数据、硬件配置细节、视频、测试日志或通过阈值。 |
 
 最低练习：用一组示例 CSV 或自造数据，完成通道字典、单位检查、时间对齐、低通滤波、圈段切分和一页测试复盘。重点是流程可复跑，不是数据看起来漂亮。
 
@@ -295,6 +339,7 @@ Git、Markdown 和版本化报告工具负责把设计过程变成可追溯资�
 | 可信输出 | 清晰提交记录、Markdown 设计说明、版本化评审报告、可复跑脚本、变更日志、待验证项、可维护的说明文档。 |
 | 误导性用法 | 只把最终 PDF 当作资料；把聊天记录当作唯一决策依据；提交原始数据、内部截图或私有模型；报告没有链接到参数版本、脚本和验证证据；提交信息无法说明工程变化。 |
 | 支持章节 | [01 设计目标](01-design-targets.md) 到 [08 验证、测试、答辩与传承](08-validation-testing-defense.md) 的全部设计链，以及 [10 评审清单](10-review-checklists.md)。 |
+| 公开边界 | Git / Markdown 是公开边界的最后一道门：发布前检查链接、来源角色、敏感词、源文件名、绝对路径、内部值、截图、原始数据和未授权材料。 |
 
 最低练习：为一个假想设计改动写 Markdown 评审记录，包含背景、输入版本、改动内容、影响章节、验证证据、风险和下一步。用 Git 提交这份记录，并保证提交信息能让半年后的队员看懂。
 
@@ -305,9 +350,10 @@ Git、Markdown 和版本化报告工具负责把设计过程变成可追溯资�
 ```mermaid
 flowchart TD
   A["知识基础<br>knowledge foundation"] --> B["软件基础<br>software basics<br>Excel / AutoCAD / Markdown"]
-  B --> C["几何与装配<br>AutoCAD / CATIA"]
+  B --> C["二维几何<br>AutoCAD / 2D CAD"]
+  C --> C3["三维装配<br>CATIA / 3D CAD"]
   B --> D["轮胎模型<br>MATLAB / Python / Adams Car"]
-  C --> E["K&C 与几何检查<br>Adams Car"]
+  C3 --> E["K&C 与几何检查<br>Adams Car"]
   D --> E
   E --> F["参数脚本<br>MATLAB / Python / Excel"]
   F --> G["载荷提取<br>Adams View"]
@@ -356,7 +402,7 @@ flowchart TD
 
 ## 验证与评审
 
-软件工作流评审应按“输入、模型、输出、传递、验证”五步进行：
+软件工作流评审应按“输入、模型、输出、传递、验证、公开边界”六步进行：
 
 | 评审项 | 检查问题 |
 | --- | --- |
@@ -365,6 +411,7 @@ flowchart TD
 | 输出 | 输出变量是否能支持决策？图表是否有单位、工况、版本和曲线解释？ |
 | 传递 | 输出如何传给下一环节，例如从 Adams View 到 FEA，或从测试数据到相关性修正？ |
 | 验证 | 是否有简化计算、独立工具、试验数据、车手反馈或评审问题来交叉检查？ |
+| 公开边界 | 是否只公开流程、字段、来源角色和保守结论；是否移除了原始数据、源文件名、内部路径、截图、精确参数和未授权资料？ |
 
 主力队员还应承担三类责任：
 
@@ -386,3 +433,12 @@ flowchart TD
 - 与 [07 复合材料校核与制造风险](07-composites-and-manufacturing.md)：复合材料 FEA 需要材料、铺层方向、层合板坐标系、厚度、铺层顺序、连接和嵌件假设、失效指数解释与制造假设，不应只套用金属件流程。
 - 与 [08 验证、测试、答辩与传承](08-validation-testing-defense.md)：数据采集与分析把软件结果带回实车，Git 与 Markdown 帮助形成答辩证据和传承材料。
 - 与 [10 评审清单](10-review-checklists.md)：本章的软件字段可转化为评审清单，检查每个模型是否有工程问题、最低输入、可信输出、误导性用法和支持章节。
+
+## 本章公开来源
+
+- [MathWorks: Magic Formula Tire Modeling in Formula Student](https://blogs.mathworks.com/student-lounge/2022/06/07/mf-tyre/)，用于轮胎模型拟合、评估和导出工作流。
+- [Formula Student Vehicle with Simscape](https://github.com/simscape/Formula-Student-Vehicle-Simscape)、[MathWorks File Exchange entry](https://www.mathworks.com/matlabcentral/fileexchange/172279-formula-student-vehicle-with-simscape) 和 [Simscape Multibody Formula Student video](https://www.mathworks.com/videos/formula-student-vehicle-modeling-using-simscape-multibody-1683608443602.html)，用于公开整车模型、K&C、maneuver、ARB、bushing 和 nonlinear damper / endstop 模板。
+- [Dynamic Handling Characterization and Set-Up Optimization for a Formula SAE Race Car via Multi-Body Simulation](https://www.mdpi.com/2075-1702/9/6/126) 与 [Purdue MBD suspension thesis](https://hammer.purdue.edu/articles/thesis/Modeling_of_Multibody_Dynamics_in_Formula_SAE_Vehicle_Suspension_Systems/12269003)，用于 fixed / adjustable 参数、MBD 模型层级、sensitivity 和 correlation 边界；不采用单车 setup 或模型参数。
+- Adams Car / Adams View / Adams Insight、Abaqus / Ansys、MATLAB / Python 的官方资料类型，用于约束软件教程必须说明工程问题、输入、输出、边界、公开边界和验证方式。
+- Dewesoft / Mantracourt / HBK / Micro-Measurements 数据采集案例，用于把软件后处理和实车通道、载荷相关性、DAQ 降级、答辩证据连接起来；不固化硬件、阈值或通道数量。
+- 完整章节索引见 [参考资料：章节引用索引](../references.md#章节引用索引)。

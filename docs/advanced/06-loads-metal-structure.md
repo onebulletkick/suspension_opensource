@@ -12,6 +12,12 @@
 
 快速预览层见 [07 载荷与结构校核](../07-loads-and-structure-check.md)。本章给出流程、公式框架、字段模板和评审逻辑；历史载荷数据表、应力结果、源图、源表、车号和具体车辆组合数据应放在项目记录中。所有结论都应写成“在当前假设下支持下一步设计 / 制造 / 测试评审”，不能把 FEA 单独当作安全认证。
 
+## 公开来源如何进入本章
+
+公开资料对载荷和金属结构最有价值的部分，是方法边界而不是载荷数值。FS Wiki 的 suspension forces 适合解释自由体图、杆件方向向量和矩阵平衡；Virginia Tech 关于用有限元预测悬架杆件载荷的研究，适合提醒 pinned members、two-force / truss 假设、steering 输入和 articulation 会改变载荷预测；Link Forces on a Formula Student Suspension System 这类论文适合展示 ADAMS、MATLAB、应变测量和计划验证怎样组成闭环；Dewesoft、HBK、Mantracourt、Micro-Measurements 等供应商案例适合说明可测通道、标定和信号质量；Monash / SAE 类公开结构设计案例适合借鉴报告组织和 design-to-test 逻辑。
+
+这些来源不提供本仓库可直接引用的载荷表、安全系数、材料许用或结构放行标准。正文只吸收它们共同指向的审查习惯：先声明假设，再导出力，再把力转换成真实边界，最后用制造检查和实车测量修正模型。
+
 ## 载荷从哪里来
 
 悬架结构载荷通常不是单一来源，而是多个模型层级逐步收敛的结果。早期设计先用手算和表格估算轮荷、轮胎力、制动扭矩和杆件力数量级；硬点、弹簧阻尼和轮胎模型冻结度提高后，再用多体模型提取关节力；需要评估结构柔度对力路径的影响时，再引入刚柔耦合。
@@ -29,6 +35,24 @@
 | 实车测试和检查 | 相关性验证、迭代 | 传感器载荷、裂纹、松动、磨损、永久变形 | 测试条件不可重复或没有足够传感器证据 |
 
 每个载荷条目都应记录坐标系、单位、正方向、作用点、载荷来源、版本和适用边界。若载荷来自不同工具，必须说明如何把车辆坐标、轮胎坐标、局部零件坐标和 FEA 坐标转换到同一约定。
+
+## 从轮载到结构载荷的边界
+
+轮载分析 wheel load analysis 和载荷转移 load transfer 主要回答“车辆状态如何改变轮胎接地点的力”。结构校核还要继续回答“这些力如何通过轮胎、轮毂、upright、连杆、支座、连接件和车架节点进入具体零件”。两者之间不能省略边界条件 boundary condition、载荷路径 load path 和验证证据的转换。
+
+| 输入层 | 能支持的判断 | 不能单独支持的判断 |
+|---|---|---|
+| 理论载荷转移 | 估算前后 / 左右轮载变化和结构初筛工况 | 证明具体零件在所有赛道工况安全 |
+| RCVD-style wheel load 分析 | 校准制动、转向、侧向加速度和质量转移的关系 | 替代多体导力、柔度影响和测试数据 |
+| 多体模型导力 | 给 FEA 提供更接近机构约束的节点力和工况组合 | 自动证明边界条件、接触、网格和材料模型正确 |
+| 实车测量 / 相关性 | 检查模型趋势和载荷量级是否可信 | 覆盖未测试事件、冲击和制造缺陷 |
+
+制动 braking 和驱动 driving 载荷进入结构校核前，至少要补齐以下审查：
+
+- 符号约定 sign convention：制动、驱动、轮胎坐标、车辆坐标和零件局部坐标的正方向必须一致；左右件镜像时要单独检查。
+- 轮胎力方向 tire force direction：`F_x`、`F_y`、`F_z`、制动扭矩和回正力矩要说明作用点、方向和是否包含联合滑移。
+- 接地点假设 contact patch assumption：轮胎力从接地点传到轮心、轴承、upright 和连杆时，轮胎半径、scrub radius、mechanical trail 和制动卡钳反力不能被默认忽略。
+- 结构载荷路径 load path review：每个轮端力都要追踪到 bearing、rod end、fastener、weld、bracket 和 chassis node，确认 FEA 的节点力、约束和接触代表真实传力方式。
 
 ## 图示：从导力到金属件 FEA
 
@@ -115,6 +139,23 @@ Delta_Fz_lat,axle = m_axle · a_y · h_eff / t_axle
 
 这张表是字段模板，不是载荷答案。项目记录可以填数值；学习手册保留方法、来源和复核逻辑。
 
+## FBD、矩阵法和二力杆假设
+
+自由体图 free body diagram 和矩阵法 matrix method 适合建立数量级和符号检查。典型做法是把 upright 或悬架 corner 当作自由体，把轮胎接地点力、制动扭矩、转向输入和每根 link 的方向向量放进平衡方程，求解未知杆件力。这个方法的价值是透明：每个力从哪里来、沿哪个方向、绕哪个点取矩，都能被工程师复核。
+
+但矩阵法通常依赖简化假设。公开来源反复提醒：这些假设一旦不成立，杆件力就只能作为初筛，不能直接作为释放载荷。
+
+| 假设 | 何时近似可用 | 失效或降级场景 | 需要补的证据 |
+| --- | --- | --- | --- |
+| pinned joints | ball joint / rod end 主要传递力，弯矩很小 | 接头有偏心、安装角不足、锁紧螺母或垫片引入弯矩 | 端部摆角、偏心距、装配公差和局部 FEA |
+| two-force member | 细长 link 两端受力且主要沿轴线拉压 | A 臂焊接结构、弯管、偏心接头、pushrod 端部偏载 | bending check、buckling check、应变片或局部模型 |
+| truss-like suspension | 多根杆件构成清晰轴向传力路径 | steering tie rod、anti-roll bar、damper / spring、bearing 摩擦和 chassis 柔度参与传力 | MBD 导力、左右镜像复核和反力平衡 |
+| no steering input | 直行或小转角工况，转向几何对力分配影响较小 | 大转角、制动入弯、回正力矩、转向拉杆载荷或 rack 反力显著 | steering angle sweep、tie rod load 和 upright moment |
+| limited articulation | 姿态变化小，杆件方向近似固定 | bump / rebound、roll、pitch、路肩冲击和极限转角改变方向向量 | 姿态相关 hardpoint / unit-vector 更新 |
+| static equilibrium | 准稳态载荷主导，惯性耦合较弱 | 瞬态冲击、轮胎 hop、kerb strike、快速转向和制动释放 | MBD transient、数据通道和 post-run inspection |
+
+矩阵法输出前应附带三类信息：输入载荷和坐标系、每根杆件方向向量或力臂、被忽略的弯矩 / 柔度 / 接触 / 动态效应。若一个 load case 包含 steering、articulation 或 combined braking-cornering，建议把 FBD 作为 sanity check，再用 MBD 或刚柔耦合导力给 FEA 提供接口力。
+
 ## 多体模型导力
 
 双横臂悬架的许多零件是静不定 statically indeterminate 系统。多个 A 臂、推杆 / 拉杆、转向拉杆、upright、轴承和车架支座共同约束轮端运动，仅靠单个自由体图往往无法唯一求出每个杆件和关节的载荷。几何约束、杆件角度、球铰位置、弹簧阻尼、防倾杆、转向系统和轮胎力都会影响力在各路径中的分配。
@@ -131,6 +172,23 @@ Delta_Fz_lat,axle = m_axle · a_y · h_eff / t_axle
 公开测试案例也说明，载荷模型最好能被实车测量反向检查。例如在 A 臂、pushrod / pullrod 或 tie rod 上布置应变片，配合悬架位移、轮速、方向盘角、制动压力和 IMU，可以把杆件力、接地点力和车辆状态放到同一时间轴上比较。这类方法不能自动覆盖所有载荷路径，也会受传感器布置、温度、弯矩耦合和标定质量影响，但它提醒团队：多体导力和 FEA 结论应尽早规划可测量的 correlation，而不是等裂纹出现后才追查载荷来源。
 
 如果采用简化矩阵或杆件轴力模型，应把假设写在结果前面，例如：杆件是否视为只受轴力、悬架组是否按静力平衡处理、接头是否忽略弯矩、左右件是否假定对称、轮胎接地点力如何由车身坐标转换到局部坐标。只要这些假设影响释放结论，就必须在结构评审中标为模型边界。
+
+## MBD 导力到 FEA 的转换
+
+多体模型导出的力不能直接复制到 FEA。中间至少要完成坐标、符号、作用点、约束和载荷分配的转换审查，否则高保真模型会把低级输入错误放大。
+
+| 转换项 | 检查问题 | 典型错误 |
+| --- | --- | --- |
+| 坐标系 coordinate frame | 输出力是在车辆坐标、轮胎坐标、joint 局部坐标还是 marker 坐标？FEA 中是否已转换到零件局部坐标？ | 左右件镜像后 `F_y` 或 toe / steering 方向反了 |
+| 符号 sign convention | 压缩、拉伸、制动、驱动、bump、rebound 的正方向是否与后处理脚本一致？ | 把 joint force on part 和 force by part 混用，方向相反 |
+| 作用点 point of application | 力施加在 ball center、bearing center、bolt center、contact patch 还是 bracket 面上？ | 把轮胎力直接施加到支座孔中心，漏掉力矩臂 |
+| 峰值时刻 peak event | 取的是单个通道峰值、同一时刻全量向量，还是包络组合？ | 把不同时间的 `F_x`、`F_y`、`F_z` 峰值机械叠加 |
+| 力矩和耦合 moments | 是否包含制动扭矩、回正力矩、bearing 轴向力、caliper reaction 和 steering rack 反力？ | 只导杆件轴力，漏掉 upright 或转向臂弯扭 |
+| 边界 stiffness | FEA 约束代表 chassis node、bearing、fastener、weld 还是理想固定？ | 为了收敛全固定孔边，导致虚假热点或虚假刚度 |
+| 载荷分布 load distribution | 远程点、RBE、coupling、bearing load、contact 或垫片面如何分配力？ | 单节点集中力制造 singularity，或刚性耦合掩盖局部变形 |
+| 版本 traceability | hardpoints、质量、轮胎、弹簧阻尼、工况和 FEA 几何是否来自同一冻结版本？ | 结构模型使用旧支座几何，导力来自新硬点 |
+
+FEA boundary package 建议包含一页转换说明：MBD run 编号、工况、峰值时刻、坐标定义、原始输出字段、转换公式或脚本版本、FEA 载荷对象、约束对象、反力平衡检查和未覆盖风险。公开手册只给字段；真实项目的数值、脚本路径和模型文件留在项目工程包中。
 
 ## 刚柔耦合与力提取
 
@@ -234,6 +292,18 @@ flowchart TD
 
 这个流程强调闭环：结构校核不是 FEA 文件完成就结束，而是要回到载荷、模型、制造和实车检查。若测试发现裂纹、松动、磨损、永久变形或异常车手反馈，应重新审查载荷假设和边界条件。
 
+## 软件实现路径
+
+金属结构校核的软件链应把车辆动力学载荷转成结构模型能理解的边界条件。核心不是“把最大力导进 FEA”，而是保留工况、方向、坐标、作用点、连接定义和载荷路径审查。
+
+| 技术问题 | 推荐工具 | 输入 | 输出 | 传给下一步 | 验证方式 |
+| --- | --- | --- | --- | --- | --- |
+| 理论轮载估算 | 表格、MATLAB / Python | 质量、轴距、轮距、质心、气动假设、纵横向加速度和事件场景 | 轮载和轮胎力工况表、保守假设、更新触发条件 | Adams View、多体模型、FEA 工况 | 简化载荷转移公式、单位和符号检查 |
+| 多体模型导力 | Adams View | 硬点、连接定义、轮胎力、柔性体或刚体假设、工况 | 连接点力、峰值时刻、参考坐标系、载荷路径说明 | Abaqus / Ansys、自由体图复核 | 力平衡、动画、measure 定义和坐标转换复核 |
+| FEA 边界准备 | Abaqus / Ansys、表格 | 导出的连接点力、作用点、约束含义、材料、连接和几何简化 | FEA boundary package、网格和约束说明 | 金属件结构校核、复材连接区校核 | 自由体图、反力平衡、边界刚度合理性检查 |
+| 金属件校核 | Abaqus / Ansys | 载荷、约束、材料、网格、接触、螺栓或焊缝假设 | 位移、应力、稳定性、疲劳风险、危险区域和修改建议 | 结构设计修正、制造复核、测试前检查 | 网格敏感性、奇异点判断、手算数量级和实车检查 |
+| 结果回流 | Git / Markdown、表格、测试数据工具 | FEA 结论、设计修改、测试检查、裂纹 / 松动 / 磨损记录 | 载荷模型更新、结构修改原因、复测计划 | 几何、仿真、制造和验证章节 | 修改后重跑受影响工况并记录版本 |
+
 ## 输出物
 
 高级手册建议每个金属件至少形成以下输出物：
@@ -288,6 +358,18 @@ flowchart TD
 
 结论语言要保守。推荐使用“在当前载荷假设、边界条件和材料数据下，该方案未发现阻止进入样件制造的明显风险，仍需制造检查与实车验证”。避免使用“仿真证明安全”“已经绝对可靠”等表述。
 
+实车相关性不一定一开始就能给出完整载荷闭环，但至少应把可测证据纳入结构 release decision：
+
+| 可测证据 | 能帮助确认什么 | 主要边界 |
+| --- | --- | --- |
+| link strain | A 臂、pushrod / pullrod、tie rod 的轴向或弯曲应变趋势 | 应变片位置、温度、桥路和弯矩耦合会影响换算 |
+| suspension displacement | bump / rebound、行程利用、冲击和限位事件 | 不能直接等于载荷，需要与弹簧阻尼和姿态结合 |
+| brake pressure / steering angle | 制动入弯、回正力矩、转向拉杆载荷的事件定位 | 输入通道只说明驾驶动作，不直接说明结构力 |
+| IMU / wheel speed | 纵横向加速度、轮速差、G-G 区域和测试重复性 | 安装方向、滤波、时间同步和路面会影响解释 |
+| post-run inspection | 裂纹、松动、磨损、压痕、焊缝异常和永久变形 | 没有发现损伤不等于覆盖了疲劳寿命 |
+
+如果测试通道显示趋势与模型相反，应先停在相关性问题上：检查传感器方向、坐标转换、同一时刻载荷向量、MBD 关节定义和 FEA 边界，而不是直接调高安全系数或删除云图热点。
+
 ## 与其它章节的关系
 
 - [03 悬架几何与硬点](03-geometry-and-hardpoints.md)：硬点、主销、杆件角度、推杆 / 拉杆位置和支座空间决定载荷路径，也决定多体导力的几何基础。
@@ -295,3 +377,12 @@ flowchart TD
 - [07 复合材料校核与制造风险](07-composites-and-manufacturing.md)：复合材料件需要不同失效准则和制造验证，但载荷来源、边界条件和检查闭环应与金属件一致。
 - [10 评审清单](10-review-checklists.md)：载荷、FEA、制造、测试和答辩检查项应进入统一评审清单，避免只在单个分析文件里存在。
 - [07 载荷与结构校核](../07-loads-and-structure-check.md)：快速预览层用于新队员建立结构校核入口，本章提供更完整的载荷、导力和金属件校核方法。
+
+## 本章公开来源
+
+- [FS Wiki: Suspension Forces](https://fswiki.us/Suspension_Forces)，用于六杆件力平衡、矩阵法和推杆 / 拉杆载荷误区。
+- [An Approach to Using Finite Element Models to Predict Suspension Member Loads](https://vtechworks.lib.vt.edu/bitstream/handle/10919/34020/Borg_L_ETD_Copy_07-26-2009.pdf)，用于 pinned members、truss、steering、articulation 和 FEA 假设审查；不采用其中任何具体载荷或安全结论。
+- [Analysis of Link Forces on a Formula Student Suspension System](https://www.diva-portal.org/smash/get/diva2:1033230/FULLTEXT01.pdf)，用于杆件力测量、模型和载荷路径验证。
+- [Dewesoft tire-road force analysis](https://dewesoft.com/blog/optimizing-formula-suspension-through-tire-road-force-analysis)、[Dewesoft suspension testing](https://dewesoft.com/blog/suspension-testing-on-formula-sae-racecar)、[Mantracourt FSAE validation case](https://www.mantracourt.com/case-studies/data-acquisition-in-formula-sae-suspension-and-steering-system-validation-tests/)、[HBK Bologna case](https://www.hbkworld.com/en/knowledge/resource-center/case-studies/university-bologna-formula-sae-student) 和 [Micro-Measurements validation case](https://docs.micro-measurements.com/?id=9703)，用于从应变片、悬架位移、轮速、方向盘角、制动压力、IMU、标定和信号质量反推载荷相关性。
+- [SAE 2002-01-3310](https://saemobilus.sae.org/papers/design-formula-sae-suspension-2002-01-3310)、[SAE 2002-01-3308](https://saemobilus.sae.org/papers/design-formula-sae-suspension-components-2002-01-3308) 和 [Monash Motorsport suspension thesis collection](https://www.monashmotorsport.com/blog/2011suspensionthesis)，用于 design-build-test 组织方式和结构设计案例边界；不复制图表、参数或历史方案。
+- 完整章节索引见 [参考资料：章节引用索引](../references.md#章节引用索引)。

@@ -12,6 +12,14 @@
 
 快速预览层见 [07 载荷与结构校核](../07-loads-and-structure-check.md)。本章讨论复材校核流程、评审问题和保守判断方式；材料供应商数值、实际铺层表、源公式、源图表、车号或具体车辆组合数据应由团队自行管理。
 
+RCD / RCVD 对复合材料本体不是完整材料手册；它们更适合作为车辆载荷、包装、制造和验证边界的上游校准。复材安全仍需要材料 allowables、铺层质量、连接区试验和制造过程控制。
+
+## 公开来源边界
+
+公开的 Formula SAE / Formula Student 复材悬架、connection inserts、monocoque / coupon 和 composite rim 案例，足以支撑一个谨慎框架：复材件必须把材料 allowables、ply 坐标、连接载荷引入、制造缺陷和试验验证放在同一条证据链里。ABD failure criteria 这类资料也足以说明为什么 Hashin、Puck、Tsai-Wu 等准则要按 ply stress、材料坐标和 allowables 解释。Abaqus / Ansys 官方资料类型可以支持软件字段：材料方向、layup、局部坐标、失效变量、接触和连接表达。
+
+这些公开来源不足以给出可照抄的 coupon 方案、铺层表、材料许用值、胶接工艺、嵌件尺寸、制造通过阈值或赛道释放标准。悬架复材件通常比公开 rim、monocoque 或一般 coupon 案例更受连接区、端部偏心、冲击、装配和检查条件影响；正文因此只写方法、字段和验证边界，不写通用配方。
+
 ## 复合材料和金属件的校核差异
 
 金属材料通常近似为各向同性 isotropic，设计评审会重点看等效应力、屈服、疲劳、焊接、孔边和屈曲。复合材料往往是各向异性 anisotropic 或正交各向异性 orthotropic，强度和刚度随纤维方向、铺层顺序、树脂体系、固化质量和环境状态变化。一个方向上看起来很强的结构，可能在层间、孔边、压缩、剪切或冲击后损伤中提前暴露风险。
@@ -62,6 +70,8 @@ Puck / IFF inter-fibre failure 类思路可以作为另一类失效解释视角�
 - 标准 Hashin 类指标主要检查纤维 / 基体相关模式，不能单独清除 interlaminar delamination 风险。
 - Abaqus 内置模型、用户材料模型 user material、VUMAT / UMAT 或其它子程序的适用范围、损伤演化、单元删除 element deletion、网格依赖和后处理解释都需要单独记录。
 - Hashin 对冲击损伤、制造孔隙、胶接失效、螺栓滑移、环境老化、连接 pull-out 和层间裂纹扩展的覆盖有限，不能替代 coupon 与检查。
+
+Tsai-Wu / Tsai-Hill 等交互准则适合做某些层合板强度筛查，但通常不会像 Hashin 或 Puck 类准则那样直接指出 fiber、matrix 或 inter-fibre failure 的物理模式。若使用这类指标，应额外说明它只是筛查量，不应把单一 failure index 解释成“所有失效模式都已覆盖”。
 
 因此 Hashin 结果必须与单独的层间 / 分层 review 配套使用。根据零件风险和证据等级，可增加 interlaminar normal stress、interlaminar shear stress、自由边和孔边层间应力复核；对关键连接或厚度突变区域，可建立局部子模型，或在适合时使用 cohesive-zone、VCCT-style 等分层扩展模型。仿真之外，还应安排 NDI / inspection、首件检查、coupon、连接样件或 joint tests，用来确认模型没有把层间损伤、胶接剥离或隐藏缺陷误判为已覆盖风险。
 
@@ -117,6 +127,8 @@ allowables 不是把供应商宣传值直接填进 FEA。若材料数据与实�
 
 铺层表、供应商厚度值和具体零件参数组合不适合写进学习手册。这里保留字段模板和检查逻辑，提醒团队在自己的设计包中补齐项目数据。
 
+建议在评审记录中单独画出三套坐标的关系：车辆坐标、零件局部坐标和 laminate coordinate system。若 `0 deg` 被定义为零件轴线方向，就要说明弯管、端部接头、左右镜像和局部补强区域是否仍沿同一基准；若 `0 deg` 被定义为制造展开图方向，就要说明它如何映射回车上的载荷方向。任何一次坐标重定义都应触发 failure index、层间应力、连接反力和制造铺层记录的复查。
+
 ## Abaqus 建模思路
 
 Abaqus 建模的目标不是追求模型复杂，而是让模型复杂度与问题相匹配。概念阶段可用简化 laminate shell 观察载荷路径和刚度趋势；详细阶段才逐步加入连接、接触、局部补强、分层区域和更细的失效后处理。
@@ -169,9 +181,26 @@ Abaqus 建模的目标不是追求模型复杂，而是让模型复杂度与问�
 
 如果模型把连接区简化为刚性耦合、MPC beam、remote point 或集中载荷，应说明这种简化可能低估局部损伤，也可能高估局部峰值。关键连接建议用分布耦合、垫片 / 套筒接触、cohesive 或局部子模型、连接样件、装配检查和测试后复查共同支持。
 
+连接区 release review 不应只问 failure index 是否小于某个阈值，而要逐项问：
+
+| 问题 | 应检查的证据 | 不能省略的边界 |
+| --- | --- | --- |
+| 载荷如何进入 laminate？ | 垫片、套筒、嵌件、胶接面、夹具或硬点面上的分布载荷 | 单点力或刚性点不能代表真实承压面积 |
+| 局部压溃如何评估？ | bearing stress、contact pressure、垫片压痕、套筒支承和局部补强 | 供应商 lamina allowables 不能直接覆盖孔边 crushing |
+| 分层风险在哪里？ | 自由边、孔边、厚度突变、搭接端、胶层剥离和层间拉 / 剪应力 | 标准 ply failure criteria 不能单独清除 delamination |
+| 胶接或嵌件如何验证？ | 表面处理、胶层厚度、固化、搭接长度、pull-out / shear 样件或连接样件 | 一个 coupon 不代表所有几何、环境和装配偏差 |
+| 装配偏差如何进入模型？ | 端部同轴度、杆端角度、预紧、垫片平面度、孔位和夹具记录 | 理想 CAD 对中不能代表实物对中 |
+
 ## 制造缺陷与质量控制
 
 复材强度高度依赖制造质量。仿真模型通常假设材料连续、铺层正确、固化充分、厚度稳定，但实际制造可能出现偏差。评审时要把制造风险列为结构证据的一部分。
+
+| 风险 | 为什么 RCD / RCVD 只能提供边界 | 本手册需要保守写法 |
+|---|---|---|
+| 材料参数 | 赛车设计书不能替代材料供应商数据和试样结果 | allowables 来源、环境条件和批次差异必须记录 |
+| 铺层方向 | 车辆载荷只说明外部需求，不说明实际纤维质量 | 铺层角度、厚度、搭接和缺陷检查必须进入评审 |
+| 连接区 | 轮载和导力会集中到 inserts、bonding 和局部压溃位置 | 连接区需要单独建模、试验或保守裕度 |
+| 制造缺陷 | 理论模型默认理想结构，实物可能有空隙、皱褶和固化偏差 | 测试和无损检查不能被仿真截图替代 |
 
 | 风险 | 可能原因 | 仿真能看到什么 | 仿真看不到什么 | 验证方式 |
 | --- | --- | --- | --- | --- |
@@ -185,6 +214,8 @@ Abaqus 建模的目标不是追求模型复杂，而是让模型复杂度与问�
 
 质量控制记录建议包括材料批次、存放条件、裁片方向、铺层检查、真空和固化记录、脱模和修边记录、钻孔记录、首件尺寸、外观缺陷、返修限制和装配扭矩。对承力硬点，制造记录与 FEA 报告同样重要。
 
+首件检查 first-article inspection 至少应覆盖：实际厚度和重量、硬点位置、孔位和孔边质量、局部补强是否到位、表面缺陷、敲击或超声等可行检查、胶接溢胶和空洞线索、嵌件同轴度、装配扭矩和与相邻金属件的接触痕迹。若首件状态与模型假设不一致，应先降低 release level，再决定是修正模型、返修零件还是重做样件。
+
 ## 试样、实车检查与验证边界
 
 coupon 和样件测试的价值在于把“软件中的材料”拉回“团队真实工艺”。常见验证层级包括：
@@ -196,6 +227,18 @@ coupon 和样件测试的价值在于把“软件中的材料”拉回“团队�
 - 实车检查：在低风险测试、逐步加载和赛后复查中观察裂纹、分层、松动、压痕、异响和永久变形。
 
 验证边界必须写清楚。某个 coupon 只代表与其材料、铺层、工艺和加载方式相近的情形；实车短时测试也不能覆盖所有疲劳、冲击和环境状态。若发现任何疑似 delamination、连接松动、孔边压痕、永久变形或异常声响，应暂停该零件的释放结论，回到载荷、边界、制造和检查记录重新评审。
+
+试样计划不应写成“做 coupon 即可”。更稳妥的组织方式是先列出主导风险，再选择最低能回答问题的样件：
+
+| 主导风险 | 更相关的试验证据 | 仍然不足的部分 |
+| --- | --- | --- |
+| 材料方向强度 | 与实际材料、纤维体积分数、固化和环境相近的拉伸 / 压缩 / 剪切 coupon | 全尺寸连接、孔边和装配偏心 |
+| 孔边承压 / local crushing | open-hole、bearing 或带垫片 / 套筒的局部样件 | 实车多轴载荷和长期磨损 |
+| 胶接 / insert pull-out | 胶接搭接、端部接头、嵌件 pull-out 或剪切样件 | 真实硬点组合载荷和温湿度老化 |
+| buckling / compression | 管件或子结构压缩样件，包含端部约束和初始缺陷记录 | 路面冲击、弯扭耦合和赛道损伤 |
+| delamination / impact | 层间或冲击后检查样件、NDI 对照和损伤容限评估 | 所有隐藏缺陷和疲劳扩展 |
+
+停用或暂停释放的触发条件应提前写进检查表。典型触发包括可疑分层声、孔边压痕扩大、嵌件或胶接端松动、表面裂纹、永久变形、异常异响、硬点相对位移、装配扭矩异常、冲击后隐伤疑点、赛后检查出现新的磨损或接触痕迹。出现这些迹象时，正确动作是停用、隔离、复查载荷和制造记录，而不是继续用上一次 FEA 结论覆盖风险。
 
 ## 复材评审流程图
 
@@ -214,6 +257,18 @@ flowchart TD
 ```
 
 这个流程的重点是闭环。复材件只有在载荷、铺层、材料、模型、制造和检查证据相互一致时，才适合进入下一阶段；任何一个环节证据不足，都应降低结论等级或安排补充验证。
+
+## 软件实现路径
+
+复材校核的软件链与金属件不同：Adams View 提供上游载荷边界，Abaqus / Ansys 或同类 FEA 工具负责表达材料方向、铺层、连接区和失效准则，制造和试样验证负责决定模型是否可信。
+
+| 技术问题 | 推荐工具 | 输入 | 输出 | 传给下一步 | 验证方式 |
+| --- | --- | --- | --- | --- | --- |
+| 载荷边界继承 | Adams View、表格 | 连接点力、作用点、坐标系、工况、载荷路径和安全边界 | 复材件载荷工况表、连接区受力说明 | Abaqus / Ansys 复材模型 | 与金属件载荷表、自由体图和反力平衡对照 |
+| 铺层和材料方向 | Abaqus / Ansys、表格 | 材料 allowables、铺层顺序、ply orientation、厚度、局部坐标和制造边界 | layup 定义、材料方向说明、铺层风险清单 | 失效准则、制造评审 | 坐标系可视化、对称 / 平衡铺层检查、试样或供应商数据等级说明 |
+| 连接区建模 | Abaqus / Ansys | 轴承窝、嵌件、胶接或机械连接、接触、cohesive 或等效连接假设 | 连接区边界、承压 / 层间风险、局部网格说明 | 结构修改、制造工艺、测试计划 | 连接假设审查、网格敏感性、局部失效模式解释 |
+| 失效评估 | Abaqus / Ansys、后处理脚本 | 载荷、材料方向、失效准则、层间假设、边界条件 | Hashin / Puck-style 或其它失效指标、危险层和危险区域 | release review、结构修改 | 不只看云图峰值；检查纤维、基体、层间、承压和屈曲风险 |
+| 制造与验证回流 | 制造记录、试样数据、Git / Markdown | 工艺窗口、缺陷记录、首件检查、coupon 或实车检查 | 制造风险、停用标准、模型修正和补充试验计划 | 下一轮铺层、连接和工艺改进 | 把空洞、褶皱、脱粘、纤维偏角和固化质量反馈到模型边界 |
 
 ## 输出物
 
@@ -275,3 +330,13 @@ flowchart TD
 - [06 载荷与金属结构校核](06-loads-metal-structure.md)：复材件与金属件共享载荷来源、坐标系、接口力和边界评审原则，但失效准则、材料证据和制造风险不同。
 - [08 验证、测试与答辩](08-validation-testing-defense.md)：复材的 coupon、首件、实车检查和停用标准需要进入整车验证计划和答辩证据链。
 - [10 评审清单](10-review-checklists.md)：将材料数据、铺层、Abaqus 设置、连接区、制造检查和验证边界纳入统一 review checklist，避免只在个人分析文件中保存。
+
+## 本章公开来源
+
+- [Composite Suspension for Formula SAE Vehicle](https://digitalcommons.calpoly.edu/mesp/40/)，用于理解碳纤维悬架件、胶接、金属嵌件、制造波动和测试验证的常见风险；不采用其中的尺寸、铺层或结论作为通用方案。
+- [Numerical and Experimental Analysis of the Suspension Connection Inserts](https://fenix.tecnico.ulisboa.pt/downloadFile/563345090417191/ExtendedAbstract%20Joao%20Formiga%20N79084.pdf)，用于说明 suspension attachment / insert 区域的 delamination、ply failure 和局部应力集中边界。
+- [ABD Composites: Composite Failure Criteria Explained](https://www.abdcomposites.com/docs/failure-criteria/)，用于解释 fiber / matrix / shear、ply stress 和 allowables 为什么必须按材料坐标记录。
+- [Conceptualization design and analysis of lightweight composite rims tailored to an electric Formula Student car](https://link.springer.com/article/10.1007/s42452-026-08456-w) 与 [FSAE Monocoque Design and Composite Materials Testing](https://webthesis.biblio.polito.it/29896/1/tesi.pdf)，用于复材概念开发、FEA、制造约束、coupon / material-property caution 和规则化记录；不把 rim 或 monocoque 铺层选择搬到悬架连杆。
+- Abaqus / Ansys 官方复合材料资料类型，用于材料方向、铺层、失效准则、局部坐标、连接和后处理字段；软件资料不能替代材料测试、连接样件和实车检查。
+- [FSAE Design Judging Score Sheet](https://www.fsaeonline.com/content/fsae%20design%20score%20sheet%20150pt.pdf)，用于把复材件也纳入 design、build、validation 和 understanding 证据链，具体版本和赛事口径需复核。
+- 完整章节索引见 [参考资料：章节引用索引](../references.md#章节引用索引)。
