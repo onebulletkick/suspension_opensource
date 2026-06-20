@@ -413,3 +413,11 @@ flowchart TD
 - 与 [07 复合材料校核与制造风险](07-composites-and-manufacturing.md)：复合材料 FEA 需要材料、铺层方向、层合板坐标系、厚度、铺层顺序、连接和嵌件假设、失效指数解释与制造假设，不应只套用金属件流程。
 - 与 [08 验证、测试、答辩与传承](08-validation-testing-defense.md)：数据采集与分析把软件结果带回实车，Git 与 Markdown 帮助形成答辩证据和传承材料。
 - 与 [10 评审清单](10-review-checklists.md)：本章的软件字段可转化为评审清单，检查每个模型是否有工程问题、最低输入、可信输出、误导性用法和支持章节。
+
+## 本章公开来源
+
+- [MathWorks: Magic Formula Tire Modeling in Formula Student](https://blogs.mathworks.com/student-lounge/2022/06/07/mf-tyre/)，用于轮胎模型拟合、评估和导出工作流。
+- [Formula Student Vehicle with Simscape](https://github.com/simscape/Formula-Student-Vehicle-Simscape)、[MathWorks File Exchange entry](https://www.mathworks.com/matlabcentral/fileexchange/172279-formula-student-vehicle-with-simscape) 和 [Simscape Multibody Formula Student video](https://www.mathworks.com/videos/formula-student-vehicle-modeling-using-simscape-multibody-1683608443602.html)，用于公开整车模型、K&C、maneuver、ARB、bushing 和 nonlinear damper / endstop 模板。
+- Adams Car / Adams View / Adams Insight、Abaqus / Ansys、MATLAB / Python 的官方资料类型，用于约束软件教程必须说明工程问题、输入、输出、边界和验证方式。
+- Dewesoft / Mantracourt / HBK 数据采集案例，用于把软件后处理和实车通道、载荷相关性、答辩证据连接起来。
+- 完整章节索引见 [参考资料：章节引用索引](../references.md#章节引用索引)。

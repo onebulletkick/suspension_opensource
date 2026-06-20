@@ -341,3 +341,11 @@ flowchart TD
 | [06 载荷与金属结构](06-loads-metal-structure.md) | 硬点位置、杆件方向和轮胎力路径决定金属件载荷提取、边界条件和支座设计。 |
 
 读者可以把本章看成从目标和轮胎输入进入机械实现的桥梁。几何方案只有在后续簧上系统、仿真、结构、制造和测试中持续闭环，才算完成工程意义上的验证。
+
+## 本章公开来源
+
+- [SAE 971584: Introduction to Formula SAE Suspension and Frame Design](https://saemobilus.sae.org/papers/introduction-formula-sae-suspension-frame-design-971584) 以及 SAE Formula SAE suspension design 论文摘要，用于 track / wheelbase / tire / wheel / geometry 的设计顺序和新队伍边界。
+- [FS Wiki: Suspension Geometry and Kinematics](https://fswiki.us/Suspension_Geometry_and_Kinematics)，用于 camber、toe、kingpin、caster、roll center、CAD sketch 的入门术语。
+- [DesignJudges: Simple Kinematic Philosophies](https://www.designjudges.com/articles/simple-kinematic-philosophies)，用于 toe 稳定性、camber graph、roll center 取舍和不要过度追求孤立曲线的评审语言。
+- [Will Harvey: Formula SAE Suspension Kinematics](https://wthprojects.com/fsae-kinematics)、MIT kinematics / vehicle dynamics 资料和 [Monash suspension thesis](https://www.monashmotorsport.com/blog/2011suspensionthesis)，用于硬点约束、CAD 迭代、制造验证和几何冻结案例。
+- 完整章节索引见 [参考资料：章节引用索引](../references.md#章节引用索引)。

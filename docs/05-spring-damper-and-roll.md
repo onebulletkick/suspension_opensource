@@ -132,3 +132,11 @@ roll stiffness distribution front = K_phi_front / (K_phi_front + K_phi_rear)
 ## 进阶阅读
 
 偏频、轮端刚度、轮胎垂向刚度、阻尼、运动比、侧倾/俯仰和调校范围见 [高级 04 弹簧、阻尼、侧倾与车身姿态](advanced/04-spring-damper-roll-and-ride.md)。
+
+## 本章公开来源
+
+- [Jim Kasprzak: A Guide to Your Dampers](https://www.kaztechnologies.com/wp-content/uploads/A-Guide-To-Your-Dampers-Chapter-from-FSAE-Book-by-Jim-Kasprzak-Updated.pdf)，用于阻尼器速度区间、低/中/高速阻尼和 damper dyno 检查语言。
+- [OptimumG: Of Springs and Dampers](https://optimumg.com/wp-content/uploads/2021/10/racecar-2020_11.pdf)，用于补充弹簧阻尼调校中的频率、轮胎贴地和工程取舍。
+- [UNCA FSAE Suspension / Steering: Springs](https://sites.google.com/unca.edu/suspension/learning/vehicle-dynamics-basics/springs)，用于 motion ratio、wheel rate、ride rate 的入门桥接。
+- [DesignJudges: Simple Kinematic Philosophies](https://www.designjudges.com/articles/simple-kinematic-philosophies) 和 [MIT Vehicle Dynamics on an Electric Formula SAE Racecar](https://dspace.mit.edu/handle/1721.1/139209)，用于把 roll stiffness、ARB、TLLTD、aero / steering 接口放进整车取舍。
+- 完整章节索引见 [参考资料：章节引用索引](references.md#章节引用索引)。

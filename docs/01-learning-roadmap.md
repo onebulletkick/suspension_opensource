@@ -238,3 +238,11 @@ flowchart LR
 ## 参考来源
 
 本路线由公开资料和经过改写的工程经验整理而成。公开参考资料和来源处理方式见 [references.md](references.md)。
+
+## 本章公开来源
+
+- RCD / RCVD 的推荐章节，用于把入门、理论、软件和实车验证连接成学习路线。
+- [FS Wiki](https://fswiki.us/Fswiki) 的 suspension、tires、vehicle dynamics 入口，用于给新队员提供可快速检索的术语桥接。
+- [DesignJudges: Conceptual and Objective Design in FSAE](https://www.designjudges.com/articles/conceptual-and-objective-design-in-fsae)，用于强调学习路线最终要服务概念设计、质量模型和方案取舍。
+- [MathWorks Formula Student resources](https://www.mathworks.com/videos/formula-student-vehicle-modeling-using-simscape-multibody-1683608443602.html)，用于补充软件学习从模型任务开始，而不是从按钮操作开始。
+- 完整章节索引见 [参考资料：章节引用索引](references.md#章节引用索引)。

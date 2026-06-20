@@ -94,3 +94,11 @@ K&C 与 compliance 的边界见 [高级 03 几何与硬点](advanced/03-geometry
 ## 进阶阅读
 
 主销、侧视/前视几何、硬点初始化、优化、K&C 和 CAD 包络评审见 [高级 03 几何与硬点](advanced/03-geometry-and-hardpoints.md)。
+
+## 本章公开来源
+
+- [SAE 971584: Introduction to Formula SAE Suspension and Frame Design](https://saemobilus.sae.org/papers/introduction-formula-sae-suspension-frame-design-971584)，用于新车队理解 track、wheelbase、tire / wheel 和 geometry 的设计顺序。
+- [FS Wiki: Suspension Geometry and Kinematics](https://fswiki.us/Suspension_Geometry_and_Kinematics)，用于补充 camber、toe、kingpin、caster、roll center 和 CAD sketch 的入门解释。
+- [DesignJudges: Simple Kinematic Philosophies](https://www.designjudges.com/articles/simple-kinematic-philosophies)，用于提醒几何曲线要服务 toe 稳定、camber 工作窗口、制造和调校，而不是追求孤立数字。
+- [Will Harvey: Formula SAE Suspension Kinematics](https://wthprojects.com/fsae-kinematics)，用于说明硬点约束聚合、CAD 检查和几何冻结的项目流程。
+- 完整章节索引见 [参考资料：章节引用索引](references.md#章节引用索引)。

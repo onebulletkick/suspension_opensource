@@ -112,3 +112,11 @@ flowchart TD
 ## 进阶阅读
 
 静态检查、shakedown、测试矩阵、数据相关性、问题闭环和答辩叙事见 [高级 08 验证、测试与答辩](advanced/08-validation-testing-defense.md)。
+
+## 本章公开来源
+
+- [Dewesoft: Suspension Testing on Formula SAE Racecar](https://dewesoft.com/blog/suspension-testing-on-formula-sae-racecar) 和 [Dewesoft tire-road force analysis](https://dewesoft.com/blog/optimizing-formula-suspension-through-tire-road-force-analysis)，用于应变片、悬架位移、IMU、静态/动态测试和模型相关性。
+- [Mantracourt FSAE validation case](https://www.mantracourt.com/case-studies/data-acquisition-in-formula-sae-suspension-and-steering-system-validation-tests/) 和 [HBK Bologna case](https://www.hbkworld.com/en/knowledge/resource-center/case-studies/university-bologna-formula-sae-student)，用于载荷、转向力和弹簧阻尼调校的可测通道。
+- [Alex McCormick: Formula Student Suspension Validation](https://amccormick21.wordpress.com/2016/02/15/formula-student-suspension-validation/)，用于几何、CAD 装配、可维护性和 FEA 验证流程。
+- [DesignJudges: A Field Guide to the Design Event](https://www.designjudges.com/articles/a-field-guide-to-the-design-event)，用于答辩证据包、设计报告和现场展示。
+- 完整章节索引见 [参考资料：章节引用索引](references.md#章节引用索引)。

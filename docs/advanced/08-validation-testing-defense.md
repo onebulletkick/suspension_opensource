@@ -355,3 +355,11 @@ flowchart TD
 - 与快速预览 [08 验证与迭代](../08-validation-and-iteration.md) 的关系：快速层帮助读者理解验证闭环，本章提供可执行的矩阵、日志、停测和答辩结构。
 
 当团队不确定某个结论是否适合放进学习资料时，应优先保留流程、字段和通用判断，把原始数值、项目记录和可识别来源留在工程资料中。本章的目标是教会读者如何建立验证闭环，而不是复刻某支车队的测试档案。
+
+## 本章公开来源
+
+- [Dewesoft tire-road force analysis](https://dewesoft.com/blog/optimizing-formula-suspension-through-tire-road-force-analysis) 和 [Dewesoft suspension testing](https://dewesoft.com/blog/suspension-testing-on-formula-sae-racecar)，用于测试通道、应变片、悬架位移、IMU、滤波和载荷模型相关性。
+- [Mantracourt FSAE validation case](https://www.mantracourt.com/case-studies/data-acquisition-in-formula-sae-suspension-and-steering-system-validation-tests/) 与 [HBK Bologna strain gauge case](https://www.hbkworld.com/en/knowledge/resource-center/case-studies/university-bologna-formula-sae-student)，用于说明载荷、转向力、弹簧阻尼选择和结构模型验证的可测证据。
+- [Alex McCormick: Formula Student Suspension Validation](https://amccormick21.wordpress.com/2016/02/15/formula-student-suspension-validation/)，用于几何验证、CAD 装配、工具可达性、FEA 和多模型交叉检查。
+- [FSAE Design Judging Score Sheet](https://www.fsaeonline.com/content/fsae%20design%20score%20sheet%20150pt.pdf) 与 [DesignJudges: A Field Guide to the Design Event](https://www.designjudges.com/articles/a-field-guide-to-the-design-event)，用于答辩证据包、设计报告、现场展示和评审理解。
+- 完整章节索引见 [参考资料：章节引用索引](../references.md#章节引用索引)。

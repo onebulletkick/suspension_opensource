@@ -130,3 +130,10 @@ flowchart LR
 进入仿真和结构阶段后，用 [05 仿真、优化与相关性](05-simulation-optimization-correlation.md) 检查模型假设、参数研究和相关性证据，用 [06 载荷与金属结构](06-loads-metal-structure.md) 与 [07 复合材料校核与制造风险](07-composites-and-manufacturing.md) 检查载荷路径、边界条件、材料假设、失效准则和制造风险。所有安全相关结论都应保守表述，并回到规则、材料数据、仿真复核和实车验证。
 
 最后用 [08 验证、测试与答辩](08-validation-testing-defense.md) 准备测试计划和证据包，用 [09 软件工作流](09-software-workflows.md) 复核软件输入输出是否可重复，用 [10 评审清单](10-review-checklists.md) 记录通过项、风险项和待验证项。一次合格的评审不只是“参数看起来合理”，而是能说明每个关键结论来自计算、仿真、测试还是明确边界内的工程经验。
+
+## 本章公开来源
+
+- RCD / RCVD，用于建立 advanced 层的车辆动力学、轮胎、悬架几何、ride / roll、转向、柔度和测试基准。
+- [FS Wiki](https://fswiki.us/Fswiki)、[DesignJudges](https://www.designjudges.com/)、SAE 论文摘要、学生 thesis / report 和公开测试案例，用于把外部知识分成规则 gate、模型边界、流程对照、测试通道和评审问题。
+- [FSAE Design Judging Score Sheet](https://www.fsaeonline.com/content/fsae%20design%20score%20sheet%20150pt.pdf)，用于组织 advanced 手册的 design / build / validation / understanding 证据链。
+- 完整章节索引见 [参考资料：章节引用索引](../references.md#章节引用索引)。

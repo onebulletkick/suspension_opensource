@@ -89,3 +89,11 @@ flowchart TD
 ## 进阶阅读
 
 模型层级、K&C、二自由度操稳、G-G 图、DOE、优化、多体动力学和相关性验证见 [高级 05 仿真、优化与相关性](advanced/05-simulation-optimization-correlation.md)。
+
+## 本章公开来源
+
+- [Dynamic Handling Characterization and Set-Up Optimization for a Formula SAE Race Car via Multi-Body Simulation](https://www.mdpi.com/2075-1702/9/6/126)，用于 fixed / adjustable 参数、整车 MBD 和 set-up 管理边界。
+- [MathWorks: Formula Student Vehicle Modeling Using Simscape Multibody](https://www.mathworks.com/videos/formula-student-vehicle-modeling-using-simscape-multibody-1683608443602.html) 和 [Formula Student Vehicle with Simscape](https://github.com/simscape/Formula-Student-Vehicle-Simscape)，用于公开整车模型模板和 K&C / maneuver 工作流。
+- [University of Cincinnati Bearcats Motorsports Amesim project](https://www.ceas.uc.edu/research/centers-labs/siemens-simulation-technology-center/courses---projects/amesim/formula-sae/project.html)，用于说明用相同场景对比仿真和实车数据。
+- [DesignJudges: Conceptual and Objective Design in FSAE](https://www.designjudges.com/articles/conceptual-and-objective-design-in-fsae)，用于补充概念仿真、质量模型和模型怀疑精神。
+- 完整章节索引见 [参考资料：章节引用索引](references.md#章节引用索引)。

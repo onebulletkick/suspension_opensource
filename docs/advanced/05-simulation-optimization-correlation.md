@@ -322,3 +322,11 @@ flowchart TD
 - [04 弹簧、阻尼、侧倾与车身姿态](04-spring-damper-roll-and-ride.md) 提供轮端刚度、阻尼、运动比、侧倾刚度和俯仰模型输入。
 - [06 载荷与金属结构](06-loads-metal-structure.md) 使用多体动力学和工况定义输出结构校核所需载荷，但仍需要独立边界和安全评审。
 - [08 验证、测试与答辩](08-validation-testing-defense.md) 负责把仿真结论带到实车测试、数据相关性和比赛答辩中，反过来更新本章模型。
+
+## 本章公开来源
+
+- [Dynamic Handling Characterization and Set-Up Optimization for a Formula SAE Race Car via Multi-Body Simulation](https://www.mdpi.com/2075-1702/9/6/126)，用于整车 MBD、fixed / adjustable 参数、set-up 管理和实车验证需求。
+- [MathWorks Simscape Formula Student vehicle model](https://github.com/simscape/Formula-Student-Vehicle-Simscape) 与 [Simscape Multibody Formula Student video](https://www.mathworks.com/videos/formula-student-vehicle-modeling-using-simscape-multibody-1683608443602.html)，用于公开车辆模型、K&C metrics、maneuver 和参数化模板。
+- [University of Cincinnati Bearcats Motorsports Amesim project](https://www.ceas.uc.edu/research/centers-labs/siemens-simulation-technology-center/courses---projects/amesim/formula-sae/project.html)，用于仿真与实车数据在同一赛道 / 场景下对比的案例。
+- [DesignJudges: Conceptual and Objective Design in FSAE](https://www.designjudges.com/articles/conceptual-and-objective-design-in-fsae)，用于 lap time simulation、mass model、概念设计和模型怀疑精神。
+- 完整章节索引见 [参考资料：章节引用索引](../references.md#章节引用索引)。

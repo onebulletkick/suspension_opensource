@@ -306,3 +306,11 @@ flowchart LR
 ## 参考来源
 
 本篇由公开资料和经过改写的软件工作流经验整理而成。公开参考资料和来源处理方式见 [references.md](references.md)。
+
+## 本章公开来源
+
+- [MathWorks: Magic Formula Tire Modeling in Formula Student](https://blogs.mathworks.com/student-lounge/2022/06/07/mf-tyre/)，用于轮胎模型工具链和 MF-Tyre 接口说明。
+- [Formula Student Vehicle with Simscape](https://github.com/simscape/Formula-Student-Vehicle-Simscape) 与 [Simscape Multibody Formula Student video](https://www.mathworks.com/videos/formula-student-vehicle-modeling-using-simscape-multibody-1683608443602.html)，用于公开整车模型、K&C、maneuver 和参数化模板。
+- Adams Car / Adams View / Adams Insight、Abaqus / Ansys、MATLAB / Python 等官方资料类型，用于说明软件章节应按“工程问题 -> 输入 -> 输出 -> 验证”组织。
+- Dewesoft / Mantracourt / HBK 数据采集案例，用于把测试数据回流到模型和答辩证据。
+- 完整章节索引见 [参考资料：章节引用索引](references.md#章节引用索引)。

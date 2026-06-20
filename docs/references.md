@@ -85,6 +85,23 @@ flowchart LR
 
 规则资料进入正文时，应写成“先过门槛，再谈性能”。例如：以 FSG 2026 为例，悬架相关检查包含可工作的前后悬架、可用行程、技术检查可见性、轴距 / 轮距和离地间隙等边界；但这些数值不能被改写成所有赛事的永久标准。
 
+### 知识库、评审与公开项目资料
+
+| 资料 | 可支持的问题 | 入章方式 | 使用边界 |
+| --- | --- | --- | --- |
+| [FS Wiki: Suspension Geometry and Kinematics](https://fswiki.us/Suspension_Geometry_and_Kinematics) | track、wheelbase、camber、toe、kingpin、caster、roll center、CAD sketch 的入门解释 | 支持 [03 几何硬点](advanced/03-geometry-and-hardpoints.md) 和快速层 [04](04-geometry-and-hardpoints.md) 的术语桥接与新队员练习 | Wiki 内容适合做学习入口；规则数值和案例参数必须按当前赛事复核 |
+| [FS Wiki: Suspension Forces](https://fswiki.us/Suspension_Forces) | 六杆件自由体图、矩阵法、pushrod / pullrod 力计算误区 | 支持 [06 载荷与金属结构](advanced/06-loads-metal-structure.md) 的杆件导力和自由体图练习 | 只取方法框架；具体几何、载荷和 Excel 模板不得当作通用答案 |
+| [FS Wiki: Tires](https://fswiki.us/Tires) | 轮胎作为抓地限制、slip angle、load sensitivity、TTC 和拟合入口 | 支持 [02 轮胎输入](advanced/02-tire-and-vehicle-inputs.md) 的入门解释 | 轮胎型号表和历史信息可能过期；正式选型需回到供应商、TTC 或团队数据 |
+| [DesignJudges: Overall Vehicle Priorities](https://www.designjudges.com/articles/overall-vehicle-priorities) | 合法性、可靠性、性能、driver confidence 和整车目标优先级 | 支持 [01 设计目标](advanced/01-design-targets.md)、[10 评审清单](advanced/10-review-checklists.md) 的目标取舍 | 评审观点应转成团队自己的目标表，不应照搬判断语气 |
+| [DesignJudges: Conceptual and Objective Design in FSAE](https://www.designjudges.com/articles/conceptual-and-objective-design-in-fsae) | 概念设计、lap time simulation、mass model、方案筛选和设计空间探索 | 支持 [01](advanced/01-design-targets.md)、[05](advanced/05-simulation-optimization-correlation.md) 的概念设计与模型边界 | 作为方法论参考；具体仿真精度和质量模型必须由团队校准 |
+| [DesignJudges: Simple Kinematic Philosophies](https://www.designjudges.com/articles/simple-kinematic-philosophies) | toe 稳定性、camber graph、roll center 取舍、不要过度迷信单个几何数值 | 支持 [03](advanced/03-geometry-and-hardpoints.md) 和 [04](advanced/04-spring-damper-roll-and-ride.md) 的取舍语言 | 属于设计评审经验，应写成“可检查的问题”，不写成唯一正确几何目标 |
+| [DesignJudges: A Field Guide to the Design Event](https://www.designjudges.com/articles/a-field-guide-to-the-design-event) | 设计报告、答辩组织、跨系统理解、证据包和现场展示 | 支持 [08 验证答辩](advanced/08-validation-testing-defense.md)、[10 评审清单](advanced/10-review-checklists.md) | 不替代赛事官方 design event 文件；不同赛区可能有差异 |
+| [FSAE Design Judging Score Sheet](https://www.fsaeonline.com/content/fsae%20design%20score%20sheet%20150pt.pdf) | design、build、refinement / validation、understanding 四类证据，以及 suspension 覆盖项 | 支持 [10](advanced/10-review-checklists.md) 的评审门禁和 [08](advanced/08-validation-testing-defense.md) 的答辩证据包 | 分数表版本会变化；正文只引用评审维度，不承诺当年评分口径 |
+| [MIT DSpace: Vehicle Dynamics on an Electric Formula SAE Racecar](https://dspace.mit.edu/handle/1721.1/139209) | 悬架、TLLTD、ARB、aero / steering 接口和团队知识沉淀 | 支持 [04](advanced/04-spring-damper-roll-and-ride.md)、[05](advanced/05-simulation-optimization-correlation.md)、[08](advanced/08-validation-testing-defense.md) 的接口案例 | 具体 MIT 车辆参数不泛化；只取设计链和接口管理方式 |
+| [Will Harvey: Formula SAE Suspension Kinematics](https://wthprojects.com/fsae-kinematics) | 硬点约束聚合、WinGeo / CAD 迭代、比赛表现与几何冻结 | 支持 [03](advanced/03-geometry-and-hardpoints.md) 的硬点迭代案例 | 个人项目页适合流程对照；不作为参数权威 |
+| [Monash Motorsport suspension thesis collection](https://www.monashmotorsport.com/blog/2011suspensionthesis) | 悬架设计、制造和测试的一体化项目报告 | 支持 [03](advanced/03-geometry-and-hardpoints.md)、[06](advanced/06-loads-metal-structure.md)、[08](advanced/08-validation-testing-defense.md) 的制造验证链 | 报告细节只能作案例；不复制图表和具体历史参数 |
+| [WashU Racing WUFR-19 suspension design report](https://openscholarship.wustl.edu/mems500/83/) | 悬架目标、约束、方案理由和设计报告表达 | 支持快速层和 advanced 层的答辩 / 报告写法 | 学生报告质量不等；引用时需标注为公开案例而非通用标准 |
+
 ### 轮胎数据与模型
 
 | 资料 | 可支持的问题 | 入章方式 | 使用边界 |
@@ -117,6 +134,9 @@ flowchart LR
 | 资料 | 可支持的问题 | 入章方式 | 使用边界 |
 | --- | --- | --- | --- |
 | [Dewesoft: Optimizing Formula SAE Suspension Through Tire-Road Force Analysis](https://dewesoft.com/blog/optimizing-formula-suspension-through-tire-road-force-analysis) | 用应变片、悬架位移、轮速、方向盘角、制动压力、IMU 和模型反推接地点力与杆件力 | 写入 [08 验证测试](advanced/08-validation-testing-defense.md) 的“可测通道 -> 力学模型 -> correlation”流程，也支持 [06](advanced/06-loads-metal-structure.md) 的载荷来源思路 | 供应商工具、通道配置和相关性百分比不能泛化成普遍标准 |
+| [Dewesoft: Suspension Testing on Formula SAE Racecar](https://dewesoft.com/blog/suspension-testing-on-formula-sae-racecar) | 应变片粘贴、悬架位移、IMU、静态/动态测试和滤波处理 | 支持 [08](advanced/08-validation-testing-defense.md) 的测试流程和 [06](advanced/06-loads-metal-structure.md) 的载荷验证计划 | 供应商案例不等于唯一测量方案；具体通道数量和设备可替换 |
+| [Mantracourt: Data Acquisition in Formula SAE Suspension and Steering System Validation Tests](https://www.mantracourt.com/case-studies/data-acquisition-in-formula-sae-suspension-and-steering-system-validation-tests/) | 悬架和转向连杆应变测量、转向力目标、弹簧阻尼调整和载荷转移诊断 | 支持 [08](advanced/08-validation-testing-defense.md)、[04](advanced/04-spring-damper-roll-and-ride.md) 的可测通道分级 | 供应商案例只说明通道价值；真实布置需由团队标定 |
+| [HBK: University of Bologna Formula SAE / Student strain gauge case](https://www.hbkworld.com/en/knowledge/resource-center/case-studies/university-bologna-formula-sae-student) | 用应变片确定悬架部件受力和验证结构模型 | 支持 [06](advanced/06-loads-metal-structure.md)、[08](advanced/08-validation-testing-defense.md) 的载荷相关性证据 | 只取验证思路，不复制供应商图或车队数据 |
 | [Analysis of Link Forces on a Formula Student Suspension System](https://www.diva-portal.org/smash/get/diva2:1033230/FULLTEXT01.pdf) | 悬架杆件力测试、模型和载荷路径分析 | 支持 [06](advanced/06-loads-metal-structure.md)、[08](advanced/08-validation-testing-defense.md) 的载荷验证问题 | 具体车型、布置和数值只作案例背景，不进入公开参数 |
 | [University of Cincinnati Bearcats Motorsports Amesim project](https://www.ceas.uc.edu/research/centers-labs/siemens-simulation-technology-center/courses---projects/amesim/formula-sae/project.html) | 用相同赛道 / 场景对比仿真与实车数据，验证模型动态响应 | 作为 [05](advanced/05-simulation-optimization-correlation.md) 和 [08](advanced/08-validation-testing-defense.md) 的相关性工作流案例 | 不作为通用参数来源 |
 
@@ -132,8 +152,40 @@ flowchart LR
 | Abaqus / Ansys | 官方帮助、材料模型、接触、复合材料和网格指南 | 07 |
 | Python | NumPy、pandas、matplotlib、SciPy 官方文档 | 03, 05, 06, 08, 09 |
 | 数据采集 | 车队实际使用设备的官方软件手册 | 08 |
+| Simscape / Simulink | [Formula Student Vehicle with Simscape](https://www.mathworks.com/matlabcentral/fileexchange/172279-formula-student-vehicle-with-simscape)、[GitHub 模板](https://github.com/simscape/Formula-Student-Vehicle-Simscape)、[Formula Student Vehicle Modeling Using Simscape Multibody](https://www.mathworks.com/videos/formula-student-vehicle-modeling-using-simscape-multibody-1683608443602.html) | 05, 09 |
 
 软件资料最好和具体任务绑定：坐标系转换、硬点导入、K&C 曲线导出、载荷提取、网格收敛、数据滤波等，都比“学习某软件”更适合进入手册。
+
+<a id="章节引用索引"></a>
+
+## 章节引用索引
+
+下表用于回答“每章引用了什么”。章节正文会保留简短的“本章公开来源”小节；这里记录更完整的维护入口。来源只说明公开知识沉淀如何进入章节，不代表这些资料给出了可直接套用的车辆参数。
+
+| 章节 | 主要公开来源 | 引用到本章的方式 |
+| --- | --- | --- |
+| [00 如何使用本手册](00-overview.md) | RCD / RCVD、DesignJudges overall vehicle priorities、FSAE Design Score Sheet | 建立“目标、证据、边界、验证”的阅读方式 |
+| [01 悬架学习路线](01-learning-roadmap.md) | RCD / RCVD、FS Wiki、DesignJudges、MathWorks student competition resources | 把学习阶段转成工程输出和软件练习 |
+| [02 设计目标](02-design-targets.md) | FSG / FSAE rules、DesignJudges overall priorities、DesignJudges conceptual design、FSAE score sheet | 把规则、整车目标、可靠性和设计答辩要求转成目标表 |
+| [03 轮胎与整车输入](03-tire-and-vehicle-inputs.md) | Calspan TTC、FSAE TTC、MathWorks MF-Tyre、Formula U tire model、FS Wiki Tires | 说明轮胎模型边界、数据覆盖和输入版本 |
+| [04 几何与硬点](04-geometry-and-hardpoints.md) | SAE 971584、FS Wiki geometry、DesignJudges kinematics、MIT / Will Harvey kinematics | 建立硬点、K&C、包络、制造与取舍的入门框架 |
+| [05 弹簧阻尼与侧倾](05-spring-damper-and-roll.md) | Jim Kasprzak dampers、OptimumG springs and dampers、UNCA springs、DesignJudges kinematics、Racecar Engineering chassis / aero interface | 建立 wheel rate、damping、ARB、ride / roll 与姿态控制的公共语言 |
+| [06 仿真与优化](06-simulation-and-optimization.md) | MDPI MBD paper、MathWorks Simscape、MIT vehicle dynamics、Cincinnati Amesim project、DesignJudges conceptual design | 建立模型分层、参数研究、固定/可调参数和相关性边界 |
+| [07 载荷与结构校核](07-loads-and-structure-check.md) | FS Wiki suspension forces、DiVA link forces、Dewesoft / Mantracourt / HBK DAQ cases、Monash thesis、composite suspension papers | 建立载荷来源、杆件导力、FEA、复材制造和测试验证逻辑 |
+| [08 验证与迭代](08-validation-and-iteration.md) | Dewesoft、Mantracourt、HBK、Alex McCormick validation、DesignJudges field guide | 建立静态检查、动态测试、数据通道、问题分级和答辩证据包 |
+| [09 软件路线](09-software-roadmap.md) | MathWorks Simscape templates、MathWorks MF-Tyre、Adams / FEA 官方资料类型、Dewesoft DAQ cases | 把软件写成工程问题、输入、输出和验证链 |
+| [10 检查清单](10-checklists.md) | FSAE Design Score Sheet、DesignJudges field guide、DesignJudges overall priorities、公开资料处理规则 | 把章节内容转成评审问题和发布门禁 |
+| [高级手册 README](advanced/README.md) | RCD / RCVD、公开规则、FS Wiki、DesignJudges、SAE / 学生论文、测试案例 | 说明公开资料如何进入 advanced 章节 |
+| [高级 01 设计目标](advanced/01-design-targets.md) | FSG / FSAE rules、DesignJudges overall priorities、DesignJudges conceptual design、FSAE score sheet | 细化年度目标、约束、偏好、接口和设计评审 |
+| [高级 02 轮胎与整车输入](advanced/02-tire-and-vehicle-inputs.md) | Calspan TTC、FSAE TTC、MathWorks MF-Tyre、Formula U tire model、Derek Moore、FS Wiki Tires | 细化轮胎数据覆盖、模型选择、拟合流程和动态轮荷 |
+| [高级 03 几何与硬点](advanced/03-geometry-and-hardpoints.md) | SAE 971584 / 2002 papers、FS Wiki geometry、DesignJudges kinematics、MIT / Will Harvey kinematics、Monash thesis | 细化几何目标、硬点初始化、K&C、CAD 包络和制造检查 |
+| [高级 04 弹簧、阻尼、侧倾与车身姿态](advanced/04-spring-damper-roll-and-ride.md) | Jim Kasprzak dampers、OptimumG、UNCA springs、DesignJudges kinematics、MIT vehicle dynamics、Racecar Engineering chassis / aero interface | 细化 wheel rate、ride / roll、damping、ARB、pitch、third spring 和调校边界 |
+| [高级 05 仿真、优化与相关性](advanced/05-simulation-optimization-correlation.md) | MDPI MBD paper、MathWorks Simscape、MIT vehicle dynamics、Cincinnati Amesim、DesignJudges conceptual design | 细化模型层级、优化、MBD、相关性和实车反馈 |
+| [高级 06 载荷与金属结构](advanced/06-loads-metal-structure.md) | FS Wiki forces、DiVA link forces、Dewesoft / Mantracourt / HBK、Virginia Tech / Monash style suspension reports | 细化载荷工况、矩阵导力、多体导力、FEA 边界和验证计划 |
+| [高级 07 复合材料与制造风险](advanced/07-composites-and-manufacturing.md) | Composite Suspension for Formula SAE、Formula Student composite talks / theses、复材 FEA 官方资料类型 | 细化复材失效模式、allowables、铺层、连接、制造缺陷和 coupon 验证 |
+| [高级 08 验证、测试与答辩](advanced/08-validation-testing-defense.md) | Dewesoft、Mantracourt、HBK、Alex McCormick validation、FSAE score sheet、DesignJudges field guide | 细化测试矩阵、可测通道、模型修正、问题分级、答辩和传承 |
+| [高级 09 软件工作流](advanced/09-software-workflows.md) | MathWorks Simscape / Simulink、MathWorks MF-Tyre、Adams / Abaqus / Ansys 官方资料类型、Dewesoft DAQ cases | 细化软件实现总线、最低输入输出、误导性用法和交付物评审 |
+| [高级 10 评审清单](advanced/10-review-checklists.md) | FSAE Design Score Sheet、DesignJudges field guide、DesignJudges overall priorities、公开来源处理规则 | 细化目标、轮胎、几何、簧上、仿真、结构、测试、软件和发布门禁 |
 
 ## 学习建议
 

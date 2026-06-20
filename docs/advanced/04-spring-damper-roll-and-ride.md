@@ -372,3 +372,11 @@ flowchart TD
 | [快速版 05 弹簧阻尼与侧倾](../05-spring-damper-and-roll.md) | 入门级概念、最小计算骨架和学习路线 | 更详细的公式、流程、模型边界和评审逻辑 |
 
 这一章位于几何与仿真之间。几何决定轮端如何运动，轮胎决定载荷变化是否有利，弹簧阻尼和侧倾系统决定车身如何响应，而仿真和测试负责检查这些假设是否能在真实车辆上成立。若任一输入变化，本章结论都应回到计算表和验证矩阵重新评审。
+
+## 本章公开来源
+
+- [Jim Kasprzak: A Guide to Your Dampers](https://www.kaztechnologies.com/wp-content/uploads/A-Guide-To-Your-Dampers-Chapter-from-FSAE-Book-by-Jim-Kasprzak-Updated.pdf)，用于阻尼器速度-力曲线、低 / 中 / 高速阻尼、dyno 检查和调校语言。
+- [OptimumG: Of Springs and Dampers](https://optimumg.com/wp-content/uploads/2021/10/racecar-2020_11.pdf) 与 [UNCA FSAE Springs](https://sites.google.com/unca.edu/suspension/learning/vehicle-dynamics-basics/springs)，用于 ride rate、wheel rate、motion ratio 和弹簧阻尼基础。
+- [DesignJudges: Simple Kinematic Philosophies](https://www.designjudges.com/articles/simple-kinematic-philosophies)，用于 roll center、springs、ARB 和调校变量之间的取舍判断。
+- [MIT Vehicle Dynamics on an Electric Formula SAE Racecar](https://dspace.mit.edu/handle/1721.1/139209) 和 [Racecar Engineering: Tech Explained Chassis](https://www.racecar-engineering.com/articles/tech-explained-chassis/)，用于 TLLTD、ARB、pitch / roll 与气动平台的接口意识。
+- 完整章节索引见 [参考资料：章节引用索引](../references.md#章节引用索引)。

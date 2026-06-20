@@ -325,3 +325,11 @@ flowchart TD
 - [07 复合材料校核与制造风险](07-composites-and-manufacturing.md)：复合材料件需要不同失效准则和制造验证，但载荷来源、边界条件和检查闭环应与金属件一致。
 - [10 评审清单](10-review-checklists.md)：载荷、FEA、制造、测试和答辩检查项应进入统一评审清单，避免只在单个分析文件里存在。
 - [07 载荷与结构校核](../07-loads-and-structure-check.md)：快速预览层用于新队员建立结构校核入口，本章提供更完整的载荷、导力和金属件校核方法。
+
+## 本章公开来源
+
+- [FS Wiki: Suspension Forces](https://fswiki.us/Suspension_Forces)，用于六杆件力平衡、矩阵法和推杆 / 拉杆载荷误区。
+- [Analysis of Link Forces on a Formula Student Suspension System](https://www.diva-portal.org/smash/get/diva2:1033230/FULLTEXT01.pdf)，用于杆件力测量、模型和载荷路径验证。
+- [Dewesoft tire-road force analysis](https://dewesoft.com/blog/optimizing-formula-suspension-through-tire-road-force-analysis)、[Dewesoft suspension testing](https://dewesoft.com/blog/suspension-testing-on-formula-sae-racecar)、[Mantracourt FSAE validation case](https://www.mantracourt.com/case-studies/data-acquisition-in-formula-sae-suspension-and-steering-system-validation-tests/) 和 [HBK Bologna case](https://www.hbkworld.com/en/knowledge/resource-center/case-studies/university-bologna-formula-sae-student)，用于从应变片、悬架位移、轮速、方向盘角、制动压力和 IMU 反推载荷相关性。
+- [Monash Motorsport suspension thesis collection](https://www.monashmotorsport.com/blog/2011suspensionthesis)，用于设计、制造和测试一体化的公开结构案例。
+- 完整章节索引见 [参考资料：章节引用索引](../references.md#章节引用索引)。

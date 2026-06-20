@@ -296,3 +296,11 @@ flowchart TD
 - [06 载荷与金属结构校核](06-loads-metal-structure.md)：复材件与金属件共享载荷来源、坐标系、接口力和边界评审原则，但失效准则、材料证据和制造风险不同。
 - [08 验证、测试与答辩](08-validation-testing-defense.md)：复材的 coupon、首件、实车检查和停用标准需要进入整车验证计划和答辩证据链。
 - [10 评审清单](10-review-checklists.md)：将材料数据、铺层、Abaqus 设置、连接区、制造检查和验证边界纳入统一 review checklist，避免只在个人分析文件中保存。
+
+## 本章公开来源
+
+- Composite Suspension for Formula SAE / Formula Student 公开论文和报告，用于说明碳纤维悬架件、胶接、金属嵌件、制造波动和测试验证的常见风险。
+- Formula Student composite talks / theses，用于补充 carbon fiber sandwich、allowables、coupon、铺层和制造质量控制的学习入口。
+- Abaqus / Ansys 官方复合材料资料类型，用于材料方向、铺层、失效准则、局部坐标、连接和后处理字段。
+- [FSAE Design Judging Score Sheet](https://www.fsaeonline.com/content/fsae%20design%20score%20sheet%20150pt.pdf)，用于把复材件也纳入 design、build、validation 和 understanding 证据链。
+- 完整章节索引见 [参考资料：章节引用索引](../references.md#章节引用索引)。

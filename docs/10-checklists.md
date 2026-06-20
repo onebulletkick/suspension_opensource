@@ -140,3 +140,10 @@ flowchart TD
 ## 参考来源
 
 本清单由公开资料和经过改写的工程评审经验整理而成。公开参考资料和来源处理方式见 [references.md](references.md)。
+
+## 本章公开来源
+
+- [FSAE Design Judging Score Sheet](https://www.fsaeonline.com/content/fsae%20design%20score%20sheet%20150pt.pdf)，用于把检查项分成 design、build、refinement / validation 和 understanding。
+- [DesignJudges: A Field Guide to the Design Event](https://www.designjudges.com/articles/a-field-guide-to-the-design-event)，用于答辩组织、设计报告、证据包和现场准备。
+- [DesignJudges: Overall Vehicle Priorities](https://www.designjudges.com/articles/overall-vehicle-priorities)，用于把合法性、可靠性、性能和可控性纳入统一评审。
+- [参考资料：章节引用索引](references.md#章节引用索引)，用于检查每章公开来源是否已经转成工程问题，而不是链接堆。

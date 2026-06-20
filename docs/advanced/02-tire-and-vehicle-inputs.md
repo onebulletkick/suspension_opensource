@@ -352,3 +352,11 @@ flowchart TD
 | [08 验证、测试与答辩](08-validation-testing-defense.md) | 相关性验证计划、胎温胎压记录要求、模型限制 | 实车数据、车手反馈、模型更新证据 |
 
 如果本章的任何关键输入变化，例如轮胎选择、坐标转换、模型形式、整车质量、质心、轮距、制动边界或气动假设，后续章节都应重新检查。悬架设计不是从轮胎模型单向推出最终答案，而是在目标、模型、几何、簧上系统、仿真、结构和实车测试之间不断闭环。
+
+## 本章公开来源
+
+- [Calspan FSAE Tire Test Consortium](https://calspan.com/automotive/fsae-ttc) 和 [Formula SAE Tire Test Consortium](https://www.fsaettc.org/)，用于 TTC-style 数据授权、flat-belt 测试和 CAE tire model 边界。
+- [MathWorks: Magic Formula Tire Modeling in Formula Student](https://blogs.mathworks.com/student-lounge/2022/06/07/mf-tyre/)，用于 Magic Formula / MF-Tyre 的建模接口和软件任务说明。
+- [Formula U Racing Tire Model Development](https://uen.pressbooks.pub/range26i1/chapter/cantrell/) 与 [Derek A. Moore: Tire Modeling](https://www.derekamoore.com/tire-modeling)，用于模型复杂度、坐标符号、残差和拟合流程。
+- [FS Wiki: Tires](https://fswiki.us/Tires)，用于 slip angle、load sensitivity、TTC 和轮胎阅读入口的入门说明。
+- 完整章节索引见 [参考资料：章节引用索引](../references.md#章节引用索引)。

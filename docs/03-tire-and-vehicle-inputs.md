@@ -107,3 +107,11 @@ flowchart TD
 ## 进阶阅读
 
 轮胎数据覆盖、模型可信边界、拟合流程、动态轮荷和整车输入版本管理见 [高级 02 轮胎与整车输入](advanced/02-tire-and-vehicle-inputs.md)。
+
+## 本章公开来源
+
+- [Calspan FSAE Tire Test Consortium](https://calspan.com/automotive/fsae-ttc) 和 [Formula SAE Tire Test Consortium](https://www.fsaettc.org/)，用于说明 TTC-style 数据的来源、授权和数据边界。
+- [MathWorks: Magic Formula Tire Modeling in Formula Student](https://blogs.mathworks.com/student-lounge/2022/06/07/mf-tyre/)，用于说明 Magic Formula / MF-Tyre 在学生整车仿真中的接口作用。
+- [Formula U Racing Tire Model Development](https://uen.pressbooks.pub/range26i1/chapter/cantrell/) 和 [Derek A. Moore: Tire Modeling](https://www.derekamoore.com/tire-modeling)，用于补充拟合流程、模型复杂度和 residual 审查。
+- [FS Wiki: Tires](https://fswiki.us/Tires)，用于新队员理解 slip angle、load sensitivity 和 TTC 入口。
+- 完整章节索引见 [参考资料：章节引用索引](references.md#章节引用索引)。

@@ -258,3 +258,11 @@ flowchart TD
 - [10 评审清单](10-review-checklists.md)：把本章的目标、约束、接口和更新触发机制固化成可复用的评审问题。
 
 目标章节写得越清楚，后续章节越不容易变成孤立的公式、软件截图和参数表。悬架设计的开源价值也正在这里：不是复刻某台车的答案，而是讲清如何把复杂约束拆成可学习、可验证、可复盘的工程流程。
+
+## 本章公开来源
+
+- [Formula Student Rules 2026 v1.0](https://www.formulastudent.de/fileadmin/user_upload/all/2026/rules/FS-Rules_2026_v1.0.pdf) 和 [Formula SAE Rules 2026](https://www.fsaeonline.com/cdsweb/gen/DownloadDocument.aspx?DocumentID=278fd4d7-aa27-4e33-bc4a-090148e662a0)，用于规则 gate、wheel travel、track / wheelbase 和检查状态的目标表字段。
+- [DesignJudges: Overall Vehicle Priorities](https://www.designjudges.com/articles/overall-vehicle-priorities)，用于把合法性、可靠性、性能和车手信心写成整车优先级。
+- [DesignJudges: Conceptual and Objective Design in FSAE](https://www.designjudges.com/articles/conceptual-and-objective-design-in-fsae)，用于概念设计、lap time / mass model 和方案筛选边界。
+- [FSAE Design Judging Score Sheet](https://www.fsaeonline.com/content/fsae%20design%20score%20sheet%20150pt.pdf)，用于把目标表连接到设计、制造、验证和理解四类证据。
+- 完整章节索引见 [参考资料：章节引用索引](../references.md#章节引用索引)。

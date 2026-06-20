@@ -220,3 +220,10 @@ rg -n "!\[[^]]*(内部|源图|截图|screenshot|raw)" README.md index.html docs
 | [09 软件工作流与能力成长](09-software-workflows.md) | 提供软件输入、输出、误导性用法和文档版本化方法，本章检查可复现性和资料边界。 |
 
 最终评审记录建议保留三份版本：项目详细版、学习整理版和待验证问题版。项目详细版服务真实工程；学习整理版服务传承和开源传播；待验证版提醒下一次设计、测试或文档任务从哪里继续。
+
+## 本章公开来源
+
+- [FSAE Design Judging Score Sheet](https://www.fsaeonline.com/content/fsae%20design%20score%20sheet%20150pt.pdf)，用于把评审项分成 design、build、refinement / validation 和 understanding。
+- [DesignJudges: A Field Guide to the Design Event](https://www.designjudges.com/articles/a-field-guide-to-the-design-event)，用于设计报告、证据包、现场展示、多人答辩和反馈复盘。
+- [DesignJudges: Overall Vehicle Priorities](https://www.designjudges.com/articles/overall-vehicle-priorities) 与 [DesignJudges: Conceptual and Objective Design in FSAE](https://www.designjudges.com/articles/conceptual-and-objective-design-in-fsae)，用于把整车目标、概念设计、质量模型和仿真边界纳入检查清单。
+- [参考资料：章节引用索引](../references.md#章节引用索引)，用于检查每个章节是否把公开来源转成工程问题、证据和边界。

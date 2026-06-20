@@ -117,3 +117,11 @@ allowables、ply 方向、连接区和制造缺陷的保守边界见 [高级 07 
 ## 进阶阅读
 
 金属件载荷路径、工况定义、力提取和 FEA 评审见 [高级 06 载荷与金属结构](advanced/06-loads-metal-structure.md)；复合材料失效、铺层、连接和制造风险见 [高级 07 复合材料校核与制造风险](advanced/07-composites-and-manufacturing.md)。
+
+## 本章公开来源
+
+- [FS Wiki: Suspension Forces](https://fswiki.us/Suspension_Forces)，用于六杆件自由体图、矩阵法和只算 pushrod / pullrod 的误区。
+- [Analysis of Link Forces on a Formula Student Suspension System](https://www.diva-portal.org/smash/get/diva2:1033230/FULLTEXT01.pdf)，用于杆件力测试、模型和载荷路径验证案例。
+- [Dewesoft](https://dewesoft.com/blog/optimizing-formula-suspension-through-tire-road-force-analysis)、[Mantracourt](https://www.mantracourt.com/case-studies/data-acquisition-in-formula-sae-suspension-and-steering-system-validation-tests/) 和 [HBK](https://www.hbkworld.com/en/knowledge/resource-center/case-studies/university-bologna-formula-sae-student) 的 FSAE / FS 应变测量案例，用于把结构载荷和实车通道连接起来。
+- [Monash Motorsport suspension thesis collection](https://www.monashmotorsport.com/blog/2011suspensionthesis)，用于设计、制造和测试一体化的公开项目案例。
+- 完整章节索引见 [参考资料：章节引用索引](references.md#章节引用索引)。

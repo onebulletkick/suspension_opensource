@@ -81,3 +81,11 @@ RCD / RCVD 视角下，目标不是一句性能口号，而是能一路传递到
 ## 进阶阅读
 
 年度目标拆解、跨组接口和设计评审门槛见 [高级 01 设计目标](advanced/01-design-targets.md)。
+
+## 本章公开来源
+
+- [Formula Student Rules 2026 v1.0](https://www.formulastudent.de/fileadmin/user_upload/all/2026/rules/FS-Rules_2026_v1.0.pdf) 和 [Formula SAE Rules 2026](https://www.fsaeonline.com/cdsweb/gen/DownloadDocument.aspx?DocumentID=278fd4d7-aa27-4e33-bc4a-090148e662a0)，用于说明规则是目标表的最低 gate。
+- [DesignJudges: Overall Vehicle Priorities](https://www.designjudges.com/articles/overall-vehicle-priorities)，用于把可靠完赛、性能和车手可控性转成目标取舍。
+- [DesignJudges: Conceptual and Objective Design in FSAE](https://www.designjudges.com/articles/conceptual-and-objective-design-in-fsae)，用于补充概念设计、质量模型和早期方案筛选思路。
+- [FSAE Design Judging Score Sheet](https://www.fsaeonline.com/content/fsae%20design%20score%20sheet%20150pt.pdf)，用于把设计目标连接到设计、制造、验证和理解四类证据。
+- 完整章节索引见 [参考资料：章节引用索引](references.md#章节引用索引)。

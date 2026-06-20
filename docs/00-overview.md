@@ -106,3 +106,10 @@ flowchart TD
 ## 参考来源
 
 本仓库文档来自公开资料和经过整理的工程经验。参考资料、引用建议和来源处理边界见 [references.md](references.md)。
+
+## 本章公开来源
+
+- RCD / RCVD 的章节导航，用于建立车辆动力学、悬架几何、轮胎、调校和测试的总体阅读顺序。
+- [DesignJudges: Overall Vehicle Priorities](https://www.designjudges.com/articles/overall-vehicle-priorities)，用于把合法性、可靠性、性能和车手可控性放进同一阅读框架。
+- [FSAE Design Judging Score Sheet](https://www.fsaeonline.com/content/fsae%20design%20score%20sheet%20150pt.pdf)，用于说明设计、制造、验证和理解都属于工程证据。
+- 完整章节索引见 [参考资料：章节引用索引](references.md#章节引用索引)。
