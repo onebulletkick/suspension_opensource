@@ -16,6 +16,23 @@
 
 本章讨论通用流程、字段模板、检查逻辑和保守的工程经验。原始数据文件、精确测试值、比赛记录、故障照片、历史车辆编号、源图表或能反推出某一年车辆参数的组合信息，应留在团队自己的工程资料中。
 
+## 公开来源审计结论
+
+本章按 [参考资料：章节引用索引](../references.md#章节引用索引) 和本轮公开来源调查中的 validation / DAQ 条目写作。公开来源能支撑测试通道、测量质量、相关性 workflow 和答辩证据组织；它们不能给出本仓库可直接采用的通用通过阈值、硬件必选方案、传感器布置方案或结构放行标准。
+
+| 来源角色 | 本章吸收的工程逻辑 | 使用边界 |
+| --- | --- | --- |
+| Dewesoft suspension testing / tire-road force analysis | 应变、悬架位移、IMU、轮速、方向盘角、制动压力和模型可以共同支持载荷反推、动态行为解释和 correlation | 作为 instrumentation / correlation 案例；不把工具链、通道数量、处理结果或供应商方案泛化 |
+| Mantracourt validation case | 悬架 / 转向验证需要把 link loads、wheel-load fluctuation、steering effort 和 DAQ 通道提前规划 | 只采用 channel-planning 思路；不固化硬件、品牌、阈值或传感器选择 |
+| HBK Bologna strain-gauge case | 应变片可帮助识别悬架部件受力并支持结构模型验证 | 只取应变测量和校准思路；不复制供应商图片、团队数据或安装细节 |
+| Micro-Measurements analytical validation case | 应变片、shock potentiometer、accelerometer、DAQ wiring、校准和信号质量会决定模型验证是否可用 | 写成测量质量 caution；若某通道质量不足，应降级结论，而不是声称验证完成 |
+| Oregon State suspension-force validation | 悬架力测量可以服务整车动力学验证和 setup analysis | 作为 measured force / correlation 背景；不复制 load-cell 设计或数据集 |
+| Cincinnati Amesim simulation/test comparison | 仿真与实车应在相同场景、相同输入和可追溯版本下比较动态响应 | 只采用同场景对比 workflow；不作为通用参数或相关性质量来源 |
+| MathWorks sensor-to-simulation | 传感器数据进入仿真前需要坐标、同步、滤波、目标定义和版本管理 | 软件资料说明 workflow，不代表导入数据后自动完成验证 |
+| DesignJudges / design event guidance | 答辩应组织目标、推理、证据、限制和跨系统理解 | 作为评审视角，不是官方规则或分值解释 |
+
+这些来源共同支持一条保守纪律：有 DAQ 不等于验证完成，单次测试不等于全部工况正确，车手反馈不是根因，仿真与测试曲线贴合也不等于安全证明。公开手册只保留流程、字段、证据等级和误用边界；真实车辆数值、原始数据和项目记录留在内部工程资料中。
+
 ## 验证不是最后一步
 
 验证不是“设计结束以后找时间跑一下车”，而是从目标定义时就要进入计划。一个合格的悬架目标应同时说明：预期现象、仿真证据、测试方法、数据通道、通过标准和未验证风险。否则，目标会变成口号，仿真会变成孤立图片，测试会变成没有因果关系的试跑。
@@ -53,6 +70,22 @@
 传感器标定应尽量在测试前用简单动作验证。例如方向盘角左右打满时符号是否符合定义；悬架位移在手动压缩和回弹时是否符合通道定义的符号约定，并在日志中写清压缩 compression 或回弹 rebound 哪个方向为正；轮速是否对应正确车轮；制动压力是否随踏板输入单调变化；IMU 静止时重力方向和零偏是否合理。若某个通道只做趋势参考，日志中应写清“仅趋势使用”，不要把它作为定量通过标准。
 
 数据系统还应做一次端到端时间对齐检查 end-to-end alignment。可以用共享触发 shared trigger 或可识别事件，例如轻点制动 brake tap、方向盘左右 sweep、悬架 bounce、logger marker、视频 clap，确认数据记录器、视频、GPS / timing、IMU 和独立采集设备的时间戳对齐，并记录滤波 delay。没有完成对齐检查的数据，最多用于定性观察，不应直接做定量相关性验证。
+
+### 数据通道质量边界
+
+channel map 不只是硬件清单，而是每个通道在本轮测试中“能回答什么、不能回答什么、失败后如何降级”的说明。公开供应商案例能证明这些通道常被用于 Formula SAE / Formula Student 测试，但不证明某个硬件组合是必选，也不证明采到数据后自动完成验证。
+
+| 通道 | 可支持的问题 | 必须检查 | 降级或停用条件 |
+| --- | --- | --- | --- |
+| 应变片 strain gauge | 杆件轴力、支座受力趋势、载荷模型 correlation、结构风险线索 | 桥路、零点、温度漂移、加载方向、粘贴位置、应变到力的转换假设、是否混入 bending | 零点漂移不可解释、桥路异常、安装松动、温度影响未处理或力学量转换假设不成立时，不用于定量载荷结论 |
+| 悬架位移 shock / wheel displacement | 行程利用、触限、阻尼速度区间、姿态和事件对齐 | 量程、安装几何、压缩 / 回弹正方向、零点、机械限位、是否代表 wheel travel 或 damper stroke | 传感器触限、连杆松动、几何换算缺失或正方向不清时，只作事件标记或剔除 |
+| IMU / accelerometer | 横向 / 纵向加速度、yaw rate、姿态趋势、G-G 图和 sensor-to-simulation 输入 | 安装方向、坐标转换、零偏、重力方向、采样率、滤波、与视频 / 制动 / 方向盘事件同步 | 坐标未定义、明显饱和、振动噪声主导或滤波 delay 未记录时，不用于相位或定量 correlation |
+| 制动压力 brake pressure | 制动输入对齐、制动稳定性、轮速锁止解释、制动入弯工况定义 | 零点、量程、前后 / 左右对应、踏板输入关系、泄漏和采样同步 | 压力通道丢失或对应关系不清时，制动测试只能做低等级结论 |
+| 轮速 wheel speed | 锁止 / 打滑、左右差异、速度估计、驱动 / 制动事件 | 车轮对应、齿数、低速噪声、丢齿、轮胎半径和 GPS / IMU 对照 | 丢包、低速误差或车轮对应错误时，不用于 slip 或精确速度判断 |
+| 方向盘角 steering angle | 驾驶输入、yaw-rate response、稳态转向趋势、slalom / skidpad 分析 | 零点、左右正方向、传动比、机械限位、与视频或 IMU 的时间对齐 | 零点漂移或方向反了时，不能解释 understeer / oversteer 因果 |
+| 视频 / GPS / timing | 事件定位、测试执行复核、赛道片段对齐、异常排查 | 时间戳、画面可见性、场地位置、采样频率、与 logger marker 对齐 | 时间不同步或无法定位事件时，只作辅助说明，不作定量证据 |
+
+数据处理时应保留滤波说明。低通滤波、移动平均、重采样和坐标变换都可能改变相位、峰值和噪声特征；若要比较仿真和实测曲线，应说明 filter type、cutoff 或窗口、重采样频率、相位延迟处理和异常段剔除规则。没有这些记录的“曲线贴合”只能作为观察，不能作为强 correlation 结论。
 
 静态检查不是一次性的。每次上车前做安全相关复查，每次下车后做 post-run inspection。若测试中出现撞锥、冲出路面、异常噪声、明显托底、制动跑偏、转向卡滞、温度异常或数据中断，应回到静态检查，不要把后续数据混入正常测试集。
 
@@ -198,6 +231,17 @@ flowchart TD
 
 停测不是失败，而是验证闭环的一部分。停测记录应包含触发条件、现场证据、初步判断、修复动作、复测条件和是否影响答辩叙事。不能为了完成测试矩阵而继续采集低可信度或高风险数据。
 
+恢复测试 restart / recovery 也要有门槛。建议记录：
+
+| 恢复条件 | 需要证据 | 不应直接恢复的情况 |
+| --- | --- | --- |
+| 安全问题已关闭 | 修复说明、静态检查、紧固 / 干涉 / 泄漏复查、必要时低速 shakedown | 只做目视确认，没有复测触发停测的问题 |
+| 数据问题已关闭 | 通道重标定、同步事件、文件命名和处理脚本版本更新 | 修好硬件但没有确认单位、方向和时间对齐 |
+| 测试目标已降级或重写 | 新的测试矩阵、速度 / 工况边界、负责人确认 | 继续执行原性能测试，却没有说明风险变化 |
+| 复测计划明确 | baseline、单一变量、预期变化和停止条件 | 修复后同时改变多个设定，再用结果证明修复有效 |
+
+若只能进行低速或单通道复查，应明确写成降级测试 degraded test。降级测试可以帮助确认车辆是否恢复基本功能，但不能自动恢复为性能测试或结构释放证据。
+
 ## 调校记录
 
 调校 setup tuning 的目标是建立“变量改变 -> 车辆响应 -> 数据证据 -> 下一步”的因果链。没有日志的调校只能算试车记忆，不能作为答辩证据，也不能可靠传承。
@@ -239,6 +283,8 @@ flowchart TD
 - 把仿真通过说成实车已经通过。仿真是证据之一，不是最终验证。
 - 把车手主观反馈说成根因。反馈是现象输入，根因需要数据、检查或复测支撑。
 - 把未验证项包装成确定结论。更好的表达是“当前证据支持某趋势，但仍需在某工况下复核”。
+- 把供应商案例说成通用硬件方案。供应商案例说明通道和测量链路有价值，不说明所有车队都应使用同一设备。
+- 把同场景仿真 / 测试曲线贴合说成安全证明。correlation 只说明模型在该场景和输入下更可信，结构安全仍要回到载荷、材料、制造和检查证据。
 
 答辩证据包可以包括目标分解、验证矩阵、测试流程、通道列表、对比图模板、问题分级、调校日志结构、模型修正记录和下一季问题表。具体数值属于项目答辩材料；学习手册更适合呈现方法、字段和证据组织方式。
 
@@ -323,6 +369,9 @@ flowchart TD
 - 只保存原始数据文件，不保存车辆设定、轮胎状态、测试目的和异常事件。
 - 测试后不做 post-run inspection，错过松动、裂纹、干涉、漏液和异常磨耗。
 - 仿真和测试不一致时直接改模型，没有先检查输入版本、通道质量和测试条件。
+- 有 DAQ、应变片或 IMU，就把“采到数据”写成“验证完成”。
+- 单次测试、单一场地或单一车手结论，被扩大成所有工况正确。
+- 滤波、时间对齐或通道降级没有记录，却把曲线相似当作强相关性证据。
 - 为了答辩隐藏限制和未验证风险，反而让证据链更不可信。
 - 传承只交文件，不交问题、假设、失败尝试和下一季优先级。
 
@@ -358,8 +407,9 @@ flowchart TD
 
 ## 本章公开来源
 
-- [Dewesoft tire-road force analysis](https://dewesoft.com/blog/optimizing-formula-suspension-through-tire-road-force-analysis) 和 [Dewesoft suspension testing](https://dewesoft.com/blog/suspension-testing-on-formula-sae-racecar)，用于测试通道、应变片、悬架位移、IMU、滤波和载荷模型相关性。
-- [Mantracourt FSAE validation case](https://www.mantracourt.com/case-studies/data-acquisition-in-formula-sae-suspension-and-steering-system-validation-tests/) 与 [HBK Bologna strain gauge case](https://www.hbkworld.com/en/knowledge/resource-center/case-studies/university-bologna-formula-sae-student)，用于说明载荷、转向力、弹簧阻尼选择和结构模型验证的可测证据。
-- [Alex McCormick: Formula Student Suspension Validation](https://amccormick21.wordpress.com/2016/02/15/formula-student-suspension-validation/)，用于几何验证、CAD 装配、工具可达性、FEA 和多模型交叉检查。
+- [Dewesoft tire-road force analysis](https://dewesoft.com/blog/optimizing-formula-suspension-through-tire-road-force-analysis) 和 [Dewesoft suspension testing](https://dewesoft.com/blog/suspension-testing-on-formula-sae-racecar)，用于测试通道、应变片、悬架位移、IMU、轮速、方向盘角、制动压力、滤波和载荷模型相关性。
+- [Mantracourt FSAE validation case](https://www.mantracourt.com/case-studies/data-acquisition-in-formula-sae-suspension-and-steering-system-validation-tests/)、[HBK Bologna strain gauge case](https://www.hbkworld.com/en/knowledge/resource-center/case-studies/university-bologna-formula-sae-student) 和 [Micro-Measurements analytical validation case](https://docs.micro-measurements.com/?id=9703)，用于说明载荷、转向力、应变、shock potentiometer、accelerometer、DAQ、校准和信号质量的可测证据边界。
+- [Oregon State suspension-force validation](https://ir.library.oregonstate.edu/concern/graduate_thesis_or_dissertations/8049g827d)、[University of Cincinnati Amesim project](https://www.ceas.uc.edu/research/centers-labs/siemens-simulation-technology-center/courses---projects/amesim/formula-sae/project.html) 和 [MathWorks sensor-to-simulation](https://www.mathworks.com/videos/bringing-sensor-data-to-simulation-1746112241217.html)，用于测力通道、同场景仿真 / 测试对比、坐标、同步、滤波和 sensor-to-simulation 相关性 workflow。
 - [FSAE Design Judging Score Sheet](https://www.fsaeonline.com/content/fsae%20design%20score%20sheet%20150pt.pdf) 与 [DesignJudges: A Field Guide to the Design Event](https://www.designjudges.com/articles/a-field-guide-to-the-design-event)，用于答辩证据包、设计报告、现场展示和评审理解。
+- 这些来源只支持通道规划、测量质量、相关性和答辩证据组织，不提供通用通过阈值、硬件必选方案、结构放行标准或可复制的车辆参数。
 - 完整章节索引见 [参考资料：章节引用索引](../references.md#章节引用索引)。
