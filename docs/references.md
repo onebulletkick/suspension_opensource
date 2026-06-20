@@ -201,7 +201,7 @@ flowchart LR
 | [高级 01 设计目标](advanced/01-design-targets.md) | 官方规则/评分、DesignJudges、公开车队报告 | 吸收年度目标、规则约束、资源、接口、优先级和设计分解 | 具体赛事、年份和队伍资源不同；目标表不能写成通用答案 |
 | [高级 02 轮胎与整车输入](advanced/02-tire-and-vehicle-inputs.md) | TTC、MathWorks MF-Tyre、大学轮胎报告、FS Wiki | 吸收轮胎选择、数据限制、模型边界、拟合 workflow、动态轮荷和整车输入传递 | 数据授权、坐标/符号、温度和组合工况仍需团队级验证 |
 | [高级 03 几何与硬点](advanced/03-geometry-and-hardpoints.md) | SAE、MIT / Monash / Will Harvey、FS Wiki、DesignJudges | 吸收几何目标、硬点初始化、优化、K&C、steering interface、CAD 包络和制造检查 | 公开几何案例不能变成 universal target；完整几何数据不进入公开文档 |
-| [高级 04 弹簧、阻尼、侧倾与车身姿态](advanced/04-spring-damper-roll-and-ride.md) | RCD / RCVD、Jim Kasprzak、OptimumG、UNCA、Cooper Union、Penske | 吸收 wheel rate、ride / roll、ARB、阻尼曲线、motion ratio、pitch 和 aero-platform 语言 | 调校目标必须回到轮胎、质量、空气动力和测试；不能只凭文章给定数值 |
+| [高级 04 弹簧、阻尼、侧倾与车身姿态](advanced/04-spring-damper-roll-and-ride.md) | RCD / RCVD、Jim Kasprzak、OptimumG、UNCA、Cooper Union、MIT、Penske | 吸收 wheel rate、ride / roll、ARB、阻尼曲线、motion ratio、pitch、几何接口和 aero-platform 语言 | 调校目标必须回到轮胎、质量、几何、空气动力和测试；不能只凭文章给定数值 |
 | [高级 05 仿真、优化与相关性](advanced/05-simulation-optimization-correlation.md) | Simscape / MATLAB 官方资料、MDPI MBD、Purdue、Cincinnati、MIT | 吸收模型层级、参数研究、事件指标、fixed / adjustable 参数、数据回灌和 correlation loop | 模型 fidelity、软件版本、driver model 和测量质量需在项目内复核 |
 | [高级 06 载荷与金属结构](advanced/06-loads-metal-structure.md) | FEA / link-force 学位论文、FS Wiki、Dewesoft、HBK、Mantracourt | 吸收工况定义、FBD、矩阵导力、多体导力、边界条件审查、FEA 结果解释和测量校验 | 公开来源支撑方法，不支撑本车载荷值、材料裕度或结构放行 |
 | [高级 07 复合材料与制造风险](advanced/07-composites-and-manufacturing.md) | 复材连接摘要、复材失效准则、Formula Student 复材案例、材料测试论文 | 吸收失效模式、ply/material 假设、insert / bond 风险、制造缺陷、coupon / component testing 的保守门槛 | 复材悬架公开证据较薄；不要写成 prescriptive coupon 方案或制造认证流程 |
