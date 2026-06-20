@@ -15,6 +15,12 @@
 
 RCVD 式 axis systems 或任何教材 / 软件坐标系统进入项目后，都必须先固定原点、轴向、正负方向、左右镜像和输入条件，再比较硬点或曲线。否则 camber gain、toe change、steering axis 和 roll-center migration 可能只是符号相反、参考面不同或输入被锁定方式不同，却被误判成几何优劣差异。公开文档可以讲通用约定；项目工程记录必须把实际约定写到硬点表、K&C 模型、CAD 导出和测试复盘里。
 
+## 公开来源审计结论
+
+本章参考的公开资料能提供方法边界，但不能提供可直接复制的几何答案。SAE 论文摘要和公开教育材料适合帮助新队伍理解 track、wheelbase、tire / wheel、control arm、upright、spindle、hub、pullrod 与车架边界如何一起进入悬架设计；FS Wiki 适合补齐 camber、toe、kingpin、caster、roll center、CAD sketch 等入门术语；DesignJudges 的文章适合提醒读者把几何看成可用窗口和证据问题，而不是单点漂亮数字；MIT、Monash、Will Harvey 和公开 Formula Student 学位报告更适合作为“如何组织优化、CAD 迭代、制造检查和设计报告”的案例。
+
+这些来源不能被当成通用目标函数、通用权重、通用硬点或通用参数。公开案例常常省略轮胎数据、赛道目标、规则版本、制造资源、车架边界、实车测试和 rejected alternatives，因此本章只吸收流程、审计问题和工程判断方式：目标要从车辆和轮胎来，初始硬点要先受真实包络约束，优化要写清 objective / constraint / weight / exit condition，K&C 趋势要和 compliance、制造、载荷和测试证据分层。
+
 ## 几何设计的核心任务
 
 几何设计首先要把轮心 wheel center、轮胎接地点 contact patch、upright 外点、A 臂内点、转向拉杆点、推杆或拉杆点、减振器和摇臂点放进同一套坐标系。随后要检查这些点在跳动、回弹、转向、侧倾、制动、加速和组合工况下如何改变轮胎姿态与车身姿态。
@@ -56,9 +62,19 @@ RCVD 式 axis systems 或任何教材 / 软件坐标系统进入项目后，都�
 | caster / trail / KPI | 主销轴定义、轮心和接地点参考 | 是否兼顾回正、转向力、制动稳定和包装空间 |
 | anti-dive / anti-squat | 侧视瞬心、制动 / 驱动力路径 | 是否只是辅助指标，不能替代实际载荷和结构检查 |
 
+几何评审要把五类问题分开写清楚：
+
+| 层级 | 回答的问题 | 典型证据 | 不能混用的地方 |
+| --- | --- | --- | --- |
+| 规则门槛 rule gate | 这台车能否满足当年规则、技术检查和可检查性要求 | 当前规则版本、wheel travel / jounce 检查、安装点可见性记录 | 规则通过不代表几何优秀或实车好开 |
+| 几何目标 geometry target | 轮胎姿态、转向响应、roll center migration 和 anti 参数要落在哪个设计窗口 | 目标表、K&C 曲线、轮胎窗口、车手反馈假设 | 几何曲线不能替代结构和 compliance 证据 |
+| 包络制造目标 packaging / manufacturing | 杆件、球铰、轮辋、制动、车架、气动、减振器和工具空间能否真实布置 | CATIA / 3D CAD 截面、组合姿态、装配顺序、测量方案 | 2D 草图或单一静态 CAD 姿态不等于可制造 |
+| 结构载荷路径 load path | 轮胎力、制动力、驱动力和推杆/拉杆力能否进入合理节点 | 载荷路径草图、支座方案、FEA 输入边界、结构负责人评审 | K&C 曲线变好但载荷路径变差时不能直接接受 |
+| 验证证据 validation evidence | 该版本是否已被模型、测量或实车数据支持 | 模型版本、定位测量、应变/位移/IMU 数据、测试复盘 | 没有实车或柔性证据时，只能写刚体趋势支持 |
+
 ## 规则门槛与几何包络
 
-公开规则给几何设计提供的是硬边界，而不是推荐几何答案。以 Formula Student 2026 规则中的公开条目为例，悬架必须有可工作的前后系统、减振器、可用 wheel travel 和含车手状态下的 jounce；安装点还要能在技术检查中被看到。这些要求应在第一版硬点阶段就进入 CAD / K&C 检查，而不是等到实车装配后再补救。
+公开规则给几何设计提供的是硬边界，而不是推荐几何答案。以 FSG Rules 2026 v1.1 这类官方规则为例，并按参赛赛区当年规则复核，悬架必须有可工作的前后系统、减振器、可用 wheel travel 和含车手状态下的 jounce；安装点还要能在技术检查中被看到。这些要求应在第一版硬点阶段就进入 CAD / K&C 检查，而不是等到实车装配后再补救。
 
 建议把规则门槛拆成以下几何检查：
 
@@ -164,13 +180,36 @@ Ackermann 描述转向时内外轮转角关系。理想几何常从低速纯滚�
 | aero / bodywork | 地板、扩散器、翼面、车身开口、目标车高和维修拆装 | 限制行程、轮胎包络、杆件外露、车身姿态和 jacking 风险 |
 | damper / rocker package | 推杆或拉杆点、摇臂、减振器、弹簧、传感器和限位 | 决定 motion ratio、行程利用、结构载荷和维护空间 |
 
-第一版硬点不需要完美，但必须真实。最低要求是：杆件长度和角度可制造，球铰角度在极限姿态下可接受，轮辋和制动不干涉，转向机和拉杆可安装，车架有支座空间，传动不被侵入，减振器和摇臂能布置，工具能接触紧固件，结构载荷能传到合理节点。
+初始化阶段要先定义“搜索边界”，再谈优化。边界不只是一个坐标上下限，还包括真实零件、加工方法、装配顺序、工具空间、测量方法和接口冻结状态。若 optimizer 可以把内点移到车架管外、把球铰推到轮辋里、把支座放到无节点区域，得到的曲线再漂亮也没有工程意义。
+
+建议把每个硬点候选位置分成四类：
+
+| 状态 | 含义 | 处理方式 |
+| --- | --- | --- |
+| frozen | 已由轮辋、upright、制动、车架或传动冻结 | 不进入优化变量，只作为约束和版本输入 |
+| bounded variable | 可调，但有明确包络、制造、结构和测量边界 | 可进入优化变量，必须写上下限和理由 |
+| assumed | 暂时假设，等待接口组确认 | 曲线只能标为 draft，不进入冻结结论 |
+| rejected | 曲线有收益但违反包络、载荷、制造或验证要求 | 记录拒绝原因，避免后续重复尝试 |
+
+第一版硬点不需要完美，但必须真实。最低要求是：杆件长度和角度可制造，球铰角度在极限姿态下可接受，轮辋和制动不干涉，转向机和拉杆可安装，车架有支座空间，传动不被侵入，减振器和摇臂能布置，工具能接触紧固件，结构载荷能传到合理节点。只有这样的初始硬点，后续优化才是在真实工程空间里做取舍，而不是在无边界数学空间里找答案。
 
 ## 硬点优化
 
 硬点优化的目标是改进可验证的车辆行为，而不是让某条曲线贴近无来源的数值。优化前必须明确设计变量、目标函数、约束、权重、工况、软件版本和退出条件。学习文档适合讲目标类别和约束逻辑；精确点位、优化目标、源表格和源图应放在项目记录中。
 
+MIT 等公开案例的价值在于展示“怎样把几何问题写成优化问题”，不是提供通用目标函数。每个队伍的轮胎、轴距、轮距、车架节点、转向机、轮辋、制造资源和比赛项目不同，权重也应不同。若无法解释某个 objective 为什么服务本车目标，就不应把它放进优化器。
+
 常见设计变量包括：A 臂内点位置、upright 外点位置、转向拉杆内外点、推杆或拉杆点、摇臂点、静态 camber / toe 调整件、车高和限位位置。变量选择应服从包络和制造逻辑。若 upright、轮辋和制动已经冻结，主销几何可能很难大幅改变；此时优化内点和转向拉杆点更现实。若车架节点还未冻结，则应优先把载荷路径和维护空间一起纳入变量边界。
+
+优化记录至少写清以下字段：
+
+| 字段 | 应写内容 | 审核问题 |
+| --- | --- | --- |
+| objective | 要改善的车辆行为或曲线趋势，例如某工况下的 camber 窗口、toe 趋势或 roll center migration | 是否能追溯到设计目标、轮胎窗口或车手反馈假设 |
+| constraint | 不允许突破的规则、包络、制造、载荷、行程、转向和维护边界 | 是否包含真实零件和接口，而不只是数学上下限 |
+| weight | 多目标之间的权重和排序 | 权重是否有理由，是否会掩盖安全或制造门槛 |
+| exit condition | 什么时候停止优化并转入 CAD / 结构 / 测试复核 | 是否避免无休止微调，是否定义了人工评审门槛 |
+| rejected alternatives | 被放弃方案、放弃原因和后续禁用条件 | 是否记录了“曲线好但工程不可接受”的案例 |
 
 优化目标可以分为：
 
@@ -189,6 +228,15 @@ Ackermann 描述转向时内外轮转角关系。理想几何常从低速纯滚�
 K&C 是 kinematics and compliance 的缩写。早期几何章节通常先做刚体运动学 kinematics，检查连杆几何如何决定车轮运动；更成熟时还应考虑 compliance，即杆端、upright、车架和轮胎在载荷下的弹性变形如何改变 camber、toe 和轮心位置。若没有柔性数据，应写成“刚体 K&C 初筛”，并把柔性影响列为待验证项。
 
 因此，刚体 K&C 只能作为第一层筛选：它适合发现硬点符号、包络、趋势和明显曲线问题，但不能直接声称实车在制动、侧向力、路肩或驱动载荷下仍保持同样 toe / camber。要声明 real-car toe / camber under load，必须补充 compliance 数据、载荷路径假设、实车定位变化或测试证据；若这些证据暂时没有，结论应写成“刚体趋势支持，柔性影响待验证”。
+
+建议在报告里给每个 toe / camber / roll center 结论标明证据等级：
+
+| 证据等级 | 可以支持的说法 | 不能支持的说法 |
+| --- | --- | --- |
+| 刚体 K&C 模型 | 该硬点版本在理想刚体约束下的运动学趋势 | 实车载荷下仍保持相同 toe / camber |
+| 含柔性或 compliance 假设的模型 | 某些杆端、upright、车架或轮胎柔度假设下的敏感性 | 未测量柔度时的定量实车结论 |
+| 静态定位和加载测量 | 装配后的硬点、toe、camber 或受载变化是否接近模型 | 动态赛道工况下的完整车辆响应 |
+| 实车测试和相关性 | 某些工况下模型趋势与车手、数据、视频或传感器相符 | 跨赛道、跨轮胎、跨设置的永久结论 |
 
 基础 K&C 工况建议覆盖：
 
@@ -238,6 +286,16 @@ K&C 曲线通过不代表车能装起来。CATIA / 3D CAD 包络与制造检查�
 
 制造检查的关键是把“理论硬点”变成“可定位硬点”。学习文档可以使用字段模板，例如：定位基准、孔位类型、可调范围、测量工具、允许误差来源、装配顺序、复测方法、风险备注。实际孔位、夹具尺寸和制造图应放在项目记录中。
 
+可定位硬点 locatable hardpoint 的评审重点如下：
+
+| 项目 | 要回答的问题 |
+| --- | --- |
+| 定位基准 | 实车测量从哪个 datum、平面、孔或治具开始，CAD 与实车是否同源 |
+| 公差与调整 | 焊接变形、孔位偏差、垫片、rod end 调整量和 camber / toe 调整量是否覆盖制造误差 |
+| 装配顺序 | A 臂、upright、拉杆、推杆、减振器、制动和轮辋能否按真实顺序装上并复检 |
+| 测量方法 | 能否在赛场或实验室复测 wheel center、toe、camber、车高和关键支座 |
+| 变更控制 | 实车测得硬点与理论硬点不一致时，是否回写 K&C、载荷和仿真模型 |
+
 ## 硬点闭环流程图
 
 ```mermaid
@@ -264,6 +322,16 @@ flowchart TD
 ```
 
 这张图强调闭环：几何目标来自整车和轮胎，第一版硬点来自包络和制造，优化必须回到 K&C、CAD、结构和接口确认。任何环节变化，都应触发版本记录和受影响章节复查。
+
+硬点变化的接口回流可以按下面的触发清单执行：
+
+| 变化 | 必须回看什么 |
+| --- | --- |
+| A 臂内点、upright 外点或转向拉杆点变化 | K&C 曲线、转向角、bump steer、Ackermann、轮辋/制动干涉、车架支座 |
+| 推杆/拉杆点、摇臂点或减振器位置变化 | motion ratio、ride / roll 参数、减振器行程、弹簧空间、杆件载荷 |
+| roll center、anti 参数或轮心路径变化 | 簧上系统、整车仿真、制动/加速姿态、气动平台和车手反馈假设 |
+| 杆件方向或支座位置变化 | 载荷提取、金属件 FEA、复材件接口、车架节点和焊接/螺接方案 |
+| 实车测量发现硬点偏差 | K&C 模型、simulation baseline、结构边界、alignment procedure 和验证计划 |
 
 ## 软件实现路径
 
@@ -344,8 +412,11 @@ flowchart TD
 
 ## 本章公开来源
 
-- [SAE 971584: Introduction to Formula SAE Suspension and Frame Design](https://saemobilus.sae.org/papers/introduction-formula-sae-suspension-frame-design-971584) 以及 SAE Formula SAE suspension design 论文摘要，用于 track / wheelbase / tire / wheel / geometry 的设计顺序和新队伍边界。
+- [FSG Rules 2026 v1.1](https://www.formulastudent.de/fileadmin/user_upload/all/2026/rules/FS-Rules_2026_v1.1.pdf)，仅用于规则门槛示例，提醒几何阶段要把悬架可工作性、行程、jounce 和 inspection 可检查性纳入早期检查；具体赛区、年份、补充规则和规则问答必须按参赛车辆实际适用文件复核。
+- [SAE 971584: Introduction to Formula SAE Suspension and Frame Design](https://saemobilus.sae.org/papers/introduction-formula-sae-suspension-frame-design-971584)，用于 track / wheelbase / tire / wheel / geometry 的设计顺序和新队伍边界。
+- [SAE 2002-01-3310: Design of Formula SAE Suspension](https://saemobilus.sae.org/papers/design-formula-sae-suspension-2002-01-3310) 与 [SAE 2005-01-3994: Formula SAE Suspension Design](https://saemobilus.sae.org/papers/formula-sae-suspension-design-2005-01-3994)，用于 control arm、upright、spindle、hub、pullrod、CAD 包络、多体模型和系统边界的组织方式。
 - [FS Wiki: Suspension Geometry and Kinematics](https://fswiki.us/Suspension_Geometry_and_Kinematics)，用于 camber、toe、kingpin、caster、roll center、CAD sketch 的入门术语。
 - [DesignJudges: Simple Kinematic Philosophies](https://www.designjudges.com/articles/simple-kinematic-philosophies)，用于 toe 稳定性、camber graph、roll center 取舍和不要过度追求孤立曲线的评审语言。
-- [Will Harvey: Formula SAE Suspension Kinematics](https://wthprojects.com/fsae-kinematics)、MIT kinematics / vehicle dynamics 资料和 [Monash suspension thesis](https://www.monashmotorsport.com/blog/2011suspensionthesis)，用于硬点约束、CAD 迭代、制造验证和几何冻结案例。
+- [MIT DSpace: Optimization of a Formula SAE Vehicle's Suspension Kinematics](https://dspace.mit.edu/entities/publication/552bc5c1-9705-4a17-847d-9a9a9ff27b60)，用于说明目标函数、roll-center movement 和 camber 行为如何组成优化问题；不套用硬点结果或目标权重。
+- [Will Harvey: Formula SAE Suspension Kinematics](https://wthprojects.com/fsae-kinematics)、[Monash Motorsport suspension thesis collection](https://www.monashmotorsport.com/blog/2011suspensionthesis) 与 [Design of a suspension system for a Formula Student race car](https://skemman.is/bitstream/1946/31391/1/MSc_Ingi_Niels_Karlsson_2018.pdf)，用于硬点约束聚合、CAD 迭代、制造验证、几何冻结和报告结构案例；不复制图表、历史参数或坐标。
 - 完整章节索引见 [参考资料：章节引用索引](../references.md#章节引用索引)。
