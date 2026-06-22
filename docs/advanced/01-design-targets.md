@@ -198,7 +198,7 @@ DesignJudges 关于 conceptual and objective design 的核心价值，在于提�
 
 - [Formula SAE Series Resources](https://www.fsaeonline.com/cdsweb/gen/documentresources.aspx)：用于规则、评分表和设计文件模板的官方复核入口；本章只把它写成维护习惯和规则 gate，不引用永久数值。
 - [Formula SAE Design Judging Score Sheet](https://www.fsaeonline.com/content/fsae%20design%20score%20sheet%20150pt.pdf)：用于说明 design event 会检查设计、制造、验证和团队理解；具体分值和分类必须按当年文件复核。
-- [IMechE Formula Student Forms and documents](https://www.imeche.org/events/formula-student/team-information/forms-and-documents)：作为 FS UK 当前文件入口；2026-06-20 复核时该页列出 `FS2026 Design Judging Scoring Sheet`，并把 FS2025 static documents 标为 archived/reference only。正文只采用“从官方入口复核当前表格”的维护习惯，不把某年评分表写成永久规则。
-- [FSG25 Engineering Design Event Announcement](https://www.formulastudent.de/fileadmin/user_upload/all/2025/important_docs/FSG25_Announcement_Engineering_Design_Event_sent.pdf)：用于说明整车概念、资源、软件过程、车辆动力学和轮胎证据会进入设计答辩语境；不作为其它赛事要求。
+- [IMechE Formula Student Forms and documents](https://www.imeche.org/events/formula-student/team-information/forms-and-documents)：作为 FS UK 当前文件入口；2026-06-21 复核时该页列出 `FS2026 Design Judging Scoring Sheet`，并把上一年 static documents 标为 archived/reference only。正文只采用“从官方入口复核当前表格”的维护习惯，不把某年评分表写成永久规则。
+- [FSG Rules & Documents](https://www.formulastudent.de/fsg/rules)：作为 FSG 2026 当前规则和 handbook 入口；2026-06-21 复核时该页列出 `FS-Rules_2026_v1.1` 和 `FSG26_Event_Handbook_v1.3`。本章只把它们用于规则 gate、文件更新和设计答辩证据类型的复核，不作为其它赛事要求。
 - [DesignJudges: A Field Guide to the Design Event](https://www.designjudges.com/articles/a-field-guide-to-the-design-event)、[Conceptual and Objective Design in FSAE](https://www.designjudges.com/articles/conceptual-and-objective-design-in-fsae) 和 [Setting Winning Priorities](https://www.designjudges.com/articles/setting-winning-priorities)：用于目标设定、概念比较、可靠性和证据组织的评审视角；不作为官方规则解释。
 - 公开车队报告和公开论文只用于案例结构、报告组织和验证边界对照，不复制参数、图表或方案权重。完整章节索引见 [参考资料：章节引用索引](../references.md#章节引用索引)。

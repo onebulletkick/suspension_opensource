@@ -20,6 +20,8 @@ FSAE Suspension Learning Roadmap
 | 准备评审、答辩或复盘 | [10 检查清单](https://onebulletkick.github.io/suspension_opensource/10-checklists/) | 用清单反查目标、模型、结构校核、测试和资料边界 |
 | 想深入技术细节 | [高级悬架工程手册](https://onebulletkick.github.io/suspension_opensource/advanced/) | 按高级手册 01-10 章阅读完整工程逻辑 |
 
+这套资料按“先上手、再深挖、最后复核”的路径组织：`docs/00-10` 给新人建立路线和最小输出，`docs/advanced/` 展开工程推理链与检查方法，`docs/references.md` 只负责来源角色、资产登记和公开边界。读者不需要先从参考资料逐条读起；每章末尾的公开来源会指向它需要复核的依据。
+
 ## 视觉总览
 
 ![悬架设计完整闭环](assets/diagrams/full-design-loop.svg)

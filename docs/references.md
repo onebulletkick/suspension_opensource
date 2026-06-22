@@ -11,6 +11,8 @@
 - 区分官方规则、教材论文、软件资料、公开案例、评审文章和测试供应商案例的权威边界。
 - 在贡献文档时避免把受限数据、未获授权的图表、内部代号或可反推出历史车辆的信息带入仓库。
 
+本页是参考页（reference），不是线性教材。新人可以先读 [00 如何使用本手册](00-overview.md) 和 [01 悬架学习路线](01-learning-roadmap.md)；维护者在新增章节、图表或技术结论时，再回到本页确认来源角色、资产登记和公开边界。
+
 ## 视觉总览
 
 ![资料可信度与整理流程图](assets/diagrams/source-trust-map.svg)
@@ -80,8 +82,8 @@ flowchart LR
 | --- | --- | --- | --- |
 | [Formula SAE Series Resources](https://www.fsaeonline.com/cdsweb/gen/documentresources.aspx) | 当前规则、评分表和设计文档模板应从哪里复核 | [00](00-overview.md), [02](02-design-targets.md), [10](10-checklists.md), [高级 01](advanced/01-design-targets.md), [高级 10](advanced/10-review-checklists.md) | 写成“先查官方资源页”的维护习惯；不把某次下载文件当永久规则 |
 | [Formula SAE Design Judging Score Sheet](https://www.fsaeonline.com/content/fsae%20design%20score%20sheet%20150pt.pdf) | design event 如何要求设计、制造、验证和理解证据 | [00](00-overview.md), [02](02-design-targets.md), [08](08-validation-and-iteration.md), [10](10-checklists.md) | 用作历史评分维度说明；分值和分类必须按当年文件复核 |
-| [Formula Student UK 2025 Design Judging Score Sheet](https://www.imeche.org/docs/default-source/1-oscar/formula-student/2025/static-docs/2025-design-judging-score-sheet-pdf.pdf?sfvrsn=2) | 设计报告、总体概念、结构设计、仿真、测试和 margin 如何进入评审 | [02](02-design-targets.md), [07](07-loads-and-structure-check.md), [10](10-checklists.md), [高级 10](advanced/10-review-checklists.md) | 只作赛区对照；不能合并成 FSAE、FSG 或 FSC 的通用评分口径 |
-| [FSG25 Engineering Design Event Announcement](https://www.formulastudent.de/fileadmin/user_upload/all/2025/important_docs/FSG25_Announcement_Engineering_Design_Event_sent.pdf) | 整车概念、目标资源、子系统理解、软件过程和车辆动力学证据如何被询问 | [02](02-design-targets.md), [06](06-simulation-and-optimization.md), [09](09-software-roadmap.md), [10](10-checklists.md) | 写成设计答辩证据类型；不把 FSG 2025 规则写成其他赛事要求 |
+| [IMechE Formula Student Forms and documents](https://www.imeche.org/events/formula-student/team-information/forms-and-documents) | FS UK 当前静态项目表格、设计评分表、技术表格和提交入口应从哪里复核 | [02](02-design-targets.md), [07](07-loads-and-structure-check.md), [10](10-checklists.md), [高级 01](advanced/01-design-targets.md), [高级 10](advanced/10-review-checklists.md) | 2026-06-21 复核时该页列出 FS2026 Design Judging Scoring Sheet，并把上一年 static documents 标为 archived/reference only；正文只采用官方入口和证据类型，不复制表格细节 |
+| [FSG Rules & Documents](https://www.formulastudent.de/fsg/rules) | FSG 2026 的规则 gate、event handbook、document updates 和 engineering design 语境应从哪里复核 | [02](02-design-targets.md), [03](03-tire-and-vehicle-inputs.md), [06](06-simulation-and-optimization.md), [09](09-software-roadmap.md), [10](10-checklists.md), [高级 01](advanced/01-design-targets.md), [高级 03](advanced/03-geometry-and-hardpoints.md) | 2026-06-21 复核时该页列出 FS-Rules_2026_v1.1 和 FSG26_Event_Handbook_v1.3；只写成当前官方入口和复核习惯，具体赛区、补充规则和规则问答仍按参赛车辆实际适用文件确认 |
 
 第三方规则 PDF 镜像不应作为公开文档的正式引用依据；读者应回到赛事官方资源页核对当前规则。FSC / 大学生方程式术语和入口需按当年官方发布渠道核对，本页不使用不稳定的 HTTPS 链接作为技术来源。
 
@@ -240,6 +242,15 @@ flowchart LR
 本仓库第一版结合了公开资料、常见软件资料类型，以及整理过的悬架学习和设计经验。正文关注学习结构、工程问题、检查逻辑、验证习惯和自有教学图例；原始文件、内部历史参数和未授权图表不属于仓库内容。
 
 后续贡献者如果基于受限背景材料补充内容，应先完成授权检查、重写、图表登记和来源标注。无法确认授权的图片、表格、数据文件和整段文字不要提交到仓库。
+
+## 图表与资产登记 { #asset-provenance }
+
+| 资产范围 | 当前用途 | 来源状态 | 公开边界 | 维护检查 |
+| --- | --- | --- | --- | --- |
+| `assets/diagrams/*.svg` 与 `docs/assets/diagrams/*.svg` | 首页、快速层和参考页的流程图、路线图和检查图 | 仓库自绘 draw.io / SVG 图，root 目录保留 `.drawio` 源，`docs/assets/diagrams/` 保留 MkDocs 发布副本 | 只表达流程、依赖和检查关系；不含真实硬点、载荷、数据曲线、内部截图或赛事专属答案 | 修改图时同步 `.drawio`、root SVG 和 docs SVG；重点检查 `software-capability-matrix.svg` 中 AutoCAD / 2D CAD 与 CATIA / 3D CAD 的职责拆分 |
+| `docs/assets/figures/metal/metal-*.png`，例如 `metal-load-path-mbd-overview.png` | 高级 06 的载荷路径、网格、边界条件和应力热点教学图例 | 自绘 / 生成的通用教学图，不是 CAD、FEA 或测试软件截图 | 只展示读图方法和审查关注点；不公开真实网格、材料、载荷、应力值、run 名或历史零件几何 | 新增或替换时记录文件名、用途、生成方式和复核日期；人工确认图中没有可反推历史方案的信息 |
+| `docs/assets/figures/composites/composite-*.png`，例如 `composite-tube-laminate-section.png` | 高级 07 的复材截面、网格、连接区和结果读法教学图例 | 自绘 / 生成的通用教学图，不是源手册图、供应商图或软件截图 | 只解释层合板、连接、网格和失效审查逻辑；不公开真实铺层、材料 allowables、coupon 数据或连接尺寸 | 新增或替换时记录文件名、用途、生成方式和复核日期；无法确认授权的图片一律重绘或删除 |
+| Mermaid 图与 Markdown 表格 | 章节流程、模板字段、检查清单和来源角色说明 | 仓库原创文字和流程图 | 可公开字段、单位、趋势和检查问题；不公开真实项目值、内部路径或源文件名 | 每次新增技术结论时同步章节 `本章公开来源` 和本表的资产边界 |
 
 ## 实践任务
 

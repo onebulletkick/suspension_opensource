@@ -8,9 +8,9 @@
 
 - 帮助团队在设计冻结、结构释放、测试前、答辩前和资料发布前做一致评审。
 - 把目标、轮胎、硬点、簧上系统、仿真、载荷、复材、验证、软件和文档连接成同一条证据链。
-- 守住资料边界：保留工程逻辑，避开原始数据、历史车辆识别信息、源截图、源文件名、复制段落、内部表格或能反推出具体赛车的参数组合。
+- 同时审查公开写法：正文保留流程、字段、证据和判断方式；原始数据、历史车辆识别信息、源截图、源文件名、内部表格和可反推参数组合留在项目工程包中。
 
-本章不是安全认证，也不能替代规则审查、专业结构评审、制造质量控制、现场测试流程和团队内部 release decision。若证据不足，应写成“待验证”或“带风险通过”，而不是把未发现问题包装成已经证明。
+本章给出的是文档和阶段评审的证据状态；规则合规、结构放行、制造质量和赛场使用仍需要团队正式流程。若证据不足，应写成“待验证”或“带风险通过”，而不是把未发现问题包装成已经证明。
 
 ## 如何使用本清单
 
@@ -21,7 +21,7 @@
 1. 先读快速版 [10 检查清单](../10-checklists.md)，确认整体顺序。
 2. 对照本章每张表，逐项填写证据链接、负责人、版本和结论等级。
 3. 若某项没有证据，不要用经验补空；写成待补充，并指向对应高级章节。
-4. 若某项使用项目资料，学习文档中写字段、流程和判断方式，原始值、源图、源表和文件名留在项目资料中。
+4. 若某项用到项目资料，学习文档只写字段、流程和判断方式；原始值、源图、源表和文件名留在项目资料中。
 5. 每次轮胎模型、硬点、质量、弹簧阻尼、载荷、制造或测试数据变化后，重新打开受影响章节。
 
 ## RCD / RCVD 知识内化检查
@@ -156,7 +156,7 @@ RCD / RCVD 进入项目文档时，不应停留在章节摘录或名词解释。
 | 每个软件输出是否有工程问题、输入、输出和边界？ | 软件能力矩阵、模型清单、参数主版本、输出变量说明和支持章节 | 只会操作软件，不知道它回答什么问题；默认模板未经审查 | 内部模型文件、商业软件截图、许可证或机器路径 | [09 软件工作流](09-software-workflows.md) |
 | 参数、脚本和报告是否可复现？ | Git 提交、Markdown 记录、参数表、脚本版本、图表单位和生成方法 | 多套参数分散在 Excel、CAD、Adams、FEA 和脚本中 | 原始数据、内部绝对路径、源文件名、私有表格 | [05 仿真优化](05-simulation-optimization-correlation.md)、[09 软件工作流](09-software-workflows.md) |
 | 文档是否把证据链连接到章节？ | 每个结论链接目标、轮胎、几何、簧上、仿真、结构、验证或软件章节 | 文档像资料堆叠；无法判断结论来自计算、仿真、测试还是经验 | 内部会议记录、聊天截图、原始评审表 | [01](01-design-targets.md)、[02](02-tire-and-vehicle-inputs.md)、[03](03-geometry-and-hardpoints.md)、[04](04-spring-damper-roll-and-ride.md)、[05](05-simulation-optimization-correlation.md)、[06](06-loads-metal-structure.md)、[07](07-composites-and-manufacturing.md)、[08](08-validation-testing-defense.md)、[09](09-software-workflows.md) |
-| 公开资料是否转成章节问题，而不是链接堆？ | 每条来源说明它承担规则 gate、模型边界、流程对照、测试通道或待验证项中的哪一种角色 | 正文堆满来源名但没有回答工程问题；把案例结果当通用结论 | 受版权保护内容、供应商话术、未核对的二手结论 | [../references.md](../references.md)、[README](README.md) |
+| 公开资料是否转成章节问题，而不是链接堆？ | 每条来源说明它承担规则 gate、模型边界、流程对照、测试通道或待验证项中的哪一种角色 | 正文堆满来源名但没有回答工程问题；把案例结果当通用结论 | 受版权保护内容、供应商话术、未核对的二手结论 | [../references.md](../references.md)、[高级手册入口](README.md) |
 | 学习模板和项目记录是否分层维护？ | `.gitignore`、发布检查记录、待验证标注和引用 / 来源处理说明 | 把内部 PDF、DOCX、数据、截图、源表或测试日志误提交 | 原始源材料、历史车辆编号、内部路径、未授权图片 | [09 软件工作流](09-software-workflows.md)、[../10 检查清单](../10-checklists.md) |
 
 ## 全流程评审门禁图
@@ -192,7 +192,7 @@ flowchart TD
 | 敏感词和源痕迹是否搜索？ | 搜索内部、原始、截图、源文件名、车辆编号、绝对路径、模型文件扩展名、真实数据扩展名 | 读者可见内容暴露内部资料链或可反推历史车辆 | 内部路径、源文件名、模型名、车号、精确参数组合 | [09 软件工作流](09-software-workflows.md) |
 | 历史标识 historical identifiers 是否已移除？ | 文档搜索、人工审读和替代表达 | 车号、年份专属方案、内部代号、队员姓名、供应商项目名暴露 | 车辆编号、内部项目名、个人记录、故障记录 | [01 设计目标](01-design-targets.md)、[08 验证测试](08-validation-testing-defense.md) |
 | 源文件名 source filenames 是否没有出现在读者可见内容中？ | `rg` 搜索 `README.md`、`index.html`、`docs/**/*.md`、渲染导航和 asset alt text；本地维护说明另行保存 | 把原始 PDF / DOCX / 表格文件名写进正文、导航或图片说明，暴露来源链；同时把只供维护使用的提取说明误放入仓库 | 源文件名、内部路径、资料夹结构、模型文件名；只供本地维护使用的说明文件不进入仓库 | [09 软件工作流](09-software-workflows.md)、[../10 检查清单](../10-checklists.md) |
-| 截图 screenshots 和未经授权图像是否已删除或重绘？ | 图片清单、授权记录、自绘 Mermaid / SVG 说明 | 直接发布 CAD、FEA、Adams、测试视频、聊天或内部报告截图 | 软件截图、CAD 截面、云图、测试照片、聊天记录 | [03 几何硬点](03-geometry-and-hardpoints.md)、[06 载荷金属](06-loads-metal-structure.md)、[07 复材制造](07-composites-and-manufacturing.md) |
+| 截图 screenshots 和未经授权图像是否已删除或重绘？ | [参考资料](../references.md#asset-provenance) 中的图表登记、自绘 Mermaid / SVG 说明和人工复核记录 | 直接发布 CAD、FEA、Adams、测试视频、聊天或内部报告截图 | 软件截图、CAD 截面、云图、测试照片、聊天记录 | [03 几何硬点](03-geometry-and-hardpoints.md)、[06 载荷金属](06-loads-metal-structure.md)、[07 复材制造](07-composites-and-manufacturing.md) |
 | 复制段落 copied passages 是否已改写为原创教学内容？ | 抽样比对、短引用检查、[来源处理说明](../references.md) 和待验证标注 | 源文档长段照搬；旧队伍经验被写成普遍真理 | 源文档原句、长段落、未授权图表说明 | [references.md](../references.md)、[09 软件工作流](09-software-workflows.md) |
 | 内部表格 internal tables 是否被替换为字段模板？ | 表格逐项审查：是否含真实硬点、载荷、铺层、材料、调校和测试值 | 表头看似通用，但组合数值可反推出历史车辆 | 精确硬点表、载荷数据表、铺层表、材料表、调校表、测试结果表 | [03](03-geometry-and-hardpoints.md)、[04](04-spring-damper-roll-and-ride.md)、[06](06-loads-metal-structure.md)、[07](07-composites-and-manufacturing.md) |
 | 发布结论是否保守且可验证？ | “待验证 / 工程经验 / 当前假设下”标注、章节链接和证据等级 | 用绝对语气声称安全、最快、最优或已证明 | 未覆盖工况的强结论、内部 release decision 原文 | [05 仿真优化](05-simulation-optimization-correlation.md)、[08 验证测试](08-validation-testing-defense.md) |
@@ -200,8 +200,8 @@ flowchart TD
 发布审查可先从公开 artifact 做轻量搜索，命令只用于发现风险线索，不能替代人工审读：
 
 ```bash
-rg -n "\.(pdf|docx|xlsx|csv|mat|log)\b|内部路径|车辆编号|源文件名|原始数据|截图" README.md index.html docs
-rg -n "!\[[^]]*(内部|源图|截图|screenshot|raw)" README.md index.html docs
+git ls-files README.md index.html 'docs/**/*.md' 'docs/**/*.html' 'docs/assets/diagrams/*.svg' 'docs/assets/figures/**/*.png' | xargs rg -n "\.(pdf|docx|xlsx|csv|mat|log)\b|内部路径|车辆编号|源文件名|原始数据|截图"
+git ls-files README.md index.html 'docs/**/*.md' 'docs/**/*.html' 'docs/assets/diagrams/*.svg' 'docs/assets/figures/**/*.png' | xargs rg -n "!\[[^]]*(内部|源图|截图|screenshot|raw)"
 ```
 
 发布前最低动作：
@@ -211,6 +211,17 @@ rg -n "!\[[^]]*(内部|源图|截图|screenshot|raw)" README.md index.html docs
 - 把具体数值改成字段、流程、单位说明、趋势和保守判断。
 - 每个技术结论至少链接一个高级章节；证据不足的内容写成 `待补充` 或 `待验证`。
 - 重新检查 [docs/advanced/README.md](README.md) 的资料边界是否与本章一致。
+
+asset/source review record 可以用下面的公开表头：
+
+| 字段 | 写法 |
+| --- | --- |
+| `asset_or_source` | 文件名、章节链接或来源链接；不要写本地绝对路径 |
+| `role_in_chapter` | 支持的工程问题，例如流程图、教学图例、规则入口或案例边界 |
+| `provenance` | 自绘、生成、官方入口、公开论文、历史归档或待人工复核 |
+| `public_boundary` | 可公开的方法、字段、趋势和检查问题；不可公开的原始数据、截图、参数或源文件名 |
+| `review_date` | 最近一次人工复核日期和复核范围 |
+| `action` | 保留、改写、重绘、降级为历史参考、标记待验证或删除 |
 
 ## 输出物
 
