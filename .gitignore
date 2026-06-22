@@ -6,6 +6,7 @@
 .claude/
 AGENTS.md
 CLAUDE.md
+docs/superpowers/
 
 # Local book extraction and translation outputs.
 docs/books/

@@ -219,6 +219,17 @@ residual 审查要按设计窗口分箱，而不是只看总体误差。最低�
 | 结构输入卡 | 轮胎力边界、制动/转向组合、额外冲击工况、模型不支持项 | [06](06-loads-metal-structure.md)、[07](07-composites-and-manufacturing.md) |
 | 相关性验证计划 | 胎温、胎压、轮速、加速度、方向盘、制动压力、悬架位移、车手反馈 | [08 测试](08-validation-testing-defense.md) |
 
+公开模板可以先用字段表，不填真实轮胎数据：
+
+| tire input package 字段 | 写法 | 交叉检查 |
+| --- | --- | --- |
+| `input_version` | 教学版可写 `tire-input-v0-example`；项目版写版本、日期和负责人 | 下游 Adams / MATLAB / CAD 是否引用同一版本 |
+| `tire_choice_status` | 推荐、备选、待采购、待验证，并说明限制 | 选择理由是否同时覆盖性能、采购、包络和数据可用性 |
+| `data_coverage` | 列出 `F_z`、slip angle、slip ratio、camber、pressure、temperature、speed 是否覆盖设计窗口 | 不把缺失工况写成已验证结论 |
+| `coordinate_sign` | 写清 SAE / ISO-style、左右轮镜像、力和力矩正方向 | 仿真、脚本和测试通道符号是否一致 |
+| `model_export` | 写模型形式、适用窗口、residual 检查和导出格式 | 下游整车模型是否知道模型不能回答的问题 |
+| `downstream_trigger` | 轮胎、轮辋、胎压、质量、质心、坐标或模型形式变化时的回归动作 | 是否通知几何、ride/roll、仿真、结构和测试章节 |
+
 任何关键输入变化，例如轮胎、轮辋、胎压策略、质量、质心、轮距、模型形式、坐标转换或制动/驱动边界变化，都应触发下游章节回归检查。
 
 ## 轮胎模型可信度流程图
